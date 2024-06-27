@@ -3,6 +3,14 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@myrmidon/cadmus-part-gve-pg": [
+        "./dist/myrmidon/cadmus-part-gve-pg"
+      ],
+      "@myrmidon/cadmus-part-gve-snapshot": [
+        "./dist/myrmidon/cadmus-part-gve-snapshot"
+      ]
+    },
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,
