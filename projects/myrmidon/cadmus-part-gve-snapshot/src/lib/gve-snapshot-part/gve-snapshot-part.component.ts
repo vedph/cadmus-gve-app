@@ -5,6 +5,7 @@ import {
   Validators,
   FormGroup,
   UntypedFormGroup,
+  ReactiveFormsModule,
 } from '@angular/forms';
 
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
@@ -19,6 +20,8 @@ import {
 } from '../gve-snapshot-part';
 import { CommonModule } from '@angular/common';
 import { Snapshot } from '@myrmidon/gve-snapshot-view';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 /**
  * GVE snapshot part editor component.
@@ -27,7 +30,13 @@ import { Snapshot } from '@myrmidon/gve-snapshot-view';
 @Component({
   selector: 'cadmus-gve-snapshot-part',
   standalone: true,
-  imports: [CommonModule, SnapshotEditorComponent],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatIconModule,
+    SnapshotEditorComponent,
+  ],
   templateUrl: './gve-snapshot-part.component.html',
   styleUrl: './gve-snapshot-part.component.css',
 })
@@ -89,5 +98,14 @@ export class GveSnapshotPartComponent
     let part = this.getEditedPart(GVE_SNAPSHOT_PART_TYPEID) as GveSnapshotPart;
     part.value = this.snapshot.value!;
     return part;
+  }
+
+  public onSnapshotChange(snapshot: Snapshot | null): void {
+    this.snapshot.setValue(snapshot);
+    this.snapshot.markAsDirty();
+    this.snapshot.updateValueAndValidity();
+    if (this.snapshot.value) {
+      super.save();
+    }
   }
 }
