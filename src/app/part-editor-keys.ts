@@ -14,13 +14,12 @@ import {
   COMMENT_FRAGMENT_TYPEID,
   PIN_LINKS_FRAGMENT_TYPEID,
 } from '@myrmidon/cadmus-part-general-ui';
-import {
-  APPARATUS_FRAGMENT_TYPEID,
-} from '@myrmidon/cadmus-part-philology-ui';
+import { APPARATUS_FRAGMENT_TYPEID } from '@myrmidon/cadmus-part-philology-ui';
 
 const TOKEN_TEXT_LAYER_PART_TYPEID = 'it.vedph.token-text-layer';
 
 import { PartEditorKeys } from '@myrmidon/cadmus-core';
+import { GVE_SNAPSHOT_PART_TYPEID } from '../../projects/myrmidon/cadmus-part-gve-snapshot/src/public-api';
 
 const GENERAL = 'general';
 const PHILOLOGY = 'philology';
@@ -71,7 +70,9 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
     part: GENERAL,
   },
   // gve
-  // TODO add gve snapshot part type ID
+  [GVE_SNAPSHOT_PART_TYPEID]: {
+    part: GVE,
+  },
   // layer parts
   [TOKEN_TEXT_LAYER_PART_TYPEID]: {
     part: GENERAL,
@@ -80,5 +81,5 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
       [COMMENT_FRAGMENT_TYPEID]: GENERAL,
       [PIN_LINKS_FRAGMENT_TYPEID]: GENERAL,
     },
-  }
+  },
 };
