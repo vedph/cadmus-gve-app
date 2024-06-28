@@ -67,7 +67,7 @@
     "@myrmidon/cadmus-ui": "^8.1.2",
     "@myrmidon/cadmus-ui-flags-picker": "^5.1.1",
     "@myrmidon/cadmus-ui-pg": "^8.1.1",
-    "@myrmidon/gve-core": "^0.0.2",
+    "@myrmidon/gve-core": "^0.0.3",
     "@myrmidon/gve-snapshot-view": "^0.0.19",
     "@myrmidon/ng-mat-tools": "^3.1.0",
     "@myrmidon/ng-tools": "^3.1.1",
