@@ -14,11 +14,7 @@ import {
   EnvServiceProvider,
   RamStorageService,
 } from '@myrmidon/ng-tools';
-import {
-  User,
-  AuthJwtService,
-  GravatarService,
-} from '@myrmidon/auth-jwt-login';
+import { User, AuthJwtService, AuthJwtLoginModule } from '@myrmidon/auth-jwt-login';
 
 // bricks
 import {
@@ -66,6 +62,7 @@ import { RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
+    AuthJwtLoginModule,
     // Cadmus
     DocReferencesComponent,
     HistoricalDateComponent,
@@ -102,7 +99,6 @@ export class AppComponent implements OnInit, OnDestroy {
     @Inject('itemBrowserKeys')
     private _itemBrowserKeys: { [key: string]: string },
     private _authService: AuthJwtService,
-    private _gravatarService: GravatarService,
     private _appRepository: AppRepository,
     private _router: Router,
     env: EnvService,
@@ -178,10 +174,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public getItemBrowserRoute(id: string): string {
     return this._itemBrowserKeys[id] || id;
-  }
-
-  public getGravatarUrl(email: string, size = 80): string | null {
-    return this._gravatarService.buildGravatarUrl(email, size);
   }
 
   public logout(): void {
