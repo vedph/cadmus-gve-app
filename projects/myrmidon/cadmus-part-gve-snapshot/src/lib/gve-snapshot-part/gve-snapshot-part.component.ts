@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
-import { ThesauriSet, ThesaurusEntry } from '@myrmidon/cadmus-core';
+import { ThesauriSet } from '@myrmidon/cadmus-core';
 import { EditedObject, ModelEditorComponentBase } from '@myrmidon/cadmus-ui';
 
 import { SnapshotEditorComponent } from '@myrmidon/gve-core';
@@ -29,7 +29,6 @@ import { MatIconModule } from '@angular/material/icon';
  */
 @Component({
   selector: 'cadmus-gve-snapshot-part',
-  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,

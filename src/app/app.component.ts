@@ -14,7 +14,11 @@ import {
   EnvServiceProvider,
   RamStorageService,
 } from '@myrmidon/ng-tools';
-import { User, AuthJwtService, AuthJwtLoginModule } from '@myrmidon/auth-jwt-login';
+import {
+  User,
+  AuthJwtService,
+  AuthJwtLoginModule,
+} from '@myrmidon/auth-jwt-login';
 
 // bricks
 import {
@@ -53,7 +57,6 @@ import { RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
   imports: [
     CommonModule,
     RouterModule,
@@ -64,11 +67,6 @@ import { RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
     MatToolbarModule,
     AuthJwtLoginModule,
     // Cadmus
-    DocReferencesComponent,
-    HistoricalDateComponent,
-    HistoricalDatePipe,
-    AssertedCompositeIdsComponent,
-    FlagsPickerComponent,
     CadmusCoreModule,
     CadmusProfileCoreModule,
     CadmusStateModule,

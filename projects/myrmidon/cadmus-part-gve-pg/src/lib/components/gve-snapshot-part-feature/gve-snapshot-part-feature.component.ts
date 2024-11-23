@@ -10,7 +10,6 @@ import { GveSnapshotPartComponent } from '@myrmidon/cadmus-part-gve-snapshot';
 
 @Component({
   selector: 'cadmus-gve-snapshot-part-feature',
-  standalone: true,
   imports: [CadmusUiPgModule, GveSnapshotPartComponent],
   templateUrl: './gve-snapshot-part-feature.component.html',
   styleUrl: './gve-snapshot-part-feature.component.css',
