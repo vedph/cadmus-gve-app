@@ -13,24 +13,11 @@ import {
   EnvService,
   EnvServiceProvider,
   RamStorageService,
-} from '@myrmidon/ng-tools';
-import {
-  User,
-  AuthJwtService,
-  AuthJwtLoginModule,
-} from '@myrmidon/auth-jwt-login';
+} from '@myrmidon/ngx-tools';
+import { User, AuthJwtService, GravatarPipe } from '@myrmidon/auth-jwt-login';
 
 // bricks
-import {
-  ASSERTED_COMPOSITE_ID_CONFIGS_KEY,
-  AssertedCompositeIdsComponent,
-} from '@myrmidon/cadmus-refs-asserted-ids';
-import { DocReferencesComponent } from '@myrmidon/cadmus-refs-doc-references';
-import {
-  HistoricalDateComponent,
-  HistoricalDatePipe,
-} from '@myrmidon/cadmus-refs-historical-date';
-import { FlagsPickerComponent } from '@myrmidon/cadmus-ui-flags-picker';
+import { ASSERTED_COMPOSITE_ID_CONFIGS_KEY } from '@myrmidon/cadmus-refs-asserted-ids';
 import { ViafRefLookupService } from '@myrmidon/cadmus-refs-viaf-lookup';
 import { DbpediaRefLookupService } from '@myrmidon/cadmus-refs-dbpedia-lookup';
 import { GeoNamesRefLookupService } from '@myrmidon/cadmus-refs-geonames-lookup';
@@ -65,7 +52,8 @@ import { RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
-    AuthJwtLoginModule,
+    // myrmidon
+    GravatarPipe,
     // Cadmus
     CadmusCoreModule,
     CadmusProfileCoreModule,

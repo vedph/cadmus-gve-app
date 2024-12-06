@@ -11,7 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { AuthJwtAdminModule } from '@myrmidon/auth-jwt-admin';
+import { AuthJwtRegistrationComponent } from '@myrmidon/auth-jwt-admin';
 
 @Component({
   selector: 'app-register-user-page',
@@ -27,7 +27,7 @@ import { AuthJwtAdminModule } from '@myrmidon/auth-jwt-admin';
     MatInputModule,
     MatProgressBarModule,
     MatTooltipModule,
-    AuthJwtAdminModule,
+    AuthJwtRegistrationComponent,
   ],
 })
 export class RegisterUserPageComponent implements OnInit {

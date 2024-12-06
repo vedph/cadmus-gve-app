@@ -16,7 +16,7 @@ import { NgeMarkdownModule } from '@cisstech/nge/markdown';
 
 // myrmidon
 import { authJwtInterceptor } from '@myrmidon/auth-jwt-login';
-import { EnvServiceProvider } from '@myrmidon/ng-tools';
+import { EnvServiceProvider } from '@myrmidon/ngx-tools';
 import { CadmusApiModule } from '@myrmidon/cadmus-api';
 import {
   CADMUS_TEXT_ED_BINDINGS_TOKEN,
