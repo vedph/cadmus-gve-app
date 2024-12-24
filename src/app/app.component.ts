@@ -9,11 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 // myrmidon
-import {
-  EnvService,
-  EnvServiceProvider,
-  RamStorageService,
-} from '@myrmidon/ngx-tools';
+import { EnvService, RamStorageService } from '@myrmidon/ngx-tools';
 import { User, AuthJwtService, GravatarPipe } from '@myrmidon/auth-jwt-login';
 
 // bricks
@@ -69,7 +65,6 @@ import { RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
     CadmusThesaurusListModule,
     CadmusThesaurusUiModule,
   ],
-  providers: [EnvServiceProvider],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

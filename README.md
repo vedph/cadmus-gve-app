@@ -15,6 +15,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2024-12-24: updated to [bricks V3](https://github.com/vedph/cadmus-bricks-shell-v3).
 - 2024-12-23: updated Angular.
 
 ### 2.0.0

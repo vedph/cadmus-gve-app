@@ -7,21 +7,21 @@ import {
   UntypedFormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 import { ThesauriSet } from '@myrmidon/cadmus-core';
 import { EditedObject, ModelEditorComponentBase } from '@myrmidon/cadmus-ui';
 
 import { SnapshotEditorComponent } from '@myrmidon/gve-core';
+import { Snapshot } from '@myrmidon/gve-snapshot-view';
 
 import {
   GVE_SNAPSHOT_PART_TYPEID,
   GveSnapshotPart,
 } from '../gve-snapshot-part';
-import { CommonModule } from '@angular/common';
-import { Snapshot } from '@myrmidon/gve-snapshot-view';
-import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
 
 /**
  * GVE snapshot part editor component.

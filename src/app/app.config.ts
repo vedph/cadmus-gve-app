@@ -1,4 +1,8 @@
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import {
   provideHttpClient,
@@ -16,7 +20,6 @@ import { NgeMarkdownModule } from '@cisstech/nge/markdown';
 
 // myrmidon
 import { authJwtInterceptor } from '@myrmidon/auth-jwt-login';
-import { EnvServiceProvider } from '@myrmidon/ngx-tools';
 import { CadmusApiModule } from '@myrmidon/cadmus-api';
 import {
   CADMUS_TEXT_ED_BINDINGS_TOKEN,
@@ -49,7 +52,6 @@ export const appConfig: ApplicationConfig = {
     provideNativeDateAdapter(),
     importProvidersFrom(NgeMonacoModule.forRoot({})),
     importProvidersFrom(NgeMarkdownModule),
-    EnvServiceProvider,
     importProvidersFrom(CadmusApiModule),
     // parts and fragments type IDs to editor group keys mappings
     // https://github.com/nrwl/nx/issues/208#issuecomment-384102058
