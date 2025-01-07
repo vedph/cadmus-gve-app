@@ -4,10 +4,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { GVE_SNAPSHOT_PART_TYPEID } from '@myrmidon/cadmus-part-gve-snapshot';
-import { PendingChangesGuard, CadmusCoreModule } from '@myrmidon/cadmus-core';
-import { CadmusStateModule } from '@myrmidon/cadmus-state';
-import { CadmusUiModule } from '@myrmidon/cadmus-ui';
-import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
+import { PendingChangesGuard } from '@myrmidon/cadmus-core';
+import { CurrentItemBarComponent } from '@myrmidon/cadmus-ui-pg';
 
 import { GveSnapshotPartFeatureComponent } from './components/gve-snapshot-part-feature/gve-snapshot-part-feature.component';
 
@@ -28,10 +26,7 @@ export const RouterModuleForChild = RouterModule.forChild([
     ReactiveFormsModule,
     // cadmus
     RouterModuleForChild,
-    CadmusCoreModule,
-    CadmusStateModule,
-    CadmusUiModule,
-    CadmusUiPgModule,
+    CurrentItemBarComponent,
     // local
     GveSnapshotPartFeatureComponent,
   ],

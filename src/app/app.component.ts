@@ -19,23 +19,8 @@ import { DbpediaRefLookupService } from '@myrmidon/cadmus-refs-dbpedia-lookup';
 import { GeoNamesRefLookupService } from '@myrmidon/cadmus-refs-geonames-lookup';
 
 // cadmus
-import {
-  CadmusCoreModule,
-  Thesaurus,
-  ThesaurusEntry,
-} from '@myrmidon/cadmus-core';
-import { CadmusGraphPgModule } from '@myrmidon/cadmus-graph-pg';
-import { CadmusGraphUiModule } from '@myrmidon/cadmus-graph-ui';
-import { CadmusProfileCoreModule } from '@myrmidon/cadmus-profile-core';
-import { AppRepository, CadmusStateModule } from '@myrmidon/cadmus-state';
-import { CadmusUiModule } from '@myrmidon/cadmus-ui';
-import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
-import { CadmusItemEditorModule } from '@myrmidon/cadmus-item-editor';
-import { CadmusItemListModule } from '@myrmidon/cadmus-item-list';
-import { CadmusItemSearchModule } from '@myrmidon/cadmus-item-search';
-import { CadmusThesaurusEditorModule } from '@myrmidon/cadmus-thesaurus-editor';
-import { CadmusThesaurusListModule } from '@myrmidon/cadmus-thesaurus-list';
-import { CadmusThesaurusUiModule } from '@myrmidon/cadmus-thesaurus-ui';
+import { Thesaurus, ThesaurusEntry } from '@myrmidon/cadmus-core';
+import { AppRepository } from '@myrmidon/cadmus-state';
 import { RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
 
 @Component({
@@ -50,20 +35,6 @@ import { RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
     MatToolbarModule,
     // myrmidon
     GravatarPipe,
-    // Cadmus
-    CadmusCoreModule,
-    CadmusProfileCoreModule,
-    CadmusStateModule,
-    CadmusUiModule,
-    CadmusUiPgModule,
-    CadmusGraphPgModule,
-    CadmusGraphUiModule,
-    CadmusItemEditorModule,
-    CadmusItemListModule,
-    CadmusItemSearchModule,
-    CadmusThesaurusEditorModule,
-    CadmusThesaurusListModule,
-    CadmusThesaurusUiModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

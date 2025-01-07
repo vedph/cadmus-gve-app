@@ -4,13 +4,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { ItemService, ThesaurusService } from '@myrmidon/cadmus-api';
 import { EditPartFeatureBase, PartEditorService } from '@myrmidon/cadmus-state';
-import { CadmusUiPgModule } from '@myrmidon/cadmus-ui-pg';
+import { CurrentItemBarComponent } from '@myrmidon/cadmus-ui-pg';
 
 import { GveSnapshotPartComponent } from '@myrmidon/cadmus-part-gve-snapshot';
 
 @Component({
   selector: 'cadmus-gve-snapshot-part-feature',
-  imports: [CadmusUiPgModule, GveSnapshotPartComponent],
+  imports: [CurrentItemBarComponent, GveSnapshotPartComponent],
   templateUrl: './gve-snapshot-part-feature.component.html',
   styleUrl: './gve-snapshot-part-feature.component.css',
 })
