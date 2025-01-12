@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/cadmus-part-gve-snapshot",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Cadmus - GVE snapshot part UI components.",
   "keywords": [
     "Cadmus",
@@ -17,10 +17,10 @@
   "peerDependencies": {
     "@angular/common": "^19.0.0",
     "@angular/core": "^19.0.0",
-    "@myrmidon/auth-jwt-login": "^7.1.0",
-    "@myrmidon/cadmus-core": "^10.1.0",
-    "@myrmidon/cadmus-ui": "^10.2.0",
-    "@myrmidon/gve-core": "^2.0.0",
+    "@myrmidon/auth-jwt-login": "^7.1.1",
+    "@myrmidon/cadmus-core": "^11.0.0",
+    "@myrmidon/cadmus-ui": "^11.0.0",
+    "@myrmidon/gve-core": "^3.0.2",
     "@myrmidon/gve-snapshot-view": "^1.1.6"
   },
   "dependencies": {

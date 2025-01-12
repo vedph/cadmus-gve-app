@@ -15,6 +15,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+### 2.0.1
+
+- 2025-01-12:
+  - updated Angular and packages.
+  - homepage.
 - 2025-01-07:
   - ⚠️ standalone components.
   - Angular and packages updates.

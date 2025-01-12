@@ -9,9 +9,9 @@
     <mat-card-content>
       <gve-snapshot-editor
         [noSave]="userLevel < 2"
-        [snapshot]="snapshot.value"
+        [snapshot]="snapshot.value || undefined"
         (snapshotCancel)="close()"
-        (snapshotChange)="onSnapshotChange($event)"
+        (snapshotChange)="onSnapshotChange($event!)"
       />
     </mat-card-content>
   </mat-card>
