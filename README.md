@@ -17,7 +17,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### 2.0.1
 
-- 2025-01-15: homepage.
+- 2025-01-15:
+  - homepage.
+  - updated packages.
 - 2025-01-12:
   - updated Angular and packages.
   - homepage.
