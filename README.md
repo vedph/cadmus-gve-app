@@ -15,6 +15,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2025-01-28:
+  - ⚠️ signal-based dependencies.
+  - updated Angular and packages.
+
 ### 2.0.1
 
 - 2025-01-15:
