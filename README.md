@@ -15,6 +15,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2025-05-24: updated Angular and packages.
 - 2025-03-04:
   - ⚠️ updated Cadmus to migration V2.
   - updated Angular and packages.
