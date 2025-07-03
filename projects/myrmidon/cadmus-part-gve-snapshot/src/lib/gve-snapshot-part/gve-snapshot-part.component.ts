@@ -7,7 +7,7 @@ import {
   UntypedFormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -30,12 +30,11 @@ import {
 @Component({
   selector: 'cadmus-gve-snapshot-part',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatCardModule,
     MatIconModule,
-    SnapshotEditorComponent,
-  ],
+    SnapshotEditorComponent
+],
   templateUrl: './gve-snapshot-part.component.html',
   styleUrl: './gve-snapshot-part.component.css',
 })

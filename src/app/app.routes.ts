@@ -8,6 +8,7 @@ import { EditorGuardService } from '@myrmidon/cadmus-api';
 import { PendingChangesGuard } from '@myrmidon/cadmus-core';
 
 import { HomeComponent } from './home/home.component';
+import { EditFrameStatsPageComponent } from './edit-frame-stats-page/edit-frame-stats-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ManageUsersPageComponent } from './manage-users-page/manage-users-page.component';
 import { RegisterUserPageComponent } from './register-user-page/register-user-page.component';
@@ -33,6 +34,11 @@ export const routes: Routes = [
     path: 'manage-users',
     component: ManageUsersPageComponent,
     canActivate: [AuthJwtAdminGuardService],
+  },
+  {
+    path: 'stats',
+    component: EditFrameStatsPageComponent,
+    canActivate: [AuthJwtGuardService],
   },
   // cadmus - items
   {

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,7 +22,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css'],
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
@@ -30,8 +29,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatIconModule,
     MatInputModule,
     MatTooltipModule,
-    AuthJwtLoginComponent,
-  ],
+    AuthJwtLoginComponent
+],
 })
 export class LoginPageComponent {
   public busy = false;
