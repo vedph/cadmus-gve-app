@@ -15,6 +15,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2025-07-12: updated Angular and packages.
 - 2025-07-03:
   - updated ⚠️ Angular (v20) and packages.
   - added stats page.
