@@ -12,8 +12,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
-import { ThesauriSet } from '@myrmidon/cadmus-core';
-import { EditedObject, ModelEditorComponentBase } from '@myrmidon/cadmus-ui';
+import { ThesauriSet, EditedObject } from '@myrmidon/cadmus-core';
+import { ModelEditorComponentBase } from '@myrmidon/cadmus-ui';
 
 import { SnapshotEditorComponent } from '@myrmidon/gve-core';
 import { Snapshot } from '@myrmidon/gve-snapshot-view';
