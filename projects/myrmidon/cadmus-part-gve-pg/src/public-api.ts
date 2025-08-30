@@ -3,4 +3,4 @@
  */
 
 export * from './lib/components/gve-snapshot-part-feature/gve-snapshot-part-feature.component';
-export * from './lib/cadmus-part-gve-pg.module';
+export * from './lib/cadmus-part-gve-pg.routes';

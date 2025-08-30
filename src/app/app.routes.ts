@@ -104,7 +104,7 @@ export const routes: Routes = [
     path: 'items/:iid/gve',
     loadChildren: () =>
       import('@myrmidon/cadmus-part-gve-pg').then(
-        (module) => module.CadmusPartGvePgModule
+        (module) => module.CADMUS_PART_GVE_PG_ROUTES
       ),
     canActivate: [AuthJwtGuardService],
   },

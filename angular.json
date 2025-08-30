@@ -37,7 +37,9 @@
             "allowedCommonJsDependencies": [
               "diff-match-patch",
               "webcola",
-              "dagre"
+              "dagre",
+              "ngraph.graph",
+              "ngraph.forcelayout"
             ]
           },
           "configurations": {
