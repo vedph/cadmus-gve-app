@@ -16,13 +16,17 @@ import {
 } from '@myrmidon/cadmus-part-general-ui';
 import { APPARATUS_FRAGMENT_TYPEID } from '@myrmidon/cadmus-part-philology-ui';
 
-const TOKEN_TEXT_LAYER_PART_TYPEID = 'it.vedph.token-text-layer';
-
 import { PartEditorKeys } from '@myrmidon/cadmus-core';
+
+// codicology
+import { COD_SHELFMARKS_PART_TYPEID } from '@myrmidon/cadmus-part-codicology-shelfmarks';
+
 import { GVE_SNAPSHOT_PART_TYPEID } from '../../projects/myrmidon/cadmus-part-gve-snapshot/src/public-api';
 
+const TOKEN_TEXT_LAYER_PART_TYPEID = 'it.vedph.token-text-layer';
 const GENERAL = 'general';
 const PHILOLOGY = 'philology';
+const CODICOLOGY = 'codicology';
 const GVE = 'gve';
 
 /**
@@ -72,6 +76,10 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   // gve
   [GVE_SNAPSHOT_PART_TYPEID]: {
     part: GVE,
+  },
+  // codicology
+  [COD_SHELFMARKS_PART_TYPEID]: {
+    part: CODICOLOGY,
   },
   // layer parts
   [TOKEN_TEXT_LAYER_PART_TYPEID]: {
