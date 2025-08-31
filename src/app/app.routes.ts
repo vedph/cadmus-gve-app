@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 
 import { jwtGuard, jwtAdminGuard } from '@myrmidon/auth-jwt-login';
-import { EditorGuardService } from '@myrmidon/cadmus-api';
-import { PendingChangesGuard } from '@myrmidon/cadmus-core';
+import { editorGuard } from '@myrmidon/cadmus-api';
+import { pendingChangesGuard } from '@myrmidon/cadmus-core';
 
 import { HomeComponent } from './home/home.component';
 import { EditFrameStatsPageComponent } from './edit-frame-stats-page/edit-frame-stats-page.component';
@@ -45,7 +45,7 @@ export const routes: Routes = [
         (module) => module.ItemEditorComponent
       ),
     canActivate: [jwtGuard],
-    canDeactivate: [PendingChangesGuard],
+    canDeactivate: [pendingChangesGuard],
   },
   {
     path: 'items',
@@ -70,7 +70,7 @@ export const routes: Routes = [
       import('@myrmidon/cadmus-thesaurus-editor').then(
         (module) => module.ThesaurusEditorFeatureComponent
       ),
-    canActivate: [EditorGuardService],
+    canActivate: [editorGuard],
   },
   {
     path: 'thesauri',
@@ -78,7 +78,7 @@ export const routes: Routes = [
       import('@myrmidon/cadmus-thesaurus-list').then(
         (module) => module.ThesaurusListComponent
       ),
-    canActivate: [EditorGuardService],
+    canActivate: [editorGuard],
   },
   // cadmus - parts
   {

@@ -15,6 +15,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2025-08-31:
+  - updated packages.
+  - replaced remaining legacy guards with functional counterparts.
 - 2025-08-30:
   - updated Angular and packages.
   - use module-less routes in PG library.
