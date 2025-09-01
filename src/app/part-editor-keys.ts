@@ -13,6 +13,9 @@ import {
   TOKEN_TEXT_PART_TYPEID,
   COMMENT_FRAGMENT_TYPEID,
   PIN_LINKS_FRAGMENT_TYPEID,
+  ASSERTED_HISTORICAL_DATES_PART_TYPEID,
+  FLAGS_PART_TYPEID,
+  HISTORICAL_EVENTS_PART_TYPEID,
 } from '@myrmidon/cadmus-part-general-ui';
 import { APPARATUS_FRAGMENT_TYPEID } from '@myrmidon/cadmus-part-philology-ui';
 
@@ -37,6 +40,9 @@ const GVE = 'gve';
  */
 export const PART_EDITOR_KEYS: PartEditorKeys = {
   // general
+  [ASSERTED_HISTORICAL_DATES_PART_TYPEID]: {
+    part: GENERAL,
+  },
   [BIBLIOGRAPHY_PART_TYPEID]: {
     part: GENERAL,
   },
@@ -55,7 +61,13 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   [EXTERNAL_IDS_PART_TYPEID]: {
     part: GENERAL,
   },
+  [FLAGS_PART_TYPEID]: {
+    part: GENERAL,
+  },
   [HISTORICAL_DATE_PART_TYPEID]: {
+    part: GENERAL,
+  },
+  [HISTORICAL_EVENTS_PART_TYPEID]: {
     part: GENERAL,
   },
   [INDEX_KEYWORDS_PART_TYPEID]: {
