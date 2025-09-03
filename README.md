@@ -15,6 +15,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2025-09-03: added hands part.
 - 2025-09-01: updated packages.
 - 2025-08-31:
   - updated packages.
