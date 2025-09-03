@@ -27,7 +27,7 @@ services:
 
   # Cadmus gve API
   cadmus-gve-api:
-    image: vedph2020/cadmus-gve-api:3.0.1
+    image: vedph2020/cadmus-gve-api:3.0.2
     container_name: cadmus-gve-api
     ports:
       - 5092:8080
