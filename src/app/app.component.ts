@@ -16,11 +16,15 @@ import { User, AuthJwtService, GravatarPipe } from '@myrmidon/auth-jwt-login';
 import { ViafRefLookupService } from '@myrmidon/cadmus-refs-viaf-lookup';
 import { DbpediaRefLookupService } from '@myrmidon/cadmus-refs-dbpedia-lookup';
 import { GeoNamesRefLookupService } from '@myrmidon/cadmus-refs-geonames-lookup';
+import { ZoteroRefLookupService } from '@myrmidon/cadmus-refs-zotero-lookup';
 
 // cadmus
 import { Thesaurus, ThesaurusEntry } from '@myrmidon/cadmus-core';
 import { AppRepository } from '@myrmidon/cadmus-state';
-import { LOOKUP_CONFIGS_KEY, RefLookupConfig } from '@myrmidon/cadmus-refs-lookup';
+import {
+  LOOKUP_CONFIGS_KEY,
+  RefLookupConfig,
+} from '@myrmidon/cadmus-refs-lookup';
 
 @Component({
   selector: 'app-root',
@@ -55,7 +59,8 @@ export class AppComponent implements OnInit, OnDestroy {
     storage: RamStorageService,
     viaf: ViafRefLookupService,
     dbpedia: DbpediaRefLookupService,
-    geonames: GeoNamesRefLookupService
+    geonames: GeoNamesRefLookupService,
+    zotero: ZoteroRefLookupService
   ) {
     this.version = env.get('version') || '';
     this._subs = [];
@@ -88,6 +93,15 @@ export class AppComponent implements OnInit, OnDestroy {
         service: geonames,
         itemIdGetter: (item: any) => item?.geonameId,
         itemLabelGetter: (item: any) => item?.name,
+      },
+      {
+        name: 'Zotero',
+        iconUrl: '/img/zotero128.png',
+        description: 'Zotero',
+        label: 'ID',
+        service: zotero,
+        itemIdGetter: (item: any) => item?.data?.key,
+        itemLabelGetter: (item: any) => item?.data?.title,
       },
     ] as RefLookupConfig[]);
   }

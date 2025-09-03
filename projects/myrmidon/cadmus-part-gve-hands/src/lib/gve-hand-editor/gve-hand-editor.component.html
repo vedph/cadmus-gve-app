@@ -32,18 +32,21 @@
   </div>
 
   <!-- owner -->
-  <div style="margin-bottom: 8px">
-    <cadmus-refs-asserted-composite-id
-      [idTagEntries]="idTagEntries()"
-      [assTagEntries]="assTagEntries()"
-      [refTagEntries]="docRefTagEntries()"
-      [idScopeEntries]="idScopeEntries()"
-      [refTypeEntries]="docRefTypeEntries()"
-      [canEditTarget]="true"
-      [canSwitchMode]="true"
-      [id]="ownerId.value || undefined"
-      (idChange)="onIdChange($event!)"
-    />
+  <div>
+    <fieldset>
+      <legend>owner</legend>
+      <cadmus-refs-asserted-composite-id
+        [idTagEntries]="idTagEntries()"
+        [assTagEntries]="assTagEntries()"
+        [refTagEntries]="docRefTagEntries()"
+        [idScopeEntries]="idScopeEntries()"
+        [refTypeEntries]="docRefTypeEntries()"
+        [canEditTarget]="true"
+        [canSwitchMode]="true"
+        [id]="ownerId.value || undefined"
+        (idChange)="onIdChange($event!)"
+      />
+    </fieldset>
   </div>
 
   <div class="form-row">
