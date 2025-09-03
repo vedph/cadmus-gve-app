@@ -165,6 +165,36 @@
           }
         }
       }
+    },
+    "@myrmidon/cadmus-part-gve-hands": {
+      "projectType": "library",
+      "root": "projects/myrmidon/cadmus-part-gve-hands",
+      "sourceRoot": "projects/myrmidon/cadmus-part-gve-hands/src",
+      "prefix": "cadmus",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/myrmidon/cadmus-part-gve-hands/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/myrmidon/cadmus-part-gve-hands/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/myrmidon/cadmus-part-gve-hands/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   },
   "schematics": {

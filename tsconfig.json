@@ -4,6 +4,9 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "@myrmidon/cadmus-part-gve-hands": [
+        "./dist/myrmidon/cadmus-part-gve-hands"
+      ],
       "@myrmidon/cadmus-part-gve-pg": [
         "./dist/myrmidon/cadmus-part-gve-pg"
       ],
@@ -37,5 +40,13 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "references": [
+    {
+      "path": "./projects/myrmidon/cadmus-part-gve-hands/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/myrmidon/cadmus-part-gve-hands/tsconfig.spec.json"
+    }
+  ]
 }

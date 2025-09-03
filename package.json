@@ -8,8 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build-snp": "ng build @myrmidon/cadmus-part-gve-snapshot",
+    "build-hnd": "ng build @myrmidon/cadmus-part-gve-hands",
     "build-pg": "ng build @myrmidon/cadmus-part-gve-pg",
-    "build-lib": "npm run build-snp && npm run build-pg"
+    "build-lib": "npm run build-snp && npm run build-hnd && npm run build-pg"
   },
   "private": true,
   "dependencies": {
