@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, effect, input, model, output } from '@angular/core';
+import { Component, effect, input, model, output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -94,10 +94,7 @@ export class GveHandEditorComponent {
   public notes: FormControl<NoteSet>;
   public form: FormGroup;
 
-  // track if the form is currently being updated programmatically
-  private _updatingForm = false;
-
-  constructor(private formBuilder: FormBuilder) {
+  constructor(formBuilder: FormBuilder) {
     // form
     this.eid = formBuilder.control<string | null>(
       null,
@@ -136,8 +133,6 @@ export class GveHandEditorComponent {
   }
 
   private updateForm(data: GveHand | undefined | null): void {
-    this._updatingForm = true;
-
     if (!data) {
       this.form.reset();
     } else {
@@ -155,9 +150,6 @@ export class GveHandEditorComponent {
     }
 
     this.form.markAsPristine();
-
-    // reset guard only after marking controls
-    this._updatingForm = false;
   }
 
   public onIdChange(id: AssertedCompositeId): void {

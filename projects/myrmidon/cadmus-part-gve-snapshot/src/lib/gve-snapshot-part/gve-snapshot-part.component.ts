@@ -7,6 +7,7 @@ import {
   UntypedFormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { TitleCasePipe } from '@angular/common';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -33,7 +34,8 @@ import {
     ReactiveFormsModule,
     MatCardModule,
     MatIconModule,
-    SnapshotEditorComponent
+    SnapshotEditorComponent,
+    TitleCasePipe
 ],
   templateUrl: './gve-snapshot-part.component.html',
   styleUrl: './gve-snapshot-part.component.css',

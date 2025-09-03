@@ -4,3 +4,4 @@
 
 export * from './lib/gve-hands-part';
 export * from './lib/gve-hand-editor/gve-hand-editor.component';
+export * from './lib/gve-hands-part/gve-hands-part.component';
