@@ -11,13 +11,16 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. `npm run build-lib`;
 2. update version in `env.js` and `ng build --configuration=production`;
-3. `docker build . -t vedph2020/cadmus-gve-app:3.0.0 -t vedph2020/cadmus-gve-app:latest` (replace with the current version).
+3. `docker build . -t vedph2020/cadmus-gve-app:3.0.1 -t vedph2020/cadmus-gve-app:latest` (replace with the current version).
 
 ## History
+
+### 3.0.1
 
 - 2025-09-04:
   - added Zotero infrastructure.
   - 👉 note that when cloning this repo you should provide your own `env.local.js` under `public` where you override Zotero settings to use your library, user ID and API key. The `env.js` file is just a template for Zotero parameters. Template for this file (replace `...` with your data):
+  - generated Docker image.
 
 ```js
 // development overrides for env.js
