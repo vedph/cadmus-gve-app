@@ -16,6 +16,8 @@ import {
   ASSERTED_HISTORICAL_DATES_PART_TYPEID,
   FLAGS_PART_TYPEID,
   HISTORICAL_EVENTS_PART_TYPEID,
+  PHYSICAL_MEASUREMENTS_PART_TYPEID,
+  PHYSICAL_STATES_PART_TYPEID,
 } from '@myrmidon/cadmus-part-general-ui';
 import { APPARATUS_FRAGMENT_TYPEID } from '@myrmidon/cadmus-part-philology-ui';
 
@@ -78,6 +80,12 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
     part: GENERAL,
   },
   [NOTE_PART_TYPEID]: {
+    part: GENERAL,
+  },
+  [PHYSICAL_MEASUREMENTS_PART_TYPEID]: {
+    part: GENERAL,
+  },
+  [PHYSICAL_STATES_PART_TYPEID]: {
     part: GENERAL,
   },
   [PIN_LINKS_PART_TYPEID]: {
