@@ -20,6 +20,7 @@ import { NgeMarkdownModule } from '@cisstech/nge/markdown';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 // myrmidon
+import { EnvService } from '@myrmidon/ngx-tools';
 import { authJwtInterceptor } from '@myrmidon/auth-jwt-login';
 import {
   CADMUS_TEXT_ED_BINDINGS_TOKEN,
@@ -33,6 +34,7 @@ import {
 import { TxtEmojiCtePlugin } from '@myrmidon/cadmus-text-ed-txt';
 import { GEONAMES_USERNAME_TOKEN } from '@myrmidon/cadmus-refs-geonames-lookup';
 import { PROXY_INTERCEPTOR_OPTIONS } from '@myrmidon/cadmus-refs-lookup';
+import { ZOTERO_API_KEY_TOKEN, ZOTERO_USER_ID_TOKEN } from '@myrmidon/cadmus-refs-zotero-lookup';
 
 // local
 import { INDEX_LOOKUP_DEFINITIONS } from './index-lookup-definitions';
@@ -75,6 +77,17 @@ export const appConfig: ApplicationConfig = {
     {
       provide: 'itemBrowserKeys',
       useValue: ITEM_BROWSER_KEYS,
+    },
+    // Zotero
+    {
+      provide: ZOTERO_API_KEY_TOKEN,
+      useFactory: (env: EnvService) => env.get('zoteroApiKey'),
+      deps: [EnvService],
+    },
+    {
+      provide: ZOTERO_USER_ID_TOKEN,
+      useFactory: (env: EnvService) => env.get('zoteroUserId'),
+      deps: [EnvService],
     },
     // text editing plugins
     MdBoldCtePlugin,

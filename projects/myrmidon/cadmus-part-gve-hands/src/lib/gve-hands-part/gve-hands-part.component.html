@@ -103,7 +103,7 @@
             [docRefTypeEntries]="docRefTypeEntries()"
             [hand]="edited()"
             (handChange)="saveHand($event!)"
-            (editorClose)="closeHand()"
+            (cancelEdit)="closeHand()"
           />
         </mat-expansion-panel>
       </fieldset>

@@ -100,13 +100,15 @@ export class AppComponent implements OnInit, OnDestroy {
         description: 'Zotero',
         label: 'ID',
         service: zotero,
-        itemIdGetter: (item: any) => item?.data?.key,
-        itemLabelGetter: (item: any) => item?.data?.title,
+        itemIdGetter: (item: any) =>
+          `${item?.data?.library?.id}/${item?.data?.key}`,
+        itemLabelGetter: (item: any) =>
+          `${item?.data?.title} (${item?.data?.library?.id}/${item?.data?.key})`,
       },
     ] as RefLookupConfig[]);
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.user = this._authService.currentUserValue || undefined;
     this.logged = this.user !== null;
 
@@ -129,7 +131,7 @@ export class AppComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this._subs.forEach((sub) => {
       sub.unsubscribe();
     });
