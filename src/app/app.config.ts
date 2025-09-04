@@ -34,7 +34,11 @@ import {
 import { TxtEmojiCtePlugin } from '@myrmidon/cadmus-text-ed-txt';
 import { GEONAMES_USERNAME_TOKEN } from '@myrmidon/cadmus-refs-geonames-lookup';
 import { PROXY_INTERCEPTOR_OPTIONS } from '@myrmidon/cadmus-refs-lookup';
-import { ZOTERO_API_KEY_TOKEN, ZOTERO_USER_ID_TOKEN } from '@myrmidon/cadmus-refs-zotero-lookup';
+import {
+  ZOTERO_API_KEY_TOKEN,
+  ZOTERO_LIBRARY_ID_TOKEN,
+  ZOTERO_USER_ID_TOKEN,
+} from '@myrmidon/cadmus-refs-zotero-lookup';
 
 // local
 import { INDEX_LOOKUP_DEFINITIONS } from './index-lookup-definitions';
@@ -87,6 +91,11 @@ export const appConfig: ApplicationConfig = {
     {
       provide: ZOTERO_USER_ID_TOKEN,
       useFactory: (env: EnvService) => env.get('zoteroUserId'),
+      deps: [EnvService],
+    },
+    {
+      provide: ZOTERO_LIBRARY_ID_TOKEN,
+      useFactory: (env: EnvService) => env.get('zoteroLibraryId'),
       deps: [EnvService],
     },
     // text editing plugins

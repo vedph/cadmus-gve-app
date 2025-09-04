@@ -10,4 +10,5 @@
   // Zotero
   window.__env.zoteroApiKey = "TODO:YOUR_ZOTERO_KEY";
   window.__env.zoteroUserId = "TODO:YOUR_ZOTERO_USER_ID";
+  window.__env.zoteroLibraryId = "TODO:YOUR_ZOTERO_LIBRARY_ID";
 })(this);

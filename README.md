@@ -15,6 +15,20 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## History
 
+- 2025-09-04:
+  - added Zotero infrastructure.
+  - 👉 note that when cloning this repo you should provide your own `env.local.js` under `public` where you override Zotero settings to use your library, user ID and API key. The `env.js` file is just a template for Zotero parameters. Template for this file (replace `...` with your data):
+
+```js
+// development overrides for env.js
+// DO NOT COMMIT THIS FILE TO THE REPOSITORY
+
+// Zotero
+window.__env.zoteroApiKey = "...";
+window.__env.zoteroUserId = "...";
+window.__env.zoteroLibraryId = "...";
+```
+
 - 2025-09-03: added hands part.
 - 2025-09-01: updated packages.
 - 2025-08-31:
