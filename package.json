@@ -64,7 +64,7 @@
     "@myrmidon/cadmus-refs-mufi-lookup": "^2.0.0",
     "@myrmidon/cadmus-refs-proper-name": "^10.0.1",
     "@myrmidon/cadmus-refs-viaf-lookup": "^10.0.2",
-    "@myrmidon/cadmus-refs-zotero-lookup": "^0.0.1",
+    "@myrmidon/cadmus-refs-zotero-lookup": "^0.0.2",
     "@myrmidon/cadmus-state": "^14.0.0",
     "@myrmidon/cadmus-statistics": "^0.0.2",
     "@myrmidon/cadmus-text-block-view": "^9.0.0",
