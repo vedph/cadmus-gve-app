@@ -13,9 +13,9 @@ import { EnvService, RamStorageService } from '@myrmidon/ngx-tools';
 import { User, AuthJwtService, GravatarPipe } from '@myrmidon/auth-jwt-login';
 
 // bricks
-import { ViafRefLookupService } from '@myrmidon/cadmus-refs-viaf-lookup';
-import { DbpediaRefLookupService } from '@myrmidon/cadmus-refs-dbpedia-lookup';
-import { GeoNamesRefLookupService } from '@myrmidon/cadmus-refs-geonames-lookup';
+// import { ViafRefLookupService } from '@myrmidon/cadmus-refs-viaf-lookup';
+// import { DbpediaRefLookupService } from '@myrmidon/cadmus-refs-dbpedia-lookup';
+// import { GeoNamesRefLookupService } from '@myrmidon/cadmus-refs-geonames-lookup';
 import { ZoteroRefLookupService } from '@myrmidon/cadmus-refs-zotero-lookup';
 
 // cadmus
@@ -57,9 +57,9 @@ export class AppComponent implements OnInit, OnDestroy {
     env: EnvService,
     // lookup
     storage: RamStorageService,
-    viaf: ViafRefLookupService,
-    dbpedia: DbpediaRefLookupService,
-    geonames: GeoNamesRefLookupService,
+    // viaf: ViafRefLookupService,
+    // dbpedia: DbpediaRefLookupService,
+    // geonames: GeoNamesRefLookupService,
     zotero: ZoteroRefLookupService
   ) {
     this.version = env.get('version') || '';
@@ -67,43 +67,42 @@ export class AppComponent implements OnInit, OnDestroy {
 
     // configure external lookup for asserted composite IDs
     storage.store(LOOKUP_CONFIGS_KEY, [
-      {
-        name: 'VIAF',
-        iconUrl: '/img/viaf128.png',
-        description: 'Virtual International Authority File',
-        label: 'ID',
-        service: viaf,
-        itemIdGetter: (item: any) => item?.viafid,
-        itemLabelGetter: (item: any) => item?.term,
-      },
-      {
-        name: 'DBpedia',
-        iconUrl: '/img/dbpedia128.png',
-        description: 'DBpedia',
-        label: 'ID',
-        service: dbpedia,
-        itemIdGetter: (item: any) => item?.uri,
-        itemLabelGetter: (item: any) => item?.label,
-      },
-      {
-        name: 'geonames',
-        iconUrl: '/img/geonames128.png',
-        description: 'GeoNames',
-        label: 'ID',
-        service: geonames,
-        itemIdGetter: (item: any) => item?.geonameId,
-        itemLabelGetter: (item: any) => item?.name,
-      },
+      // {
+      //   name: 'VIAF',
+      //   iconUrl: '/img/viaf128.png',
+      //   description: 'Virtual International Authority File',
+      //   label: 'ID',
+      //   service: viaf,
+      //   itemIdGetter: (item: any) => item?.viafid,
+      //   itemLabelGetter: (item: any) => item?.term,
+      // },
+      // {
+      //   name: 'DBpedia',
+      //   iconUrl: '/img/dbpedia128.png',
+      //   description: 'DBpedia',
+      //   label: 'ID',
+      //   service: dbpedia,
+      //   itemIdGetter: (item: any) => item?.uri,
+      //   itemLabelGetter: (item: any) => item?.label,
+      // },
+      // {
+      //   name: 'geonames',
+      //   iconUrl: '/img/geonames128.png',
+      //   description: 'GeoNames',
+      //   label: 'ID',
+      //   service: geonames,
+      //   itemIdGetter: (item: any) => item?.geonameId,
+      //   itemLabelGetter: (item: any) => item?.name,
+      // },
       {
         name: 'Zotero',
         iconUrl: '/img/zotero128.png',
         description: 'Zotero',
         label: 'ID',
         service: zotero,
-        itemIdGetter: (item: any) =>
-          `${item?.data?.library?.id}/${item?.data?.key}`,
+        itemIdGetter: (item: any) => `${item?.library?.id}/${item?.key}`,
         itemLabelGetter: (item: any) =>
-          `${item?.data?.title} (${item?.data?.library?.id}/${item?.data?.key})`,
+          `${item?.title} (${item?.library?.id}/${item?.key})`,
       },
     ] as RefLookupConfig[]);
   }
