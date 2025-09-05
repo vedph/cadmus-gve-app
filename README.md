@@ -16,7 +16,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 👉 To use Zotero:
 
 1. prepare a version of [env.js](./public/env.js) filling Zotero parameters with your API key and user ID.
-2. save it under (Ubuntu/MacOS) `opt/dockers/cadmus-gve/env.js`:
+2. save it with path (or any other path, just be sure to update the corresponding Docker script): for Ubuntu/MacOS `opt/dockers/cadmus-gve/env.js`, for (Windows) (`c:/dockers/cadmus-gve/env.js`):
+3. update `docker-compose.yml` to add a bind mount for `env.js`:
 
 ```yml
 volume:
@@ -31,6 +32,8 @@ volumes:
     source: 'c:/dockers/cadmus-gve/env.js'
     target: '/usr/share/nginx/html/env.js'
 ```
+
+This will provide the app with your own Zotero credentials.
 
 ## History
 
