@@ -37,6 +37,8 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
+- 2025-09-17: ⚠️ refactored for full reactivity.
+
 ### 3.0.1
 
 - 2025-09-04:

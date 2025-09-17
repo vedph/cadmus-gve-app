@@ -26,8 +26,8 @@ import { PartEditorKeys } from '@myrmidon/cadmus-core';
 // codicology
 import { COD_SHELFMARKS_PART_TYPEID } from '@myrmidon/cadmus-part-codicology-shelfmarks';
 
-import { GVE_SNAPSHOT_PART_TYPEID } from '../../projects/myrmidon/cadmus-part-gve-snapshot/src/public-api';
-import { GVE_HANDS_PART_TYPEID } from '../../projects/myrmidon/cadmus-part-gve-hands/src/public-api';
+import { GVE_SNAPSHOT_PART_TYPEID } from '@myrmidon/cadmus-part-gve-snapshot';
+import { GVE_HANDS_PART_TYPEID } from '@myrmidon/cadmus-part-gve-hands';
 
 const TOKEN_TEXT_LAYER_PART_TYPEID = 'it.vedph.token-text-layer';
 const GENERAL = 'general';

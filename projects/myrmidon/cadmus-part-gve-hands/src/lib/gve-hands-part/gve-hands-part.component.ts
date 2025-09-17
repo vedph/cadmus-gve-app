@@ -17,7 +17,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { FlatLookupPipe, NgxToolsValidators } from '@myrmidon/ngx-tools';
+import {
+  deepCopy,
+  FlatLookupPipe,
+  NgxToolsValidators,
+} from '@myrmidon/ngx-tools';
 import { DialogService } from '@myrmidon/ngx-mat-tools';
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 import {
@@ -58,7 +62,7 @@ import { GveHandEditorComponent } from '../gve-hand-editor/gve-hand-editor.compo
     FlatLookupPipe,
     // cadmus
     CloseSaveButtonsComponent,
-    GveHandEditorComponent
+    GveHandEditorComponent,
   ],
   templateUrl: './gve-hands-part.component.html',
   styleUrl: './gve-hands-part.component.css',
@@ -208,7 +212,7 @@ export class GveHandsPartComponent
 
   public editHand(entry: GveHand, index: number): void {
     this.editedIndex.set(index);
-    this.edited.set(entry);
+    this.edited.set(deepCopy(entry));
   }
 
   public closeHand(): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +15,7 @@ import { AuthJwtRegistrationComponent } from '@myrmidon/auth-jwt-admin';
 
 @Component({
   selector: 'app-register-user-page',
+  standalone: true,
   templateUrl: './register-user-page.component.html',
   styleUrls: ['./register-user-page.component.css'],
   imports: [
@@ -29,12 +30,10 @@ import { AuthJwtRegistrationComponent } from '@myrmidon/auth-jwt-admin';
     AuthJwtRegistrationComponent
 ],
 })
-export class RegisterUserPageComponent implements OnInit {
+export class RegisterUserPageComponent {
   constructor(private _router: Router) {}
 
-  ngOnInit(): void {}
-
   public onRegistered(): void {
-    this._router.navigate(['/home']);
+    this._router.navigate(['/manage-users']);
   }
 }

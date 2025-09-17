@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 
 @Component({
   selector: 'cadmus-home',
@@ -7,10 +6,4 @@ import { AuthJwtService } from '@myrmidon/auth-jwt-login';
   styleUrls: ['./home.component.css'],
   standalone: false,
 })
-export class HomeComponent {
-  public logged: boolean;
-
-  constructor(authService: AuthJwtService) {
-    this.logged = authService.currentUserValue !== null;
-  }
-}
+export class HomeComponent {}
