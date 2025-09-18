@@ -85,7 +85,7 @@ export const routes: Routes = [
     path: 'items/:iid/general',
     loadChildren: () =>
       import('@myrmidon/cadmus-part-general-pg').then(
-        (module) => module.CadmusPartGeneralPgModule
+        (module) => module.CADMUS_PART_GENERAL_ROUTES
       ),
     canActivate: [jwtGuard],
   },
@@ -93,7 +93,7 @@ export const routes: Routes = [
     path: 'items/:iid/philology',
     loadChildren: () =>
       import('@myrmidon/cadmus-part-philology-pg').then(
-        (module) => module.CadmusPartPhilologyPgModule
+        (module) => module.CADMUS_PART_PHILOLOGY_PG_ROUTES
       ),
     canActivate: [jwtGuard],
   },
@@ -119,7 +119,7 @@ export const routes: Routes = [
     path: 'preview',
     loadChildren: () =>
       import('@myrmidon/cadmus-preview-pg').then(
-        (module) => module.CadmusPreviewPgModule
+        (module) => module.CADMUS_PART_PREVIEW_PG_ROUTES
       ),
     canActivate: [jwtGuard],
   },
