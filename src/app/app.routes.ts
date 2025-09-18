@@ -105,7 +105,7 @@ export const routes: Routes = [
       ),
     canActivate: [jwtGuard],
   },
-  // cadmus - graph
+// cadmus - graph
   {
     path: 'graph',
     loadComponent: () =>
@@ -137,7 +137,7 @@ export const routes: Routes = [
     path: 'items/:iid/codicology',
     loadChildren: () =>
       import('@myrmidon/cadmus-part-codicology-pg').then(
-        (module) => module.CadmusPartCodicologyPgModule
+        (module) => module.CADMUS_PART_CODICOLOGY_PG_ROUTES
       ),
     canActivate: [jwtGuard],
   },
