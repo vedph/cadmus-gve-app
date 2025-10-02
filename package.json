@@ -78,7 +78,7 @@
     "@myrmidon/cadmus-ui-note-set": "^10.0.1",
     "@myrmidon/cadmus-ui-object-view": "^0.0.2",
     "@myrmidon/cadmus-ui-pg": "^16.0.0",
-    "@myrmidon/gve-core": "^5.0.0",
+    "@myrmidon/gve-core": "^5.0.1",
     "@myrmidon/gve-snapshot-view": "^1.2.0",
     "@myrmidon/ngx-mat-tools": "^1.0.0",
     "@myrmidon/ngx-tools": "^2.0.0",

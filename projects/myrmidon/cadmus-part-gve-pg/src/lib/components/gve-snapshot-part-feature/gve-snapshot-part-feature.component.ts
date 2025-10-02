@@ -36,8 +36,14 @@ export class GveSnapshotPartFeatureComponent
     );
   }
 
-  // protected override getReqThesauriIds(): string[] {
-  // return ['note-tags'];
-  // or just avoid overriding the function if no thesaurus required
-  // }
+  protected override getReqThesauriIds(): string[] {
+    return [
+      'snapshot-feat-names',
+      'snapshot-feat-values',
+      'snapshot-efeat-names',
+      'snapshot-efeat-values',
+      'snapshot-dfeat-names',
+      'snapshot-dfeat-values',
+    ];
+  }
 }
