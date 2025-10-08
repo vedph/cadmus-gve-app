@@ -42,12 +42,4 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true
   },
-  "references": [
-    {
-      "path": "./projects/myrmidon/cadmus-part-gve-hands/tsconfig.lib.json"
-    },
-    {
-      "path": "./projects/myrmidon/cadmus-part-gve-hands/tsconfig.spec.json"
-    }
-  ]
 }

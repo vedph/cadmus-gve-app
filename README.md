@@ -37,6 +37,7 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
+- 2025-10-08: updated Angular and packages.
 - 2025-10-02: added thesauri for features in snapshot part editor:
   - 📚 `snapshot-feat-names`: feature names (e.g. id=clr, value=color)
   - 📚 `snapshot-feat-values`: feature values (e.g. id=clr:r, value=red)
