@@ -37,6 +37,7 @@ export class GveHandsPartFeatureComponent
 
   protected override getReqThesauriIds(): string[] {
     return [
+      'gve-hand-eids',
       'gve-hand-tags',
       'gve-hand-tools',
       'gve-hand-colors',

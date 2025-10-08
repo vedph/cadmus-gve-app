@@ -1,13 +1,31 @@
 <form [formGroup]="form" (submit)="save()">
   <div class="form-row">
     <!-- eid-->
+    <!-- eid (bound) -->
+    @if (eidEntries()?.length) {
     <mat-form-field>
-      <mat-label>EID</mat-label>
-      <input matInput [formControl]="eid" />
-      @if ($any(eid).errors?.maxLength && (eid.dirty || eid.touched)) {
-      <mat-error>EID too long</mat-error>
+      <mat-label>eid</mat-label>
+      <mat-select [formControl]="eid">
+        @for (e of eidEntries(); track e.id) {
+        <mat-option [value]="e.id">{{ e.value }}</mat-option>
+        }
+      </mat-select>
+      @if ($any(eid).errors?.required && (eid.dirty || eid.touched)) {
+      <mat-error>eid required</mat-error>
       }
     </mat-form-field>
+    } @else {
+    <!-- eid (free) -->
+    <mat-form-field>
+      <mat-label>eid</mat-label>
+      <input matInput [formControl]="eid" />
+      @if ($any(eid).errors?.required && (eid.dirty || eid.touched)) {
+      <mat-error>eid required</mat-error>
+      } @if ($any(eid).errors?.maxLength && (eid.dirty || eid.touched)) {
+      <mat-error>eid too long</mat-error>
+      }
+    </mat-form-field>
+    }
 
     <!-- tag (bound) -->
     @if (tagEntries()?.length) {

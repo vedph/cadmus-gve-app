@@ -43,8 +43,9 @@ import { GveHandEditorComponent } from '../gve-hand-editor/gve-hand-editor.compo
 
 /**
  * GVE hands part editor.
- * Thesauri: gve-hand-tags, gve-hand-tools, gve-hand-colors, asserted-id-scopes,
- * asserted-id-tags, assertion-tags, doc-reference-types, doc-reference-tags
+ * Thesauri: gve-hand-eids, gve-hand-tags, gve-hand-tools, gve-hand-colors,
+ * asserted-id-scopes, asserted-id-tags, assertion-tags, doc-reference-types,
+ * doc-reference-tags.
  */
 @Component({
   selector: 'cadmus-gve-hands-part',
@@ -74,6 +75,8 @@ export class GveHandsPartComponent
   public readonly editedIndex = signal<number>(-1);
   public readonly edited = signal<GveHand | undefined>(undefined);
 
+  // gve-hand-eids
+  public readonly eidEntries = signal<ThesaurusEntry[] | undefined>(undefined);
   // gve-hand-tags
   public readonly tagEntries = signal<ThesaurusEntry[] | undefined>(undefined);
   // gve-hand-tools
@@ -131,7 +134,13 @@ export class GveHandsPartComponent
   }
 
   private updateThesauri(thesauri: ThesauriSet): void {
-    let key = 'gve-hand-tags';
+    let key = 'gve-hand-eids';
+    if (this.hasThesaurus(key)) {
+      this.eidEntries.set(thesauri[key].entries);
+    } else {
+      this.eidEntries.set(undefined);
+    }
+    key = 'gve-hand-tags';
     if (this.hasThesaurus(key)) {
       this.tagEntries.set(thesauri[key].entries);
     } else {

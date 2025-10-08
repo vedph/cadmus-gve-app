@@ -68,6 +68,8 @@ export class GveHandEditorComponent {
   public readonly hand = model<GveHand | undefined>();
   public readonly cancelEdit = output();
 
+  // gve-hand-eids
+  public readonly eidEntries = input<ThesaurusEntry[] | undefined>();
   // gve-hand-tags
   public readonly tagEntries = input<ThesaurusEntry[] | undefined>();
   // gve-hand-tools
