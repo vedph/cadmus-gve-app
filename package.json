@@ -85,8 +85,6 @@
     "@myrmidon/ngx-viz": "^1.0.0",
     "@myrmidon/paged-data-browsers": "^5.0.3",
     "@svgdotjs/svg.js": "^3.2.5",
-    "@types/diff-match-patch": "^1.0.36",
-    "diff-match-patch": "^1.0.5",
     "gsap": "^3.13.0",
     "marked": "^16.4.1",
     "monaco-editor": "^0.54.0",
