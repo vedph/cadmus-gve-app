@@ -11,7 +11,7 @@
 #title h2 {
   margin: 16px 0;
   text-align: center;
-  color: #4991d8;
+  color: #9F6C2B;
 }
 article {
   margin: 16px;
@@ -29,4 +29,11 @@ article {
 }
 #logos img {
   width: 150px;
+}
+a {
+  color: #9F6C2B;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
 }
