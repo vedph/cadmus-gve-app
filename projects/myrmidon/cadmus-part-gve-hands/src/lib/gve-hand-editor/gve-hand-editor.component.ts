@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, effect, input, model, output } from '@angular/core';
 import {
   FormBuilder,
@@ -49,7 +49,6 @@ const DEFAULT_NOTESET: NoteSet = {
 @Component({
   selector: 'cadmus-gve-hand-editor',
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -59,8 +58,8 @@ const DEFAULT_NOTESET: NoteSet = {
     MatSelectModule,
     MatTooltipModule,
     AssertedCompositeIdComponent,
-    NoteSetComponent,
-  ],
+    NoteSetComponent
+],
   templateUrl: './gve-hand-editor.component.html',
   styleUrl: './gve-hand-editor.component.css',
 })
