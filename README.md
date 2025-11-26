@@ -37,6 +37,7 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
+- 2025-11-26: updated packages.
 - 2025-11-24:
   - ⚠️ upgraded to Angular 21.
   - migrated to `pnpm`.
