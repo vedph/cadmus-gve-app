@@ -11,7 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. `pnpm run build-lib`;
 2. update version in `env.js` and `ng build --configuration=production`;
-3. `docker build . -t vedph2020/cadmus-gve-app:4.0.2 -t vedph2020/cadmus-gve-app:latest` (replace with the current version).
+3. `docker build . -t vedph2020/cadmus-gve-app:5.0.0 -t vedph2020/cadmus-gve-app:latest` (replace with the current version).
 
 👉 To use Zotero:
 
@@ -37,7 +37,9 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
-- 2025-11-26: updated packages.
+### 5.0.0
+
+- 2025-11-26: updated Angular and packages.
 - 2025-11-24:
   - ⚠️ upgraded to Angular 21.
   - migrated to `pnpm`.
