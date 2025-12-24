@@ -10,6 +10,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { ManageUsersPageComponent } from './manage-users-page/manage-users-page.component';
 import { RegisterUserPageComponent } from './register-user-page/register-user-page.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { HintEditorPageComponent } from './hint-editor-page/hint-editor-page.component';
 
 export const routes: Routes = [
   // local home
@@ -36,6 +37,11 @@ export const routes: Routes = [
     path: 'stats',
     component: EditFrameStatsPageComponent,
     canActivate: [jwtGuard],
+  },
+  {
+    path: 'hints',
+    component: HintEditorPageComponent,
+    canActivate: [jwtAdminGuard],
   },
   // cadmus - items
   {
@@ -105,7 +111,7 @@ export const routes: Routes = [
       ),
     canActivate: [jwtGuard],
   },
-// cadmus - graph
+  // cadmus - graph
   {
     path: 'graph',
     loadComponent: () =>

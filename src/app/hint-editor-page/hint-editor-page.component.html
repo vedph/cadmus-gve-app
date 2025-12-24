@@ -1,0 +1,60 @@
+<mat-card appearance="outlined">
+  <mat-card-title>
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>palette</mat-icon>
+      </div>
+      Hints Editor
+    </mat-card-header>
+  </mat-card-title>
+  <!-- toolbar -->
+  <mat-card-content>
+    <div class="button-row">
+      <button
+        type="button"
+        mat-flat-button
+        color="primary"
+        (click)="loadHints()"
+        [disabled]="busy()"
+      >
+        <mat-icon>download</mat-icon>
+        download hints
+      </button>
+      <button
+        type="button"
+        mat-flat-button
+        color="accent"
+        (click)="saveHints()"
+        [disabled]="!busy()"
+      >
+        <mat-icon>edit</mat-icon>
+        Edit Hint
+      </button>
+      <button
+        type="button"
+        mat-flat-button
+        color="warn"
+        (click)="clearHints()"
+        [disabled]="!busy()"
+      >
+        <mat-icon>delete</mat-icon>
+        clear hints
+      </button>
+    </div>
+    <!-- busy indicator -->
+    @if (busy()) {
+    <div>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
+    }
+    <!-- snapshot rendition -->
+    <div>
+      <gve-hint-designer
+        #designer
+        [style.width.%]="100"
+        [style.height.px]="1000"
+      >
+      </gve-hint-designer>
+    </div>
+  </mat-card-content>
+</mat-card>
