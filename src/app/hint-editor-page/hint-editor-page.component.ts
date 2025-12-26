@@ -102,6 +102,9 @@ export class HintEditorPageComponent implements AfterViewInit {
       const customEvent = event as CustomEvent;
       console.log('Hint updated:', customEvent.detail);
     });
+
+    // load initial hints
+    this.loadHints();
   }
 
   public loadHints(): void {
@@ -109,6 +112,7 @@ export class HintEditorPageComponent implements AfterViewInit {
       return;
     }
     // load data from settings service
+    this.busy.set(true);
     this._edSettingService
       .getSetting(HINT_DESIGNER_DATA_KEY)
       .pipe(retry(3))
