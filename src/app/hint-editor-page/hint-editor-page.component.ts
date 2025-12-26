@@ -98,9 +98,9 @@ export class HintEditorPageComponent implements AfterViewInit {
     const designer = this.designerRef.nativeElement;
 
     // listen to hint updates
-    designer.addEventListener('hint-updated', (event: Event) => {
+    designer.addEventListener('dataChange', (event: Event) => {
       const customEvent = event as CustomEvent;
-      console.log('Hint updated:', customEvent.detail);
+      console.log('Data changed:', customEvent.detail.data);
     });
 
     // load initial hints
