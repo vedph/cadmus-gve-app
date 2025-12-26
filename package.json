@@ -80,7 +80,7 @@
     "@myrmidon/cadmus-ui-object-view": "^0.0.3",
     "@myrmidon/cadmus-ui-pg": "^16.0.1",
     "@myrmidon/gve-core": "^5.0.4",
-    "@myrmidon/gve-snapshot-rendition": "^0.0.1",
+    "@myrmidon/gve-snapshot-rendition": "^0.0.2",
     "@myrmidon/gve-snapshot-view": "^1.2.1",
     "@myrmidon/ngx-mat-tools": "^1.0.1",
     "@myrmidon/ngx-tools": "^2.0.2",
@@ -111,7 +111,7 @@
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "ng-packagr": "^21.0.0",
+    "ng-packagr": "^21.0.1",
     "typescript": "~5.9.3"
   },
   "optionalDependencies": {
