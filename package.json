@@ -13,7 +13,7 @@
     "build-lib": "pnpm run build-snp && pnpm run build-hnd && pnpm run build-pg"
   },
   "private": true,
-  "packageManager": "pnpm@10.23.0",
+  "packageManager": "pnpm@10.26.2",
   "dependencies": {
     "@angular/animations": "^21.0.6",
     "@angular/cdk": "^21.0.5",
@@ -88,12 +88,12 @@
     "@myrmidon/paged-data-browsers": "^5.1.2",
     "@svgdotjs/svg.js": "^3.2.5",
     "echarts": "^6.0.0",
-    "gsap": "^3.14.1",
+    "gsap": "^3.14.2",
     "marked": "^17.0.1",
     "monaco-editor": "^0.54.0",
     "nanoid": "^5.1.6",
     "ngx-echarts": "^21.0.0",
-    "ngx-markdown": "^21.0.0",
+    "ngx-markdown": "^21.0.1",
     "rxjs": "~7.8.1",
     "ts-md5": "^2.0.1",
     "tslib": "^2.3.0",
@@ -115,7 +115,7 @@
     "typescript": "~5.9.3"
   },
   "optionalDependencies": {
-    "@rollup/rollup-win32-arm64-msvc": "^4.53.3"
+    "@rollup/rollup-win32-arm64-msvc": "^4.54.0"
   },
   "pnpm": {
     "overrides": {
