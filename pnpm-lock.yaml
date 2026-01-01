@@ -207,8 +207,8 @@ importers:
         specifier: ^5.0.4
         version: 5.0.4(848c7c193512e5a9d36c3e4296da0f77)
       '@myrmidon/gve-snapshot-rendition':
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.3
+        version: 0.0.3
       '@myrmidon/gve-snapshot-view':
         specifier: ^1.2.1
         version: 1.2.1
@@ -2164,8 +2164,8 @@ packages:
       monaco-editor: ^0.54.0
       nanoid: ^5.1.6
 
-  '@myrmidon/gve-snapshot-rendition@0.0.2':
-    resolution: {integrity: sha512-jfstq/KXspoX1eyxZMOlTvLlXMprKf6Rd0R1SzHxClFuxddlzfyLW8ZepAWWvB/2EoX61pGJ08oGCkqEYqAkKg==}
+  '@myrmidon/gve-snapshot-rendition@0.0.3':
+    resolution: {integrity: sha512-zpL+3Vf6C5W0anytzWf/eKHQjtLb9Tkqy4lSkJGOJbNJzbn3nD3PC1HkLGryGDLM8M3QjLY+t2mEjpJjKoxpjw==}
 
   '@myrmidon/gve-snapshot-view@1.2.1':
     resolution: {integrity: sha512-zzFnuH6FVJzefy8an89J153rl42z2KAYn/r7mdZP90S35Cglnt2PGSi7kivKs7rIBoTceA45bUv0cAm7acaujA==}
@@ -6684,7 +6684,7 @@ snapshots:
       nanoid: 5.1.6
       tslib: 2.8.1
 
-  '@myrmidon/gve-snapshot-rendition@0.0.2':
+  '@myrmidon/gve-snapshot-rendition@0.0.3':
     dependencies:
       fast-diff: 1.3.0
       feather-icons: 4.29.2

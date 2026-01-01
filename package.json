@@ -13,7 +13,7 @@
     "build-lib": "pnpm run build-snp && pnpm run build-hnd && pnpm run build-pg"
   },
   "private": true,
-  "packageManager": "pnpm@10.26.2",
+  "packageManager": "pnpm@10.27.0",
   "dependencies": {
     "@angular/animations": "^21.0.6",
     "@angular/cdk": "^21.0.5",
@@ -80,7 +80,7 @@
     "@myrmidon/cadmus-ui-object-view": "^0.0.3",
     "@myrmidon/cadmus-ui-pg": "^16.0.1",
     "@myrmidon/gve-core": "^5.0.4",
-    "@myrmidon/gve-snapshot-rendition": "^0.0.2",
+    "@myrmidon/gve-snapshot-rendition": "^0.0.3",
     "@myrmidon/gve-snapshot-view": "^1.2.1",
     "@myrmidon/ngx-mat-tools": "^1.0.1",
     "@myrmidon/ngx-tools": "^2.0.2",
