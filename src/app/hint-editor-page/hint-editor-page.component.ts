@@ -28,6 +28,7 @@ import type {
   GveHintDesigner,
   HintDesignerData,
   HintDesignerSettings,
+  StringPair,
 } from '@myrmidon/gve-snapshot-rendition';
 import { DEFAULT_HINT_DESIGNER_SETTINGS } from '@myrmidon/gve-snapshot-rendition';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -122,8 +123,9 @@ export class HintEditorPageComponent implements AfterViewInit {
     });
 
     // set initial data and settings
-    designer.data = this.data();
+    //designer.data = this.data();
     designer.settings = this.settings();
+    this.loadHints();
   }
 
   public loadHints(): void {
@@ -140,6 +142,11 @@ export class HintEditorPageComponent implements AfterViewInit {
           if (data) {
             console.log('Loaded hint data:', data);
             this.data.set(data);
+            // if data contains variables, set designer's hintVariables
+            if ((data as any).variables) {
+              const vars = (data.variables as StringPair[]);
+              this.designerRef.nativeElement.hintVariables = vars;
+            }
           }
         },
         error: (error) => {

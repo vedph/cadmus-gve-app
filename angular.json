@@ -33,7 +33,10 @@
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/gsap/dist/gsap.min.js",
+              "node_modules/gsap/dist/DrawSVGPlugin.min.js"
+            ],
             "allowedCommonJsDependencies": [
               "diff-match-patch",
               "webcola",
@@ -188,10 +191,7 @@
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "projects/myrmidon/cadmus-part-gve-hands/tsconfig.spec.json",
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ]
+            "polyfills": ["zone.js", "zone.js/testing"]
           }
         }
       }
