@@ -68,8 +68,7 @@ export class HintEditorPageComponent implements AfterViewInit {
   public data = signal<HintDesignerData>(DEFAULT_HINT_DATA);
   public settings = signal<HintDesignerSettings>({
     ...DEFAULT_HINT_DESIGNER_SETTINGS,
-    hintDesignWidth: 400,
-    hintDesignHeight: 150,
+    debug: true
   });
 
   constructor(
