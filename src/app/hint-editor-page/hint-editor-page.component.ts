@@ -6,6 +6,8 @@ import {
   ElementRef,
   signal,
   ViewChild,
+  afterNextRender,
+  Injector,
 } from '@angular/core';
 
 import { MatButton } from '@angular/material/button';
@@ -68,29 +70,44 @@ export class HintEditorPageComponent implements AfterViewInit {
   public data = signal<HintDesignerData>(DEFAULT_HINT_DATA);
   public settings = signal<HintDesignerSettings>({
     ...DEFAULT_HINT_DESIGNER_SETTINGS,
-    debug: true
+    debug: true,
   });
 
   constructor(
     private _dialogService: DialogService,
     private _edSettingService: EditorSettingsService,
-    private _snackbar: MatSnackBar
+    private _snackbar: MatSnackBar,
+    private _injector: Injector
   ) {
-    // auto-update component when data changes
-    effect(() => {
-      const designer = this.designerRef?.nativeElement;
-      if (designer) {
-        designer.data = this.data();
-      }
-    });
+    // use afterNextRender to ensure DOM is ready before setting up effects
+    afterNextRender(
+      () => {
+        // auto-update component when data changes
+        effect(
+          () => {
+            const designer = this.designerRef?.nativeElement;
+            if (designer) {
+              console.log('Setting data on designer:', this.data());
+              designer.data = this.data();
+            }
+          },
+          { injector: this._injector }
+        );
 
-    // auto-update settings when they change
-    effect(() => {
-      const designer = this.designerRef?.nativeElement;
-      if (designer) {
-        designer.settings = this.settings();
-      }
-    });
+        // auto-update settings when they change
+        effect(
+          () => {
+            const designer = this.designerRef?.nativeElement;
+            if (designer) {
+              console.log('Setting settings on designer:', this.settings());
+              designer.settings = this.settings();
+            }
+          },
+          { injector: this._injector }
+        );
+      },
+      { injector: this._injector }
+    );
   }
 
   public ngAfterViewInit() {
@@ -100,10 +117,13 @@ export class HintEditorPageComponent implements AfterViewInit {
     designer.addEventListener('dataChange', (event: Event) => {
       const customEvent = event as CustomEvent;
       console.log('Data changed:', customEvent.detail.data);
+      // update the signal to keep it in sync
+      this.data.set(customEvent.detail.data);
     });
 
-    // load initial hints
-    this.loadHints();
+    // set initial data and settings
+    designer.data = this.data();
+    designer.settings = this.settings();
   }
 
   public loadHints(): void {
@@ -118,11 +138,12 @@ export class HintEditorPageComponent implements AfterViewInit {
       .subscribe({
         next: (data) => {
           if (data) {
+            console.log('Loaded hint data:', data);
             this.data.set(data);
           }
         },
         error: (error) => {
-          this._snackbar.open('Error', 'Failed to load hint data: ' + error, {
+          this._snackbar.open('Failed to load hint data: ' + error, 'Close', {
             duration: 3000,
           });
         },
@@ -137,17 +158,21 @@ export class HintEditorPageComponent implements AfterViewInit {
       return;
     }
     this.busy.set(true);
+    // get the current data from the designer
+    const currentData = this.designerRef.nativeElement.data;
+    console.log('Saving hint data:', currentData);
+
     // save data to settings service
     this._edSettingService
-      .addSetting(HINT_DESIGNER_DATA_KEY, this.data())
+      .addSetting(HINT_DESIGNER_DATA_KEY, currentData)
       .subscribe({
         next: () => {
-          this._snackbar.open('Success', 'Hint data saved.', {
+          this._snackbar.open('Hint data saved.', 'Close', {
             duration: 2000,
           });
         },
         error: (error) => {
-          this._snackbar.open('Error', 'Failed to save hint data: ' + error, {
+          this._snackbar.open('Failed to save hint data: ' + error, 'Close', {
             duration: 3000,
           });
         },
@@ -162,10 +187,7 @@ export class HintEditorPageComponent implements AfterViewInit {
       return;
     }
     this._dialogService
-      .confirm(
-        'Clear Hints',
-        'Clear all hint data?'
-      )
+      .confirm('Clear Hints', 'Clear all hint data?')
       .subscribe((result) => {
         if (result) {
           this.data.set(DEFAULT_HINT_DATA);

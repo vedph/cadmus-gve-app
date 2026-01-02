@@ -25,7 +25,7 @@
         mat-flat-button
         color="accent"
         (click)="saveHints()"
-        [disabled]="!busy()"
+        [disabled]="busy()"
       >
         <mat-icon>save</mat-icon>
         set hints
@@ -35,7 +35,7 @@
         mat-flat-button
         color="warn"
         (click)="clearHints()"
-        [disabled]="!busy()"
+        [disabled]="busy()"
       >
         <mat-icon>delete</mat-icon>
         clear hints
