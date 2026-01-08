@@ -50,7 +50,7 @@ services:
 
   # Cadmus gve App
   cadmus-app:
-    image: vedph2020/cadmus-gve-app:5.0.1
+    image: vedph2020/cadmus-gve-app:5.0.2
     container_name: cadmus-gve-app
     ports:
       - 4200:80
