@@ -46,6 +46,7 @@ export class GveHandsPartFeatureComponent
       'assertion-tags',
       'doc-reference-types',
       'doc-reference-tags',
+      'asserted-id-features',
     ];
   }
 }

@@ -45,7 +45,7 @@ import { GveHandEditorComponent } from '../gve-hand-editor/gve-hand-editor.compo
  * GVE hands part editor.
  * Thesauri: gve-hand-eids, gve-hand-tags, gve-hand-tools, gve-hand-colors,
  * asserted-id-scopes, asserted-id-tags, assertion-tags, doc-reference-types,
- * doc-reference-tags.
+ * doc-reference-tags, asserted-id-features.
  */
 @Component({
   selector: 'cadmus-gve-hands-part',
@@ -83,28 +83,32 @@ export class GveHandsPartComponent
   public readonly toolEntries = signal<ThesaurusEntry[] | undefined>(undefined);
   // gve-hand-colors
   public readonly colorEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined
+    undefined,
   );
 
   // asserted-id-scopes
   public readonly idScopeEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined
+    undefined,
   );
   // asserted-id-tags
   public readonly idTagEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined
+    undefined,
   );
   // assertion-tags
   public readonly assTagEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined
+    undefined,
   );
   // doc-reference-types
   public readonly docRefTypeEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined
+    undefined,
   );
   // doc-reference-tags
   public readonly docRefTagEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined
+    undefined,
+  );
+  // asserted-id-features
+  public readonly idFeatureEntries = signal<ThesaurusEntry[] | undefined>(
+    undefined,
   );
 
   public hands: FormControl<GveHand[]>;
@@ -112,7 +116,7 @@ export class GveHandsPartComponent
   constructor(
     authService: AuthJwtService,
     formBuilder: FormBuilder,
-    private _dialogService: DialogService
+    private _dialogService: DialogService,
   ) {
     super(authService, formBuilder);
     // form
@@ -187,6 +191,12 @@ export class GveHandsPartComponent
       this.docRefTagEntries.set(thesauri[key].entries);
     } else {
       this.docRefTagEntries.set(undefined);
+    }
+    key = 'asserted-id-features';
+    if (this.hasThesaurus(key)) {
+      this.idFeatureEntries.set(thesauri[key].entries);
+    } else {
+      this.idFeatureEntries.set(undefined);
     }
   }
 

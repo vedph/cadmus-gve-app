@@ -86,6 +86,8 @@ export class GveHandEditorComponent {
   public readonly docRefTypeEntries = input<ThesaurusEntry[] | undefined>();
   // doc-reference-tags
   public readonly docRefTagEntries = input<ThesaurusEntry[] | undefined>();
+  // asserted-id-features
+  public readonly idFeatureEntries = input<ThesaurusEntry[] | undefined>();
 
   public eid: FormControl<string | null>;
   public tag: FormControl<string | null>;
