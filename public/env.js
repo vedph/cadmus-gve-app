@@ -7,6 +7,9 @@
   window.__env.version = "5.0.3";
   // enable thesaurus import in thesaurus list for admins
   window.__env.thesImportEnabled = true;
+  // renderer settings
+  window.__env.multiValuedFeatureIds = ["r_hints"];
+
   // Zotero
   window.__env.zoteroApiKey = "TODO:YOUR_ZOTERO_KEY";
   window.__env.zoteroUserId = "TODO:YOUR_ZOTERO_USER_ID";

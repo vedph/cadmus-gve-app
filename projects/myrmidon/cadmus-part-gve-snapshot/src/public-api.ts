@@ -4,3 +4,4 @@
 
 export * from './lib/gve-snapshot-part';
 export * from './lib/gve-snapshot-part/gve-snapshot-part.component';
+export * from './lib/render-op-summary';

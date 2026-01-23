@@ -1,6 +1,5 @@
 import { Part } from '@myrmidon/cadmus-core';
-
-import { Snapshot } from '@myrmidon/gve-snapshot-view';
+import { Snapshot } from '@myrmidon/gve-core';
 
 /**
  * The GveSnapshot part model.
@@ -66,56 +65,8 @@ export const GveSnapshot_PART_SCHEMA = {
     },
     value: {
       type: 'object',
-      required: ['size', 'text', 'textOptions', 'operations'],
+      required: ['text', 'operations'],
       properties: {
-        size: {
-          type: 'object',
-          required: ['width', 'height'],
-          properties: {
-            width: {
-              type: 'number',
-            },
-            height: {
-              type: 'number',
-            },
-          },
-        },
-        style: {
-          type: 'string',
-        },
-        defs: {
-          type: 'string',
-        },
-        image: {
-          type: 'object',
-          required: ['url'],
-          properties: {
-            url: {
-              type: 'string',
-            },
-            canvas: {
-              type: 'object',
-              required: ['X', 'y', 'width', 'height'],
-              properties: {
-                X: {
-                  type: 'number',
-                },
-                y: {
-                  type: 'number',
-                },
-                width: {
-                  type: 'number',
-                },
-                height: {
-                  type: 'number',
-                },
-              },
-            },
-            opacity: {
-              type: 'number',
-            },
-          },
-        },
         text: {
           type: 'array',
           default: [],
@@ -157,36 +108,6 @@ export const GveSnapshot_PART_SCHEMA = {
                   },
                 },
               },
-            },
-          },
-        },
-        textStyle: {
-          type: 'string',
-        },
-        textOptions: {
-          type: 'object',
-          required: ['lineHeightOffset', 'charSpacingOffset', 'spcWidthOffset'],
-          properties: {
-            offset: {
-              type: 'object',
-              required: ['x', 'y'],
-              properties: {
-                x: {
-                  type: 'number',
-                },
-                y: {
-                  type: 'number',
-                },
-              },
-            },
-            lineHeightOffset: {
-              type: 'number',
-            },
-            charSpacingOffset: {
-              type: 'number',
-            },
-            spcWidthOffset: {
-              type: 'number',
             },
           },
         },
@@ -249,67 +170,6 @@ export const GveSnapshot_PART_SCHEMA = {
                       default: '',
                       title: 'The type Schema',
                       examples: [''],
-                    },
-                  },
-                },
-              },
-              diplomatics: {
-                type: 'object',
-                required: ['g'],
-                properties: {
-                  g: {
-                    type: 'string',
-                  },
-                  features: {
-                    type: 'array',
-                    items: {
-                      type: 'object',
-                      required: ['name', 'value', 'setPolicy'],
-                      properties: {
-                        name: {
-                          type: 'string',
-                        },
-                        value: {
-                          type: 'string',
-                        },
-                        setPolicy: {
-                          type: 'integer',
-                        },
-                      },
-                    },
-                  },
-                  elementFeatures: {
-                    type: 'object',
-                    additionalProperties: {
-                      type: 'array',
-                      default: [],
-                      title: 'The x Schema',
-                      items: {
-                        type: 'object',
-                        default: {},
-                        title: 'A Schema',
-                        required: ['name', 'value', 'setPolicy'],
-                        properties: {
-                          name: {
-                            type: 'string',
-                            default: '',
-                            title: 'The name Schema',
-                            examples: [''],
-                          },
-                          value: {
-                            type: 'string',
-                            default: '',
-                            title: 'The value Schema',
-                            examples: [''],
-                          },
-                          setPolicy: {
-                            type: 'integer',
-                            default: 0,
-                            title: 'The setPolicy Schema',
-                            examples: [1],
-                          },
-                        },
-                      },
                     },
                   },
                 },

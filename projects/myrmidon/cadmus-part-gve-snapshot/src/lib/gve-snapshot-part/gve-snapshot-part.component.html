@@ -11,8 +11,8 @@
     <mat-card-content>
       <gve-snapshot-editor
         [featureDefs]="featDefs()"
-        [elementFeatureDefs]="efeatDefs()"
-        [diplomaticFeatureDefs]="dfeatDefs()"
+        [multiValuedFeatureIds]="multiValuedFeatureIds()"
+        [renditionSettings]="renditionSettings()"
         [noSave]="userLevel < 2"
         [snapshot]="snapshot.value || undefined"
         (snapshotCancel)="close()"

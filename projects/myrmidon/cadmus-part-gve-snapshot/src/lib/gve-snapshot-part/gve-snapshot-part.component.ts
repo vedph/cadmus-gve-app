@@ -1,4 +1,4 @@
-import { Component, computed, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import {
   FormControl,
   FormBuilder,
@@ -23,20 +23,32 @@ import { ModelEditorComponentBase } from '@myrmidon/cadmus-ui';
 import {
   FeatureDefinitions,
   FeatureMap,
+  LabeledId,
+  Snapshot,
   SnapshotEditorComponent,
 } from '@myrmidon/gve-core';
-import { LabeledId, Snapshot } from '@myrmidon/gve-snapshot-view';
 
+import { EnvService } from '@myrmidon/ngx-tools';
+import { EditorSettingsService } from '@myrmidon/cadmus-api';
+import { retry } from 'rxjs/internal/operators/retry';
 import {
   GVE_SNAPSHOT_PART_TYPEID,
   GveSnapshotPart,
 } from '../gve-snapshot-part';
+import {
+  GveRenditionSettings,
+  DEFAULT_SETTINGS,
+} from '@myrmidon/gve-snapshot-rendition';
+import { renderOperationSummary } from '../render-op-summary';
+
+/**
+ * The key used to store rendition settings data in editor settings.
+ */
+export const GVE_RENDITION_SETTINGS_DATA_KEY = 'gveRenditionSettings';
 
 /**
  * GVE snapshot part editor component.
- * Thesauri: snapshot-feat-names, snapshot-feat-values,
- * snapshot-efeat-names, snapshot-efeat-values,
- * snapshot-dfeat-names, snapshot-dfeat-values.
+ * Thesauri: snapshot-feat-names, snapshot-feat-values.
  */
 @Component({
   selector: 'cadmus-gve-snapshot-part',
@@ -60,37 +72,13 @@ export class GveSnapshotPartComponent
    * Thesaurus snapshot-feat-names entries.
    */
   public readonly featNameEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined
+    undefined,
   );
   /**
    * Thesaurus snapshot-feat-values entries.
    */
   public readonly featValueEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined
-  );
-  /**
-   * Thesaurus snapshot-efeat-names entries (features for elements).
-   */
-  public readonly efeatNameEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined
-  );
-  /**
-   * Thesaurus snapshot-efeat-values entries (features for elements).
-   */
-  public readonly efeatValueEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined
-  );
-  /**
-   * Thesaurus snapshot-dfeat-names entries (diplomatic features).
-   */
-  public readonly dfeatNameEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined
-  );
-  /**
-   * Thesaurus snapshot-dfeat-values entries (diplomatic features).
-   */
-  public readonly dfeatValueEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined
+    undefined,
   );
 
   /**
@@ -103,22 +91,15 @@ export class GveSnapshotPartComponent
   });
 
   /**
-   * The operation's SVG element feature definitions built from thesauri.
+   * The list of multi-valued feature IDs from environment.
    */
-  public readonly efeatDefs = computed<FeatureDefinitions | undefined>(() => {
-    const names = this.efeatNameEntries();
-    const values = this.efeatValueEntries();
-    return this.mapEntriesToFeatDefs(names, values);
-  });
+  public readonly multiValuedFeatureIds = signal<string[]>([]);
 
   /**
-   * The operation's diplomatic feature definitions built from thesauri.
+   * The rendition settings for snapshots.
    */
-  public readonly dfeatDefs = computed<FeatureDefinitions | undefined>(() => {
-    const names = this.dfeatNameEntries();
-    const values = this.dfeatValueEntries();
-    return this.mapEntriesToFeatDefs(names, values);
-  });
+  public readonly renditionSettings =
+    signal<GveRenditionSettings>(DEFAULT_SETTINGS);
 
   constructor(authService: AuthJwtService, formBuilder: FormBuilder) {
     super(authService, formBuilder);
@@ -126,8 +107,36 @@ export class GveSnapshotPartComponent
     this.snapshot = formBuilder.control(null, Validators.required);
   }
 
+  private initRenderer(): void {
+    // get multivalued feature IDs from environment settings
+    const envService = inject(EnvService);
+    this.multiValuedFeatureIds.set(
+      (envService.get('multiValuedFeatureIds') || 'r_hints').split(' '),
+    );
+
+    // get rendition settings from backend settings
+    const edSettingService = inject(EditorSettingsService);
+    edSettingService
+      .getSetting(GVE_RENDITION_SETTINGS_DATA_KEY)
+      .pipe(retry(3))
+      .subscribe({
+        next: (data) => {
+          if (data) {
+            // override opSummaryFn
+            data.opSummaryFn = renderOperationSummary;
+            console.log('Loaded rendition settings:', data);
+            this.renditionSettings.set(data);
+          }
+        },
+        error: (error) => {
+          console.error('Failed to load rendition settings: ' + error);
+        },
+      });
+  }
+
   public override ngOnInit(): void {
     super.ngOnInit();
+    this.initRenderer();
   }
 
   protected buildForm(formBuilder: FormBuilder): FormGroup | UntypedFormGroup {
@@ -149,32 +158,6 @@ export class GveSnapshotPartComponent
     } else {
       this.featValueEntries.set(undefined);
     }
-
-    key = 'snapshot-efeat-names';
-    if (this.hasThesaurus(key)) {
-      this.efeatNameEntries.set(thesauri[key].entries);
-    } else {
-      this.efeatNameEntries.set(undefined);
-    }
-    key = 'snapshot-efeat-values';
-    if (this.hasThesaurus(key)) {
-      this.efeatValueEntries.set(thesauri[key].entries);
-    } else {
-      this.efeatValueEntries.set(undefined);
-    }
-
-    key = 'snapshot-dfeat-names';
-    if (this.hasThesaurus(key)) {
-      this.dfeatNameEntries.set(thesauri[key].entries);
-    } else {
-      this.dfeatNameEntries.set(undefined);
-    }
-    key = 'snapshot-dfeat-values';
-    if (this.hasThesaurus(key)) {
-      this.dfeatValueEntries.set(thesauri[key].entries);
-    } else {
-      this.dfeatValueEntries.set(undefined);
-    }
   }
 
   /**
@@ -189,7 +172,7 @@ export class GveSnapshotPartComponent
    */
   private mapEntriesToFeatDefs(
     names: ThesaurusEntry[] | undefined,
-    values: ThesaurusEntry[] | undefined
+    values: ThesaurusEntry[] | undefined,
   ): FeatureDefinitions | undefined {
     if (!names || !values) {
       return undefined;
@@ -197,7 +180,7 @@ export class GveSnapshotPartComponent
 
     // names like id=value become labeled IDs where id=id and value=label
     const featNames = names.map(
-      (e) => ({ id: e.id, label: e.value } as LabeledId)
+      (e) => ({ id: e.id, label: e.value }) as LabeledId,
     );
 
     // values like id:value=label become part of a map where key=id and

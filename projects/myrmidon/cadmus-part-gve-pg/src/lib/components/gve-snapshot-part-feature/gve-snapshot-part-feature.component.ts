@@ -40,10 +40,6 @@ export class GveSnapshotPartFeatureComponent
     return [
       'snapshot-feat-names',
       'snapshot-feat-values',
-      'snapshot-efeat-names',
-      'snapshot-efeat-values',
-      'snapshot-dfeat-names',
-      'snapshot-dfeat-values',
     ];
   }
 }

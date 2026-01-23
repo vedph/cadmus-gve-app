@@ -9,7 +9,9 @@ import {
   afterNextRender,
   Injector,
 } from '@angular/core';
+import { retry, switchMap } from 'rxjs';
 
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
 import {
   MatCard,
@@ -26,16 +28,13 @@ import { EditorSettingsService } from '@myrmidon/cadmus-api';
 
 import type {
   GveHintDesigner,
+  GveRenditionSettings,
   HintDesignerData,
   HintDesignerSettings,
   StringPair,
 } from '@myrmidon/gve-snapshot-rendition';
 import { DEFAULT_HINT_DESIGNER_SETTINGS } from '@myrmidon/gve-snapshot-rendition';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { retry } from 'rxjs';
-
-// the key used to store hint designer data in editor settings
-const HINT_DESIGNER_DATA_KEY = 'gve-hint-designer-data';
+import { GVE_RENDITION_SETTINGS_DATA_KEY } from '@myrmidon/cadmus-part-gve-snapshot';
 
 // default hint data
 const DEFAULT_HINT_DATA: HintDesignerData = {
@@ -47,6 +46,11 @@ const DEFAULT_HINT_DATA: HintDesignerData = {
 
 /**
  * Hint Editor Page Component.
+ * This component wraps a hints designer custom web component to edit a part of the backend
+ * settings, referred to hints and animations. This is represented by interface HintDesignerData,
+ * from which GveRenditionSettings is derived as a superset. So, when loading data, it loads
+ * settings and extracts only the data used by the hints designer; when saving data, it loads
+ * settings, overrides them with edited hints and animations, and finally saves them back.
  */
 @Component({
   selector: 'app-hint-editor-page',
@@ -78,7 +82,7 @@ export class HintEditorPageComponent implements AfterViewInit {
     private _dialogService: DialogService,
     private _edSettingService: EditorSettingsService,
     private _snackbar: MatSnackBar,
-    private _injector: Injector
+    private _injector: Injector,
   ) {
     // use afterNextRender to ensure DOM is ready before setting up effects
     afterNextRender(
@@ -92,7 +96,7 @@ export class HintEditorPageComponent implements AfterViewInit {
               designer.data = this.data();
             }
           },
-          { injector: this._injector }
+          { injector: this._injector },
         );
 
         // auto-update settings when they change
@@ -104,10 +108,10 @@ export class HintEditorPageComponent implements AfterViewInit {
               designer.settings = this.settings();
             }
           },
-          { injector: this._injector }
+          { injector: this._injector },
         );
       },
-      { injector: this._injector }
+      { injector: this._injector },
     );
   }
 
@@ -122,8 +126,7 @@ export class HintEditorPageComponent implements AfterViewInit {
       this.data.set(customEvent.detail.data);
     });
 
-    // set initial data and settings
-    //designer.data = this.data();
+    // set initial settings
     designer.settings = this.settings();
     this.loadHints();
   }
@@ -135,24 +138,30 @@ export class HintEditorPageComponent implements AfterViewInit {
     // load data from settings service
     this.busy.set(true);
     this._edSettingService
-      .getSetting(HINT_DESIGNER_DATA_KEY)
+      .getSetting(GVE_RENDITION_SETTINGS_DATA_KEY)
       .pipe(retry(3))
       .subscribe({
-        next: (data) => {
+        next: (data: HintDesignerData) => {
           if (data) {
-            console.log('Loaded hint data:', data);
-            this.data.set(data);
+            console.log('Loaded rendition settings:', data);
+            // set data on designer
+            this.data.set(data || DEFAULT_HINT_DATA);
+
             // if data contains variables, set designer's hintVariables
             if ((data as any).variables) {
-              const vars = (data.variables as StringPair[]);
+              const vars = (data as any).variables as StringPair[];
               this.designerRef.nativeElement.hintVariables = vars;
             }
           }
         },
         error: (error) => {
-          this._snackbar.open('Failed to load hint data: ' + error, 'Close', {
-            duration: 3000,
-          });
+          this._snackbar.open(
+            'Failed to load rendition settings: ' + error,
+            'Close',
+            {
+              duration: 3000,
+            },
+          );
         },
         complete: () => {
           this.busy.set(false);
@@ -169,19 +178,39 @@ export class HintEditorPageComponent implements AfterViewInit {
     const currentData = this.designerRef.nativeElement.data;
     console.log('Saving hint data:', currentData);
 
-    // save data to settings service
+    // load existing settings, merge with current hint data, then save
     this._edSettingService
-      .addSetting(HINT_DESIGNER_DATA_KEY, currentData)
+      .getSetting(GVE_RENDITION_SETTINGS_DATA_KEY)
+      .pipe(
+        retry(3),
+        switchMap((existingSettings: GveRenditionSettings | null) => {
+          // merge current hint data into existing settings
+          const mergedSettings: GveRenditionSettings = {
+            ...(existingSettings || {}),
+            hints: currentData.hints,
+            animations: currentData.animations,
+          } as GveRenditionSettings;
+          console.log('Merged rendition settings:', mergedSettings);
+          return this._edSettingService.addSetting(
+            GVE_RENDITION_SETTINGS_DATA_KEY,
+            mergedSettings,
+          );
+        }),
+      )
       .subscribe({
         next: () => {
-          this._snackbar.open('Hint data saved.', 'Close', {
+          this._snackbar.open('Rendition settings saved.', 'Close', {
             duration: 2000,
           });
         },
         error: (error) => {
-          this._snackbar.open('Failed to save hint data: ' + error, 'Close', {
-            duration: 3000,
-          });
+          this._snackbar.open(
+            'Failed to save rendition settings: ' + error,
+            'Close',
+            {
+              duration: 3000,
+            },
+          );
         },
         complete: () => {
           this.busy.set(false);
@@ -194,7 +223,7 @@ export class HintEditorPageComponent implements AfterViewInit {
       return;
     }
     this._dialogService
-      .confirm('Clear Hints', 'Clear all hint data?')
+      .confirm('Clear Hints', 'Clear all rendition settings?')
       .subscribe((result) => {
         if (result) {
           this.data.set(DEFAULT_HINT_DATA);
