@@ -66,6 +66,7 @@ export class GveSnapshotPartComponent
   extends ModelEditorComponentBase<GveSnapshotPart>
   implements OnInit
 {
+  private _envService: EnvService;
   public snapshot: FormControl<Snapshot | null>;
 
   /**
@@ -103,15 +104,15 @@ export class GveSnapshotPartComponent
 
   constructor(authService: AuthJwtService, formBuilder: FormBuilder) {
     super(authService, formBuilder);
+    this._envService = inject(EnvService);
     // form
     this.snapshot = formBuilder.control(null, Validators.required);
   }
 
   private initRenderer(): void {
     // get multivalued feature IDs from environment settings
-    const envService = inject(EnvService);
     this.multiValuedFeatureIds.set(
-      (envService.get('multiValuedFeatureIds') || 'r_hints').split(' '),
+      (this._envService.get('multiValuedFeatureIds') || 'r_hints').split(' '),
     );
 
     // get rendition settings from backend settings

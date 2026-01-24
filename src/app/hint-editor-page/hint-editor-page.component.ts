@@ -135,7 +135,8 @@ export class HintEditorPageComponent implements AfterViewInit {
     if (this.busy()) {
       return;
     }
-    // load data from settings service
+
+    // load data from settings service and set on designer
     this.busy.set(true);
     this._edSettingService
       .getSetting(GVE_RENDITION_SETTINGS_DATA_KEY)
@@ -146,12 +147,6 @@ export class HintEditorPageComponent implements AfterViewInit {
             console.log('Loaded rendition settings:', data);
             // set data on designer
             this.data.set(data || DEFAULT_HINT_DATA);
-
-            // if data contains variables, set designer's hintVariables
-            if ((data as any).variables) {
-              const vars = (data as any).variables as StringPair[];
-              this.designerRef.nativeElement.hintVariables = vars;
-            }
           }
         },
         error: (error) => {
@@ -165,6 +160,28 @@ export class HintEditorPageComponent implements AfterViewInit {
         },
         complete: () => {
           this.busy.set(false);
+        },
+      });
+
+    // load variables from settings service and set on designer
+    this._edSettingService
+      .getSetting('gveHintDesignerVariables')
+      .pipe(retry(3))
+      .subscribe({
+        next: (variables: StringPair[] | null) => {
+          if (variables) {
+            console.log('Loaded designer variables:', variables);
+            this.designerRef.nativeElement.hintVariables = variables;
+          }
+        },
+        error: (error) => {
+          this._snackbar.open(
+            'Failed to load designer variables: ' + error,
+            'Close',
+            {
+              duration: 3000,
+            },
+          );
         },
       });
   }

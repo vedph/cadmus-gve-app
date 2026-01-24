@@ -40,6 +40,12 @@ This will provide the app with your own Zotero credentials.
 - 2026-01-23:
   - ⚠️ refactored after models refactoring.
   - updated Angular and packages.
+  - adjusted **settings** as follows:
+    - backend settings:
+      - `gveRenditionSettings`: writable settings for GVE rendition component.
+      - `gveHintDesignerVariables`: an initial list of variable values for the hint designer.
+    - frontend settings:
+      - environment: `multiValuedFeatureIds` contains the list of feature IDs which have multiple values from a closed list. Usually the only such feature is `r_hints` and this is the default value. Additionally, Zotero account should be overridden here when hosting the app.
 
 ### 5.0.3
 
