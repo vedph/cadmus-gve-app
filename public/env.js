@@ -8,7 +8,7 @@
   // enable thesaurus import in thesaurus list for admins
   window.__env.thesImportEnabled = true;
   // renderer settings
-  window.__env.multiValuedFeatureIds = ["r_hints"];
+  window.__env.multiValuedFeatureIds = "r_hints";
 
   // Zotero
   window.__env.zoteroApiKey = "TODO:YOUR_ZOTERO_KEY";

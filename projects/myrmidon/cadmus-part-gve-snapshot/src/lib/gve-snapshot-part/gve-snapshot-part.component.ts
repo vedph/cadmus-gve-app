@@ -67,6 +67,7 @@ export class GveSnapshotPartComponent
   implements OnInit
 {
   private _envService: EnvService;
+  private _edSettingService: EditorSettingsService;
   public snapshot: FormControl<Snapshot | null>;
 
   /**
@@ -105,6 +106,7 @@ export class GveSnapshotPartComponent
   constructor(authService: AuthJwtService, formBuilder: FormBuilder) {
     super(authService, formBuilder);
     this._envService = inject(EnvService);
+    this._edSettingService = inject(EditorSettingsService);
     // form
     this.snapshot = formBuilder.control(null, Validators.required);
   }
@@ -116,8 +118,7 @@ export class GveSnapshotPartComponent
     );
 
     // get rendition settings from backend settings
-    const edSettingService = inject(EditorSettingsService);
-    edSettingService
+    this._edSettingService
       .getSetting(GVE_RENDITION_SETTINGS_DATA_KEY)
       .pipe(retry(3))
       .subscribe({
