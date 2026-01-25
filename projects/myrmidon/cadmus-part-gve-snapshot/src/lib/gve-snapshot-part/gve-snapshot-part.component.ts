@@ -42,11 +42,6 @@ import {
 import { renderOperationSummary } from '../render-op-summary';
 
 /**
- * The key used to store rendition settings data in editor settings.
- */
-export const GVE_RENDITION_SETTINGS_DATA_KEY = 'gveRenditionSettings';
-
-/**
  * GVE snapshot part editor component.
  * Thesauri: snapshot-feat-names, snapshot-feat-values.
  */
@@ -107,31 +102,38 @@ export class GveSnapshotPartComponent
     super(authService, formBuilder);
     this._envService = inject(EnvService);
     this._edSettingService = inject(EditorSettingsService);
+
     // form
     this.snapshot = formBuilder.control(null, Validators.required);
   }
 
-  private initRenderer(): void {
+  private initRenderer(roleId?: string): void {
     // get multivalued feature IDs from environment settings
     this.multiValuedFeatureIds.set(
       (this._envService.get('multiValuedFeatureIds') || 'r_hints').split(' '),
     );
 
-    // get rendition settings from backend settings
+    // get rendition settings from backend settings - as for all backend
+    // settings, the key is typeid[_roleid] so we ensure to init the renderer
+    // later when roleId is passed and is specified
+    const key = GVE_SNAPSHOT_PART_TYPEID + (roleId ? `_${roleId}` : '');
+    console.log('Loading rendition settings for key:', key);
     this._edSettingService
-      .getSetting(GVE_RENDITION_SETTINGS_DATA_KEY)
+      .getSetting(key)
       .pipe(retry(3))
       .subscribe({
         next: (data) => {
           if (data) {
             // override opSummaryFn
             data.opSummaryFn = renderOperationSummary;
-            console.log('Loaded rendition settings:', data);
+            console.log('Loaded rendition settings for key:', key, data);
             this.renditionSettings.set(data);
           }
         },
         error: (error) => {
-          console.error('Failed to load rendition settings: ' + error);
+          console.error(
+            'Failed to load rendition settings for key ' + key + ': ' + error,
+          );
         },
       });
   }
@@ -210,6 +212,12 @@ export class GveSnapshotPartComponent
       this.form.reset();
       return;
     }
+
+    // update settings if role differs from default
+    if (part.roleId) {
+      this.initRenderer(part.roleId);
+    }
+
     this.snapshot.setValue(part.value || null);
     this.form.markAsPristine();
   }

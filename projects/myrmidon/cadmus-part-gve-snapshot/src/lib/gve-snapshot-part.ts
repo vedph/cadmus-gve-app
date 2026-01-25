@@ -17,7 +17,7 @@ export const GVE_SNAPSHOT_PART_TYPEID = 'it.vedph.gve.snapshot';
  * JSON schema for the GveSnapshot part.
  * You can use the JSON schema tool at https://jsonschema.net/.
  */
-export const GveSnapshot_PART_SCHEMA = {
+export const GVE_SNAPSHOT_PART_SCHEMA = {
   $schema: 'http://json-schema.org/draft-07/schema#',
   $id: 'www.vedph.it/cadmus/parts/gve/' + GVE_SNAPSHOT_PART_TYPEID + '.json',
   type: 'object',

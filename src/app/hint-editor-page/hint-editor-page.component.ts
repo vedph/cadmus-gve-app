@@ -34,7 +34,7 @@ import type {
   StringPair,
 } from '@myrmidon/gve-snapshot-rendition';
 import { DEFAULT_HINT_DESIGNER_SETTINGS } from '@myrmidon/gve-snapshot-rendition';
-import { GVE_RENDITION_SETTINGS_DATA_KEY } from '@myrmidon/cadmus-part-gve-snapshot';
+import { GVE_SNAPSHOT_PART_TYPEID } from '@myrmidon/cadmus-part-gve-snapshot';
 
 // default hint data
 const DEFAULT_HINT_DATA: HintDesignerData = {
@@ -139,12 +139,16 @@ export class HintEditorPageComponent implements AfterViewInit {
     // load data from settings service and set on designer
     this.busy.set(true);
     this._edSettingService
-      .getSetting(GVE_RENDITION_SETTINGS_DATA_KEY)
+      .getSetting(GVE_SNAPSHOT_PART_TYPEID)
       .pipe(retry(3))
       .subscribe({
         next: (data: HintDesignerData) => {
           if (data) {
-            console.log('Loaded rendition settings:', data);
+            console.log(
+              'Loaded rendition settings for key:',
+              GVE_SNAPSHOT_PART_TYPEID,
+              data,
+            );
             // set data on designer
             this.data.set(data || DEFAULT_HINT_DATA);
           }
@@ -197,7 +201,7 @@ export class HintEditorPageComponent implements AfterViewInit {
 
     // load existing settings, merge with current hint data, then save
     this._edSettingService
-      .getSetting(GVE_RENDITION_SETTINGS_DATA_KEY)
+      .getSetting(GVE_SNAPSHOT_PART_TYPEID)
       .pipe(
         retry(3),
         switchMap((existingSettings: GveRenditionSettings | null) => {
@@ -209,7 +213,7 @@ export class HintEditorPageComponent implements AfterViewInit {
           } as GveRenditionSettings;
           console.log('Merged rendition settings:', mergedSettings);
           return this._edSettingService.addSetting(
-            GVE_RENDITION_SETTINGS_DATA_KEY,
+            GVE_SNAPSHOT_PART_TYPEID,
             mergedSettings,
           );
         }),
