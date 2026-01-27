@@ -13,7 +13,7 @@
     "build-lib": "pnpm run build-snp && pnpm run build-hnd && pnpm run build-pg"
   },
   "private": true,
-  "packageManager": "pnpm@10.28.1",
+  "packageManager": "pnpm@10.28.2",
   "dependencies": {
     "@angular/animations": "^21.1.1",
     "@angular/cdk": "^21.1.1",
@@ -29,7 +29,7 @@
     "@cisstech/nge": "^18.3.0",
     "@myrmidon/auth-jwt-admin": "^8.0.3",
     "@myrmidon/auth-jwt-login": "^8.0.3",
-    "@myrmidon/cadmus-api": "^14.0.4",
+    "@myrmidon/cadmus-api": "^14.0.5",
     "@myrmidon/cadmus-codicology-ui": "^13.0.5",
     "@myrmidon/cadmus-core": "^12.0.3",
     "@myrmidon/cadmus-flags-pg": "^15.0.2",
@@ -66,7 +66,7 @@
     "@myrmidon/cadmus-refs-proper-name": "^10.0.4",
     "@myrmidon/cadmus-refs-viaf-lookup": "^10.0.3",
     "@myrmidon/cadmus-refs-zotero-lookup": "^0.0.3",
-    "@myrmidon/cadmus-state": "^14.0.2",
+    "@myrmidon/cadmus-state": "^14.0.3",
     "@myrmidon/cadmus-statistics": "^1.0.2",
     "@myrmidon/cadmus-text-block-view": "^9.0.2",
     "@myrmidon/cadmus-text-ed": "^9.0.2",
@@ -114,7 +114,7 @@
     "typescript": "~5.9.3"
   },
   "optionalDependencies": {
-    "@rollup/rollup-win32-arm64-msvc": "^4.56.0"
+    "@rollup/rollup-win32-arm64-msvc": "^4.57.0"
   },
   "pnpm": {
     "overrides": {

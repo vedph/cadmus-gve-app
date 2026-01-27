@@ -9,7 +9,7 @@ import {
   afterNextRender,
   Injector,
 } from '@angular/core';
-import { retry, switchMap } from 'rxjs';
+import { forkJoin, retry, switchMap } from 'rxjs';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatButton } from '@angular/material/button';
@@ -25,7 +25,6 @@ import { MatProgressBar } from '@angular/material/progress-bar';
 import { DialogService } from '@myrmidon/ngx-mat-tools';
 
 import { EditorSettingsService } from '@myrmidon/cadmus-api';
-
 import type {
   GveHintDesigner,
   GveRenditionSettings,
@@ -139,10 +138,10 @@ export class HintEditorPageComponent implements AfterViewInit {
     // load data from settings service and set on designer
     this.busy.set(true);
     this._edSettingService
-      .getSetting(GVE_SNAPSHOT_PART_TYPEID)
+      .getSetting<GveRenditionSettings>(GVE_SNAPSHOT_PART_TYPEID)
       .pipe(retry(3))
       .subscribe({
-        next: (data: HintDesignerData) => {
+        next: (data: GveRenditionSettings) => {
           if (data) {
             console.log(
               'Loaded rendition settings for key:',
@@ -169,7 +168,7 @@ export class HintEditorPageComponent implements AfterViewInit {
 
     // load variables from settings service and set on designer
     this._edSettingService
-      .getSetting('gveHintDesignerVariables')
+      .getSetting<StringPair[]>('gveHintDesignerVariables')
       .pipe(retry(3))
       .subscribe({
         next: (variables: StringPair[] | null) => {
@@ -197,11 +196,13 @@ export class HintEditorPageComponent implements AfterViewInit {
     this.busy.set(true);
     // get the current data from the designer
     const currentData = this.designerRef.nativeElement.data;
+    const currentVariables = this.designerRef.nativeElement.hintVariables;
     console.log('Saving hint data:', currentData);
+    console.log('Saving hint variables:', currentVariables);
 
-    // load existing settings, merge with current hint data, then save
-    this._edSettingService
-      .getSetting(GVE_SNAPSHOT_PART_TYPEID)
+    // save rendition settings: load existing, merge with current hint data, then save
+    const saveSettings$ = this._edSettingService
+      .getSetting<GveRenditionSettings>(GVE_SNAPSHOT_PART_TYPEID)
       .pipe(
         retry(3),
         switchMap((existingSettings: GveRenditionSettings | null) => {
@@ -217,26 +218,33 @@ export class HintEditorPageComponent implements AfterViewInit {
             mergedSettings,
           );
         }),
-      )
-      .subscribe({
-        next: () => {
-          this._snackbar.open('Rendition settings saved.', 'Close', {
-            duration: 2000,
-          });
-        },
-        error: (error) => {
-          this._snackbar.open(
-            'Failed to save rendition settings: ' + error,
-            'Close',
-            {
-              duration: 3000,
-            },
-          );
-        },
-        complete: () => {
-          this.busy.set(false);
-        },
-      });
+      );
+
+    // save variables
+    const saveVariables$ = this._edSettingService
+      .addSetting<StringPair[]>('gveHintDesignerVariables', currentVariables)
+      .pipe(retry(3));
+
+    // execute both saves in parallel
+    forkJoin([saveSettings$, saveVariables$]).subscribe({
+      next: () => {
+        this._snackbar.open('Rendition settings saved.', 'Close', {
+          duration: 2000,
+        });
+      },
+      error: (error) => {
+        this._snackbar.open(
+          'Failed to save rendition settings: ' + error,
+          'Close',
+          {
+            duration: 3000,
+          },
+        );
+      },
+      complete: () => {
+        this.busy.set(false);
+      },
+    });
   }
 
   public clearHints(): void {
