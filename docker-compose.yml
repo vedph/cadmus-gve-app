@@ -49,7 +49,7 @@ services:
       - cadmus-gve-network
 
   # Cadmus gve App
-  cadmus-app:
+  cadmus-gve-app:
     image: vedph2020/cadmus-gve-app:6.0.0
     container_name: cadmus-gve-app
     ports:
