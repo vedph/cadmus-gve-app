@@ -119,7 +119,7 @@ export class GveSnapshotPartComponent
     const key = GVE_SNAPSHOT_PART_TYPEID + (roleId ? `_${roleId}` : '');
     console.log('Loading rendition settings for key:', key);
     this._edSettingService
-      .getSetting(key)
+      .getSetting<GveRenditionSettings>(key)
       .pipe(retry(3))
       .subscribe({
         next: (data) => {
