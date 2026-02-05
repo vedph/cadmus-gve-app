@@ -33,6 +33,7 @@ import {
   ThesauriSet,
   ThesaurusEntry,
 } from '@myrmidon/cadmus-core';
+import { LookupProviderOptions } from '@myrmidon/cadmus-refs-lookup';
 
 import {
   GVE_HANDS_PART_TYPEID,
@@ -40,6 +41,10 @@ import {
   GveHandsPart,
 } from '../gve-hands-part';
 import { GveHandEditorComponent } from '../gve-hand-editor/gve-hand-editor.component';
+
+interface GveHandsPartSettings {
+  lookupProviderOptions?: LookupProviderOptions;
+}
 
 /**
  * GVE hands part editor.
@@ -110,6 +115,11 @@ export class GveHandsPartComponent
   public readonly idFeatureEntries = signal<ThesaurusEntry[] | undefined>(
     undefined,
   );
+
+  // lookup options depending on role
+  public readonly lookupProviderOptions = signal<
+    LookupProviderOptions | undefined
+  >(undefined);
 
   public hands: FormControl<GveHand[]>;
 
@@ -214,7 +224,16 @@ export class GveHandsPartComponent
     if (data?.thesauri) {
       this.updateThesauri(data.thesauri);
     }
-
+    // settings
+    this._appRepository
+      ?.getSettingFor<GveHandsPartSettings>(
+        GVE_HANDS_PART_TYPEID,
+        this.identity()?.roleId || undefined,
+      )
+      .then((settings) => {
+        const options = settings?.lookupProviderOptions;
+        this.lookupProviderOptions.set(options || undefined);
+      });
     // form
     this.updateForm(data?.value);
   }

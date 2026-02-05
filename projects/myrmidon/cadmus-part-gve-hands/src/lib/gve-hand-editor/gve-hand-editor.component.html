@@ -63,6 +63,7 @@
         [featureEntries]="idFeatureEntries()"
         [canEditTarget]="true"
         [canSwitchMode]="true"
+        [lookupProviderOptions]="lookupProviderOptions()"
         [id]="ownerId.value || undefined"
         (idChange)="onIdChange($event!)"
       />

@@ -1,4 +1,3 @@
-
 import { Component, effect, input, model, output } from '@angular/core';
 import {
   FormBuilder,
@@ -22,9 +21,10 @@ import {
   AssertedCompositeIdComponent,
 } from '@myrmidon/cadmus-refs-asserted-ids';
 import { NoteSet, NoteSetComponent } from '@myrmidon/cadmus-ui-note-set';
+import { LookupProviderOptions } from '@myrmidon/cadmus-refs-lookup';
+import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 
 import { GveHand } from '../gve-hands-part';
-import { ThesaurusEntry } from '@myrmidon/cadmus-core';
 
 const DEFAULT_NOTESET: NoteSet = {
   definitions: [
@@ -58,8 +58,8 @@ const DEFAULT_NOTESET: NoteSet = {
     MatSelectModule,
     MatTooltipModule,
     AssertedCompositeIdComponent,
-    NoteSetComponent
-],
+    NoteSetComponent,
+  ],
   templateUrl: './gve-hand-editor.component.html',
   styleUrl: './gve-hand-editor.component.css',
 })
@@ -89,6 +89,10 @@ export class GveHandEditorComponent {
   // asserted-id-features
   public readonly idFeatureEntries = input<ThesaurusEntry[] | undefined>();
 
+  public readonly lookupProviderOptions = input<
+    LookupProviderOptions | undefined
+  >();
+
   public eid: FormControl<string | null>;
   public tag: FormControl<string | null>;
   public ownerId: FormControl<AssertedCompositeId | null>;
@@ -101,20 +105,20 @@ export class GveHandEditorComponent {
     // form
     this.eid = formBuilder.control<string | null>(
       null,
-      Validators.maxLength(100)
+      Validators.maxLength(100),
     );
     this.tag = formBuilder.control<string | null>(
       null,
-      Validators.maxLength(100)
+      Validators.maxLength(100),
     );
     this.ownerId = formBuilder.control<AssertedCompositeId | null>(null);
     this.tool = formBuilder.control<string | null>(
       null,
-      Validators.maxLength(100)
+      Validators.maxLength(100),
     );
     this.color = formBuilder.control<string | null>(
       null,
-      Validators.maxLength(100)
+      Validators.maxLength(100),
     );
     this.notes = formBuilder.control<NoteSet>(DEFAULT_NOTESET, {
       nonNullable: true,
@@ -148,7 +152,7 @@ export class GveHandEditorComponent {
         data.notes
           ? { notes: { ...data.notes }, ...DEFAULT_NOTESET }
           : DEFAULT_NOTESET,
-        { emitEvent: false }
+        { emitEvent: false },
       );
     }
 

@@ -22,92 +22,101 @@
         </button>
       </div>
       @if (hands.value.length) {
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>EID</th>
-            <th>tag</th>
-            <th>tool</th>
-            <th>color</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (hand of hands.value; track hand; let i = $index; let first =
-          $first; let last = $last) {
-          <tr [class.selected]="hand === edited()">
-            <td class="fit-width">
-              <button
-                type="button"
-                mat-icon-button
-                color="primary"
-                matTooltip="Edit this hand"
-                (click)="editHand(hand, i)"
-              >
-                <mat-icon class="mat-primary">edit</mat-icon>
-              </button>
-              <button
-                type="button"
-                mat-icon-button
-                matTooltip="Move this hand up"
-                [disabled]="first"
-                (click)="moveHandUp(i)"
-              >
-                <mat-icon>arrow_upward</mat-icon>
-              </button>
-              <button
-                type="button"
-                mat-icon-button
-                matTooltip="Move this hand down"
-                [disabled]="last"
-                (click)="moveHandDown(i)"
-              >
-                <mat-icon>arrow_downward</mat-icon>
-              </button>
-              <button
-                type="button"
-                mat-icon-button
-                color="warn"
-                matTooltip="Delete this hand"
-                (click)="deleteHand(i)"
-              >
-                <mat-icon class="mat-warn">remove_circle</mat-icon>
-              </button>
-            </td>
-            <td>{{ hand.eid }}</td>
-            <td>{{ hand.tag | flatLookup : tagEntries() : "id" : "value" }}</td>
-            <td>
-              {{ hand.tool | flatLookup : toolEntries() : "id" : "value" }}
-            </td>
-            <td>
-              {{ hand.color | flatLookup : colorEntries() : "id" : "value" }}
-            </td>
-          </tr>
-          }
-        </tbody>
-      </table>
-      } @if (edited()) {
-      <fieldset>
-        <mat-expansion-panel [expanded]="edited()" [disabled]="!edited()">
-          <mat-expansion-panel-header>
-            <mat-panel-title>Hand #{{ editedIndex() + 1 }}</mat-panel-title>
-          </mat-expansion-panel-header>
-          <cadmus-gve-hand-editor
-            [tagEntries]="tagEntries()"
-            [toolEntries]="toolEntries()"
-            [colorEntries]="colorEntries()"
-            [idTagEntries]="idTagEntries()"
-            [assTagEntries]="assTagEntries()"
-            [idScopeEntries]="idScopeEntries()"
-            [docRefTagEntries]="docRefTagEntries()"
-            [docRefTypeEntries]="docRefTypeEntries()"
-            [idFeatureEntries]="idFeatureEntries()"
-            [hand]="edited()"
-            (handChange)="saveHand($event!)"
-            (cancelEdit)="closeHand()"
-          />
-        </mat-expansion-panel>
-      </fieldset>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>EID</th>
+              <th>tag</th>
+              <th>tool</th>
+              <th>color</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (
+              hand of hands.value;
+              track hand;
+              let i = $index;
+              let first = $first;
+              let last = $last
+            ) {
+              <tr [class.selected]="hand === edited()">
+                <td class="fit-width">
+                  <button
+                    type="button"
+                    mat-icon-button
+                    color="primary"
+                    matTooltip="Edit this hand"
+                    (click)="editHand(hand, i)"
+                  >
+                    <mat-icon class="mat-primary">edit</mat-icon>
+                  </button>
+                  <button
+                    type="button"
+                    mat-icon-button
+                    matTooltip="Move this hand up"
+                    [disabled]="first"
+                    (click)="moveHandUp(i)"
+                  >
+                    <mat-icon>arrow_upward</mat-icon>
+                  </button>
+                  <button
+                    type="button"
+                    mat-icon-button
+                    matTooltip="Move this hand down"
+                    [disabled]="last"
+                    (click)="moveHandDown(i)"
+                  >
+                    <mat-icon>arrow_downward</mat-icon>
+                  </button>
+                  <button
+                    type="button"
+                    mat-icon-button
+                    color="warn"
+                    matTooltip="Delete this hand"
+                    (click)="deleteHand(i)"
+                  >
+                    <mat-icon class="mat-warn">remove_circle</mat-icon>
+                  </button>
+                </td>
+                <td>{{ hand.eid }}</td>
+                <td>
+                  {{ hand.tag | flatLookup: tagEntries() : "id" : "value" }}
+                </td>
+                <td>
+                  {{ hand.tool | flatLookup: toolEntries() : "id" : "value" }}
+                </td>
+                <td>
+                  {{ hand.color | flatLookup: colorEntries() : "id" : "value" }}
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+      @if (edited()) {
+        <fieldset>
+          <mat-expansion-panel [expanded]="edited()" [disabled]="!edited()">
+            <mat-expansion-panel-header>
+              <mat-panel-title>Hand #{{ editedIndex() + 1 }}</mat-panel-title>
+            </mat-expansion-panel-header>
+            <cadmus-gve-hand-editor
+              [tagEntries]="tagEntries()"
+              [toolEntries]="toolEntries()"
+              [colorEntries]="colorEntries()"
+              [idTagEntries]="idTagEntries()"
+              [assTagEntries]="assTagEntries()"
+              [idScopeEntries]="idScopeEntries()"
+              [docRefTagEntries]="docRefTagEntries()"
+              [docRefTypeEntries]="docRefTypeEntries()"
+              [idFeatureEntries]="idFeatureEntries()"
+              [lookupProviderOptions]="lookupProviderOptions()"
+              [hand]="edited()"
+              (handChange)="saveHand($event!)"
+              (cancelEdit)="closeHand()"
+            />
+          </mat-expansion-panel>
+        </fieldset>
       }
     </mat-card-content>
     <mat-card-actions>
