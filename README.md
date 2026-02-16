@@ -37,7 +37,9 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
-- 2026-02-16: updated Angular and packages.
+- 2026-02-16:
+  - updated Angular and packages.
+  - 🆕 added import functions for facets and settings.
 - 2026-02-05:
   - updated Angular and packages.
   - added `lookupProviderOptions` wherever lookup components are used, getting data from settings and changing the corresponding part thesauri to be role-dependent.
