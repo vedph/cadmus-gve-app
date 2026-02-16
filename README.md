@@ -37,6 +37,8 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
+- 2026-02-16: updated packages.
+
 ### 6.0.1
 
 - 2026-02-16:
