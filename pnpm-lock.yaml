@@ -207,8 +207,8 @@ importers:
         specifier: ^16.0.1
         version: 16.0.1(a48b5171d72f5d4a274a2d8fab059b3f)
       '@myrmidon/gve-core':
-        specifier: ^6.0.3
-        version: 6.0.3(10ce429e165b6880da87841fe13a940a)
+        specifier: ^6.0.4
+        version: 6.0.4(10ce429e165b6880da87841fe13a940a)
       '@myrmidon/gve-snapshot-rendition':
         specifier: ^0.0.6
         version: 0.0.6
@@ -1853,14 +1853,14 @@ packages:
   '@myrmidon/cod-layout-view@2.0.2':
     resolution: {integrity: sha512-g0gEKsbHxOrycb+7mK5j4ZZ3l/LXaaW1g/utQVCUThDD/XA5lEEA3O8wmUusYKvLQe2NP5X2U5kcHf3d8izFaA==}
 
-  '@myrmidon/gve-core@6.0.3':
-    resolution: {integrity: sha512-ukkvnFBIbbhGqzcnlDo04CbJuEJgt5/Q/aHYj0LsJ3NEc8Eovzkdgob5ReLiWw6bCPHeuXomzw4NBqEekXxi5A==}
+  '@myrmidon/gve-core@6.0.4':
+    resolution: {integrity: sha512-WVzTHdWFzvD6zyQGRZe1aanO3SbmCBMDHFhrsNGPuTfXcJHGoCGspGllIkPnBz9czv8D6Ri3+PcOa8AAO5EkDQ==}
     peerDependencies:
       '@angular/common': ^20.0.0 || ^21.0.0
       '@angular/core': ^20.0.0 || ^21.0.0
       '@angular/material': ^20.0.0 || ^21.0.0
       '@cisstech/nge': ^18.3.0
-      '@myrmidon/gve-snapshot-rendition': ^0.0.5
+      '@myrmidon/gve-snapshot-rendition': ^0.0.6
       '@myrmidon/ngx-mat-tools': ^1.0.1
       '@myrmidon/ngx-tools': ^2.0.2
       gsap: ^3.14.2
@@ -6206,7 +6206,7 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
-  '@myrmidon/gve-core@6.0.3(10ce429e165b6880da87841fe13a940a)':
+  '@myrmidon/gve-core@6.0.4(10ce429e165b6880da87841fe13a940a)':
     dependencies:
       '@angular/common': 21.1.5(@angular/core@21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.0))(rxjs@7.8.2)
       '@angular/core': 21.1.5(@angular/compiler@21.1.5)(rxjs@7.8.2)(zone.js@0.16.0)
