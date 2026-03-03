@@ -1,4 +1,4 @@
-import { Component, effect, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, model, output } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -62,6 +62,7 @@ const DEFAULT_NOTESET: NoteSet = {
   ],
   templateUrl: './gve-hand-editor.component.html',
   styleUrl: './gve-hand-editor.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GveHandEditorComponent {
   public readonly hand = model<GveHand | undefined>();
@@ -166,7 +167,6 @@ export class GveHandEditorComponent {
   }
 
   public onSetChange(set: NoteSet): void {
-    console.log('Set updated:', set);
     this.notes.setValue(set);
     this.notes.markAsDirty();
     this.notes.updateValueAndValidity();

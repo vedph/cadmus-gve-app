@@ -1,13 +1,14 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
-  effect,
   ElementRef,
-  signal,
-  ViewChild,
-  afterNextRender,
   Injector,
+  afterNextRender,
+  effect,
+  signal,
+  viewChild,
 } from '@angular/core';
 import { forkJoin, retry, switchMap } from 'rxjs';
 
@@ -65,14 +66,14 @@ const DEFAULT_HINT_DATA: HintDesignerData = {
   templateUrl: './hint-editor-page.component.html',
   styleUrl: './hint-editor-page.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HintEditorPageComponent implements AfterViewInit {
-  @ViewChild('designer', { static: false })
-  designerRef!: ElementRef<GveHintDesigner>;
+  readonly designerRef = viewChild.required<ElementRef<GveHintDesigner>>('designer');
 
   public readonly busy = signal(false);
-  public data = signal<HintDesignerData>(DEFAULT_HINT_DATA);
-  public settings = signal<HintDesignerSettings>({
+  public readonly data = signal<HintDesignerData>(DEFAULT_HINT_DATA);
+  public readonly settings = signal<HintDesignerSettings>({
     ...DEFAULT_HINT_DESIGNER_SETTINGS,
     debug: true,
   });
@@ -89,11 +90,9 @@ export class HintEditorPageComponent implements AfterViewInit {
         // auto-update component when data changes
         effect(
           () => {
-            const designer = this.designerRef?.nativeElement;
-            if (designer) {
-              console.log('Setting data on designer:', this.data());
-              designer.data = this.data();
-            }
+            const designer = this.designerRef().nativeElement;
+            console.log('Setting data on designer:', this.data());
+            designer.data = this.data();
           },
           { injector: this._injector },
         );
@@ -101,11 +100,9 @@ export class HintEditorPageComponent implements AfterViewInit {
         // auto-update settings when they change
         effect(
           () => {
-            const designer = this.designerRef?.nativeElement;
-            if (designer) {
-              console.log('Setting settings on designer:', this.settings());
-              designer.settings = this.settings();
-            }
+            const designer = this.designerRef().nativeElement;
+            console.log('Setting settings on designer:', this.settings());
+            designer.settings = this.settings();
           },
           { injector: this._injector },
         );
@@ -115,7 +112,7 @@ export class HintEditorPageComponent implements AfterViewInit {
   }
 
   public ngAfterViewInit() {
-    const designer = this.designerRef.nativeElement;
+    const designer = this.designerRef().nativeElement;
 
     // listen to hint updates
     designer.addEventListener('dataChange', (event: Event) => {
@@ -174,7 +171,7 @@ export class HintEditorPageComponent implements AfterViewInit {
         next: (variables: StringPair[] | null) => {
           if (variables) {
             console.log('Loaded designer variables:', variables);
-            this.designerRef.nativeElement.hintVariables = variables;
+            this.designerRef().nativeElement.hintVariables = variables;
           }
         },
         error: (error) => {
@@ -195,8 +192,8 @@ export class HintEditorPageComponent implements AfterViewInit {
     }
     this.busy.set(true);
     // get the current data from the designer
-    const currentData = this.designerRef.nativeElement.data;
-    const currentVariables = this.designerRef.nativeElement.hintVariables;
+    const currentData = this.designerRef().nativeElement.data;
+    const currentVariables = this.designerRef().nativeElement.hintVariables;
     console.log('Saving hint data:', currentData);
     console.log('Saving hint variables:', currentVariables);
 

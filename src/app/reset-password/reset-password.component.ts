@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -33,6 +33,7 @@ import { AuthJwtAccountService } from '@myrmidon/auth-jwt-admin';
     MatProgressBarModule,
     MatTooltipModule,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResetPasswordComponent {
   public readonly busy = signal<boolean>(false);

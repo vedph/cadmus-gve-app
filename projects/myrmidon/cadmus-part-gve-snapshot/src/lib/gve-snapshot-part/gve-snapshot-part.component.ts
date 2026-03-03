@@ -1,4 +1,11 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import {
   FormControl,
   FormBuilder,
@@ -30,7 +37,7 @@ import {
 
 import { EnvService } from '@myrmidon/ngx-tools';
 import { EditorSettingsService } from '@myrmidon/cadmus-api';
-import { retry } from 'rxjs/internal/operators/retry';
+import { retry } from 'rxjs';
 import {
   GVE_SNAPSHOT_PART_TYPEID,
   GveSnapshotPart,
@@ -56,13 +63,14 @@ import { renderOperationSummary } from '../render-op-summary';
   ],
   templateUrl: './gve-snapshot-part.component.html',
   styleUrl: './gve-snapshot-part.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GveSnapshotPartComponent
   extends ModelEditorComponentBase<GveSnapshotPart>
   implements OnInit
 {
-  private _envService: EnvService;
-  private _edSettingService: EditorSettingsService;
+  private readonly _envService: EnvService;
+  private readonly _edSettingService: EditorSettingsService;
   public snapshot: FormControl<Snapshot | null>;
 
   /**

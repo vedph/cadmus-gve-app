@@ -1,9 +1,13 @@
-import { Component, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  signal,
+} from '@angular/core';
 import {
   FormControl,
   FormBuilder,
   FormGroup,
-  UntypedFormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
 
@@ -17,11 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import {
-  deepCopy,
-  FlatLookupPipe,
-  NgxToolsValidators,
-} from '@myrmidon/ngx-tools';
+import { FlatLookupPipe, NgxToolsValidators } from '@myrmidon/ngx-tools';
 import { DialogService } from '@myrmidon/ngx-mat-tools';
 import { AuthJwtService } from '@myrmidon/auth-jwt-login';
 import {
@@ -72,6 +72,7 @@ interface GveHandsPartSettings {
   ],
   templateUrl: './gve-hands-part.component.html',
   styleUrl: './gve-hands-part.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GveHandsPartComponent
   extends ModelEditorComponentBase<GveHandsPart>
@@ -141,7 +142,7 @@ export class GveHandsPartComponent
     super.ngOnInit();
   }
 
-  protected buildForm(formBuilder: FormBuilder): FormGroup | UntypedFormGroup {
+  protected buildForm(formBuilder: FormBuilder): FormGroup {
     return formBuilder.group({
       entries: this.hands,
     });
@@ -250,7 +251,7 @@ export class GveHandsPartComponent
 
   public editHand(entry: GveHand, index: number): void {
     this.editedIndex.set(index);
-    this.edited.set(deepCopy(entry));
+    this.edited.set(structuredClone(entry));
   }
 
   public closeHand(): void {
@@ -260,7 +261,7 @@ export class GveHandsPartComponent
 
   public saveHand(entry: GveHand): void {
     const hands = [...this.hands.value];
-    if (this.editedIndex()) {
+    if (this.editedIndex() === -1) {
       hands.push(entry);
     } else {
       hands.splice(this.editedIndex(), 1, entry);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -12,6 +12,7 @@ import { CurrentItemBarComponent } from '@myrmidon/cadmus-ui-pg';
   imports: [CurrentItemBarComponent, GveHandsPartComponent],
   templateUrl: './gve-hands-part-feature.component.html',
   styleUrl: './gve-hands-part-feature.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GveHandsPartFeatureComponent
   extends EditPartFeatureBase
@@ -23,7 +24,7 @@ export class GveHandsPartFeatureComponent
     snackbar: MatSnackBar,
     itemService: ItemService,
     thesaurusService: ThesaurusService,
-    editorService: PartEditorService
+    editorService: PartEditorService,
   ) {
     super(
       router,
@@ -31,7 +32,7 @@ export class GveHandsPartFeatureComponent
       snackbar,
       itemService,
       thesaurusService,
-      editorService
+      editorService,
     );
     this.roleIdInThesauri = true;
   }

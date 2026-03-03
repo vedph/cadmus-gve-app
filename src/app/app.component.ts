@@ -1,4 +1,11 @@
-import { Component, Inject, OnDestroy, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
 
 import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -39,6 +46,7 @@ import {
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit, OnDestroy {
   private _subs: Subscription[];
@@ -109,7 +117,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.user.set(this._authService.currentUserValue || undefined);
-    this.logged.set(this.user !== null);
+    this.logged.set(this._authService.isAuthenticated(true));
 
     this._subs.push(
       this._authService.currentUser$.subscribe((user: User | null) => {

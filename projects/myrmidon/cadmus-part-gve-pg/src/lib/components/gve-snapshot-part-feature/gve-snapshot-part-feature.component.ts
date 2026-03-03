@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -13,6 +13,7 @@ import { GveSnapshotPartComponent } from '@myrmidon/cadmus-part-gve-snapshot';
   imports: [CurrentItemBarComponent, GveSnapshotPartComponent],
   templateUrl: './gve-snapshot-part-feature.component.html',
   styleUrl: './gve-snapshot-part-feature.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GveSnapshotPartFeatureComponent
   extends EditPartFeatureBase
@@ -24,7 +25,7 @@ export class GveSnapshotPartFeatureComponent
     snackbar: MatSnackBar,
     itemService: ItemService,
     thesaurusService: ThesaurusService,
-    editorService: PartEditorService
+    editorService: PartEditorService,
   ) {
     super(
       router,
@@ -32,14 +33,11 @@ export class GveSnapshotPartFeatureComponent
       snackbar,
       itemService,
       thesaurusService,
-      editorService
+      editorService,
     );
   }
 
   protected override getReqThesauriIds(): string[] {
-    return [
-      'snapshot-feat-names',
-      'snapshot-feat-values',
-    ];
+    return ['snapshot-feat-names', 'snapshot-feat-values'];
   }
 }
