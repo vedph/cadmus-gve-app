@@ -37,6 +37,8 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
+- 2026-03-18: migrated shell app to M3 themes and added dark theme support to components.
+
 ### 6.1.2
 
 - 2026-03-12: updated Angular and packages.
