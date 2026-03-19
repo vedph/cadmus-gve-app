@@ -11,7 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. `pnpm run build-lib`;
 2. update version in `env.js` and `ng build --configuration=production`;
-3. `docker build . -t vedph2020/cadmus-gve-app:6.1.2 -t vedph2020/cadmus-gve-app:latest` (replace with the current version).
+3. `docker build . -t vedph2020/cadmus-gve-app:6.1.3 -t vedph2020/cadmus-gve-app:latest` (replace with the current version).
 
 👉 To use Zotero:
 
@@ -36,6 +36,8 @@ volumes:
 This will provide the app with your own Zotero credentials.
 
 ## History
+
+### 6.1.3
 
 - 2026-03-18:
   - 🆕 migrated shell app to M3 themes and added dark theme support to components.
