@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   Inject,
   OnDestroy,
   OnInit,
@@ -46,7 +47,7 @@ import {
     MatMenuModule,
     MatToolbarModule,
     GravatarPipe,
-    ThemeToggleComponent
+    ThemeToggleComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -57,8 +58,30 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public readonly user = signal<User | undefined>(undefined);
   public readonly logged = signal<boolean>(false);
-  public readonly itemBrowsers = signal<ThesaurusEntry[] | undefined>(undefined);
+  public readonly itemBrowsers = signal<ThesaurusEntry[] | undefined>(
+    undefined,
+  );
   public readonly version = signal<string>('');
+
+  public readonly branding = computed(() => {
+    switch (this._env.get('branding')) {
+      case 'staging':
+        return {
+          bg: 'var(--mat-sys-tertiary)',
+          text: 'var(--mat-sys-on-tertiary)',
+        };
+      case 'dev':
+        return {
+          bg: 'var(--mat-sys-error)',
+          text: 'var(--mat-sys-on-error)',
+        };
+      default: // Production
+        return {
+          bg: 'var(--mat-sys-primary)',
+          text: 'var(--mat-sys-on-primary)',
+        };
+    }
+  });
 
   constructor(
     @Inject('itemBrowserKeys')
@@ -66,15 +89,15 @@ export class AppComponent implements OnInit, OnDestroy {
     private _authService: AuthJwtService,
     private _appRepository: AppRepository,
     private _router: Router,
-    env: EnvService,
+    private _env: EnvService,
     // lookup
     storage: RamStorageService,
     // viaf: ViafRefLookupService,
     // dbpedia: DbpediaRefLookupService,
     // geonames: GeoNamesRefLookupService,
-    zotero: ZoteroRefLookupService
+    zotero: ZoteroRefLookupService,
   ) {
-    this.version.set(env.get('version') || '');
+    this.version.set(this._env.get('version') || '');
     this._subs = [];
 
     // configure external lookup for asserted composite IDs
@@ -130,15 +153,15 @@ export class AppComponent implements OnInit, OnDestroy {
         if (user) {
           this._appRepository.load();
         }
-      })
+      }),
     );
 
     this._subs.push(
       this._appRepository.itemBrowserThesaurus$.subscribe(
         (thesaurus: Thesaurus | undefined) => {
           this.itemBrowsers.set(thesaurus ? thesaurus.entries : undefined);
-        }
-      )
+        },
+      ),
     );
   }
 
