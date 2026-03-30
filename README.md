@@ -37,6 +37,7 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
+- 2026-03-30: updated Angular and packages.
 - 2026-03-27: added branding.
 
 ### 6.1.5
