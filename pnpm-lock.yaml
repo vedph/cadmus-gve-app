@@ -207,11 +207,11 @@ importers:
         specifier: ^0.0.4
         version: 0.0.4(@angular/common@21.2.7(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/material@21.2.5(121ef31cac834805c9fcde0d0fe835bd))
       '@myrmidon/gve-core':
-        specifier: ^6.1.4
-        version: 6.1.4(0da47325ac9188a3b1395c8a983f8740)
+        specifier: ^6.1.5
+        version: 6.1.5(cd8e305d16650d71735eb8ff20df0b51)
       '@myrmidon/gve-snapshot-rendition':
-        specifier: ^0.0.7
-        version: 0.0.7
+        specifier: ^0.0.8
+        version: 0.0.8
       '@myrmidon/ngx-mat-tools':
         specifier: ^1.0.2
         version: 1.0.2(@angular/common@21.2.7(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))
@@ -254,9 +254,6 @@ importers:
       tslib:
         specifier: ^2.3.0
         version: 2.8.1
-      zone.js:
-        specifier: ~0.16.1
-        version: 0.16.1
     devDependencies:
       '@angular/build':
         specifier: ^21.2.6
@@ -1867,22 +1864,22 @@ packages:
   '@myrmidon/cod-layout-view@2.0.2':
     resolution: {integrity: sha512-g0gEKsbHxOrycb+7mK5j4ZZ3l/LXaaW1g/utQVCUThDD/XA5lEEA3O8wmUusYKvLQe2NP5X2U5kcHf3d8izFaA==}
 
-  '@myrmidon/gve-core@6.1.4':
-    resolution: {integrity: sha512-oHFioGzNilP3YoRTwfxnapbKkg+Q2EqLzIap/4OLiyD/mfP2WA70v/ZI9dMlV9MLhxLq81YMr840GCqozxYwYQ==}
+  '@myrmidon/gve-core@6.1.5':
+    resolution: {integrity: sha512-vgpiJR3dVKSpsXiXjqcRDgWbYkT99RQwJD1+sOMy2QxJdNavPuCZ7PlclBIA/fmcR39PSlvXaiAJRu+QlKBbjw==}
     peerDependencies:
-      '@angular/common': ^21.2.6
-      '@angular/core': ^21.2.6
-      '@angular/material': ^21.2.4
+      '@angular/common': ^21.2.7
+      '@angular/core': ^21.2.7
+      '@angular/material': ^21.2.5
       '@cisstech/nge': ^18.3.0
-      '@myrmidon/gve-snapshot-rendition': ^0.0.7
+      '@myrmidon/gve-snapshot-rendition': ^0.0.8
       '@myrmidon/ngx-mat-tools': ^1.0.2
       '@myrmidon/ngx-tools': ^2.0.2
       gsap: ^3.14.2
-      monaco-editor: ^0.34.0
+      monaco-editor: ^0.34.1
       nanoid: ^5.1.7
 
-  '@myrmidon/gve-snapshot-rendition@0.0.7':
-    resolution: {integrity: sha512-FdS1V0awCMvQzjtmfj0AffGSe+K5/Jol7dV550heHR6ViM/qjX/BMYpHHlBob5hP2OIdf75T0cMYTsp4WhjpSQ==}
+  '@myrmidon/gve-snapshot-rendition@0.0.8':
+    resolution: {integrity: sha512-FS58MqiBjH+JBk/OfCG3FQ48bHyKpl6kWa5JB/R8m40GskkAxxny/nbcpugIeiqJxCVQKnpoWFb5jgi87HU2Lg==}
 
   '@myrmidon/ngx-mat-tools@1.0.2':
     resolution: {integrity: sha512-BQIPdjwtYfz3IhcAasBiSjRUE/TbAUFdNGhuyLhm4kTV4oWprY26GDwf/ioVmTrdwO0Le0AWCWPub3PHsXkFRw==}
@@ -6218,13 +6215,13 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
-  '@myrmidon/gve-core@6.1.4(0da47325ac9188a3b1395c8a983f8740)':
+  '@myrmidon/gve-core@6.1.5(cd8e305d16650d71735eb8ff20df0b51)':
     dependencies:
       '@angular/common': 21.2.7(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2)
       '@angular/core': 21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1)
       '@angular/material': 21.2.5(121ef31cac834805c9fcde0d0fe835bd)
       '@cisstech/nge': 18.3.0(@angular/cdk@21.2.5(@angular/common@21.2.7(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.7(@angular/animations@21.2.7(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1)))(@angular/common@21.2.7(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2))(@angular/common@21.2.7(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/material@21.2.5(121ef31cac834805c9fcde0d0fe835bd))(marked@17.0.5)(monaco-editor@0.54.0)(rxjs@7.8.2)
-      '@myrmidon/gve-snapshot-rendition': 0.0.7
+      '@myrmidon/gve-snapshot-rendition': 0.0.8
       '@myrmidon/ngx-mat-tools': 1.0.2(@angular/common@21.2.7(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))
       '@myrmidon/ngx-tools': 2.0.2(@angular/common@21.2.7(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.7(@angular/compiler@21.2.7)(rxjs@7.8.2)(zone.js@0.16.1))
       gsap: 3.14.2
@@ -6232,7 +6229,7 @@ snapshots:
       nanoid: 5.1.7
       tslib: 2.8.1
 
-  '@myrmidon/gve-snapshot-rendition@0.0.7':
+  '@myrmidon/gve-snapshot-rendition@0.0.8':
     dependencies:
       fast-diff: 1.3.0
       feather-icons: 4.29.2
@@ -6241,7 +6238,7 @@ snapshots:
       split.js: 1.6.5
       svg-pan-zoom: 3.6.2
       tslib: 2.8.1
-      typescript: 5.9.3
+      typescript: 6.0.2
     optionalDependencies:
       '@rollup/rollup-win32-arm64-msvc': 4.60.1
 

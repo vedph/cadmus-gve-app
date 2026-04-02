@@ -11,7 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. `pnpm run build-lib`;
 2. update version in `env.js` and `ng build --configuration=production`;
-3. `docker build . -t vedph2020/cadmus-gve-app:6.1.5 -t vedph2020/cadmus-gve-app:latest` (replace with the current version).
+3. `docker build . -t vedph2020/cadmus-gve-app:6.1.6 -t vedph2020/cadmus-gve-app:latest` (replace with the current version).
 
 👉 To use Zotero:
 
@@ -37,7 +37,11 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
-- 2026-04-02: updated Angular and packages.
+### 6.1.6
+
+- 2026-04-02:
+  - ⚠️ gone zoneless.
+  - updated Angular and packages (with fixes and improvements in renderer and GVE libraries).
 - 2026-03-30: updated Angular and packages.
 - 2026-03-27: added branding.
 

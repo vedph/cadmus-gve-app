@@ -1,7 +1,7 @@
 import {
   ApplicationConfig,
   importProvidersFrom,
-  provideZoneChangeDetection,
+  provideZonelessChangeDetection,
 } from '@angular/core';
 import { provideRouter, withViewTransitions } from '@angular/router';
 import {
@@ -47,11 +47,11 @@ import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideZonelessChangeDetection(),
     provideRouter(routes, withViewTransitions()),
     provideHttpClient(
       withJsonpSupport(),
-      withInterceptors([authJwtInterceptor])
+      withInterceptors([authJwtInterceptor]),
     ),
     provideNativeDateAdapter(),
     importProvidersFrom(NgeMonacoModule.forRoot({})),
@@ -59,7 +59,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       NgxEchartsModule.forRoot({
         echarts: () => import('echarts'),
-      })
+      }),
     ),
 
     // parts and fragments type IDs to editor group keys mappings
@@ -108,7 +108,7 @@ export const appConfig: ApplicationConfig = {
         mdBoldCtePlugin: MdBoldCtePlugin,
         mdItalicCtePlugin: MdItalicCtePlugin,
         txtEmojiCtePlugin: TxtEmojiCtePlugin,
-        mdLinkCtePlugin: MdLinkCtePlugin
+        mdLinkCtePlugin: MdLinkCtePlugin,
       ) => {
         return {
           plugins: [

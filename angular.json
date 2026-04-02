@@ -20,7 +20,7 @@
             "outputPath": "dist/cadmus-gve-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": ["zone.js", "@angular/localize/init"],
+            "polyfills": ["@angular/localize/init"],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -86,11 +86,7 @@
         "test": {
           "builder": "@angular/build:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing",
-              "@angular/localize/init"
-            ],
+            "polyfills": ["@angular/localize/init"],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -133,7 +129,7 @@
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "projects/myrmidon/cadmus-part-gve-snapshot/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
+            "polyfills": []
           }
         }
       }
@@ -163,7 +159,7 @@
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "projects/myrmidon/cadmus-part-gve-pg/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
+            "polyfills": []
           }
         }
       }
@@ -190,7 +186,7 @@
           "builder": "@angular/build:karma",
           "options": {
             "tsConfig": "projects/myrmidon/cadmus-part-gve-hands/tsconfig.spec.json",
-            "polyfills": ["zone.js", "zone.js/testing"]
+            "polyfills": []
           }
         }
       }

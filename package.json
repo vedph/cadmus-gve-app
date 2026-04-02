@@ -80,8 +80,8 @@
     "@myrmidon/cadmus-ui": "^16.1.1",
     "@myrmidon/cadmus-ui-note-set": "^10.0.3",
     "@myrmidon/cadmus-ui-object-view": "^0.0.4",
-    "@myrmidon/gve-core": "^6.1.4",
-    "@myrmidon/gve-snapshot-rendition": "^0.0.7",
+    "@myrmidon/gve-core": "^6.1.5",
+    "@myrmidon/gve-snapshot-rendition": "^0.0.8",
     "@myrmidon/ngx-mat-tools": "^1.0.2",
     "@myrmidon/ngx-tools": "^2.0.2",
     "@myrmidon/ngx-viz": "^1.0.1",
@@ -95,8 +95,7 @@
     "ngx-markdown": "^21.1.0",
     "rxjs": "~7.8.1",
     "ts-md5": "^2.0.1",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.16.1"
+    "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@angular/build": "^21.2.6",
