@@ -38,7 +38,6 @@
               "node_modules/gsap/dist/DrawSVGPlugin.min.js"
             ],
             "allowedCommonJsDependencies": [
-              "diff-match-patch",
               "webcola",
               "dagre",
               "ngraph.graph",
