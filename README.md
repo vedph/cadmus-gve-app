@@ -37,6 +37,10 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
+- 2026-04-16:
+  - added thesauri `snapshot-source-ids` and `snapshot-source-types` to snapshot part.
+  - updated Angular and packages.
+
 ### 6.1.6
 
 - 2026-04-02:

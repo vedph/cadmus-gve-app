@@ -38,6 +38,11 @@ export class GveSnapshotPartFeatureComponent
   }
 
   protected override getReqThesauriIds(): string[] {
-    return ['snapshot-feat-names', 'snapshot-feat-values'];
+    return [
+      'snapshot-feat-names',
+      'snapshot-feat-values',
+      'snapshot-source-ids',
+      'snapshot-source-types',
+    ];
   }
 }

@@ -85,6 +85,18 @@ export class GveSnapshotPartComponent
   public readonly featValueEntries = signal<ThesaurusEntry[] | undefined>(
     undefined,
   );
+  /**
+   * Thesaurus snapshot-source-ids entries.
+   */
+  public readonly sourceIdEntries = signal<ThesaurusEntry[] | undefined>(
+    undefined,
+  );
+  /**
+   * Thesaurus snapshot-source-types entries.
+   */
+  public readonly sourceTypeEntries = signal<ThesaurusEntry[] | undefined>(
+    undefined,
+  );
 
   /**
    * The operation feature definitions built from thesauri.
@@ -93,6 +105,20 @@ export class GveSnapshotPartComponent
     const names = this.featNameEntries();
     const values = this.featValueEntries();
     return this.mapEntriesToFeatDefs(names, values);
+  });
+
+  public readonly sourceIds = computed<LabeledId[] | undefined>(() => {
+    const entries = this.sourceIdEntries();
+    return entries
+      ? entries.map((e) => ({ id: e.id, label: e.value }))
+      : undefined;
+  });
+
+  public readonly sourceTypes = computed<LabeledId[] | undefined>(() => {
+    const entries = this.sourceTypeEntries();
+    return entries
+      ? entries.map((e) => ({ id: e.id, label: e.value }))
+      : undefined;
   });
 
   /**
@@ -169,6 +195,18 @@ export class GveSnapshotPartComponent
       this.featValueEntries.set(thesauri[key].entries);
     } else {
       this.featValueEntries.set(undefined);
+    }
+    key = 'snapshot-source-ids';
+    if (this.hasThesaurus(key)) {
+      this.sourceIdEntries.set(thesauri[key].entries);
+    } else {
+      this.sourceIdEntries.set(undefined);
+    }
+    key = 'snapshot-source-types';
+    if (this.hasThesaurus(key)) {
+      this.sourceTypeEntries.set(thesauri[key].entries);
+    } else {
+      this.sourceTypeEntries.set(undefined);
     }
   }
 
