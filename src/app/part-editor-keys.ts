@@ -26,14 +26,19 @@ import { PartEditorKeys } from '@myrmidon/cadmus-core';
 // codicology
 import { COD_SHELFMARKS_PART_TYPEID } from '@myrmidon/cadmus-part-codicology-shelfmarks';
 
+// gve
 import { GVE_SNAPSHOT_PART_TYPEID } from '@myrmidon/cadmus-part-gve-snapshot';
 import { GVE_HANDS_PART_TYPEID } from '@myrmidon/cadmus-part-gve-hands';
+
+// ndp
+import { TEXT_PASSAGES_PART_TYPEID } from '@myrmidon/cadmus-part-ndp-text-passages';
 
 const TOKEN_TEXT_LAYER_PART_TYPEID = 'it.vedph.token-text-layer';
 const GENERAL = 'general';
 const PHILOLOGY = 'philology';
 const CODICOLOGY = 'codicology';
 const GVE = 'gve';
+const NDP = 'ndp';
 
 /**
  * The parts and fragments editor keys for this UI.
@@ -104,6 +109,10 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   // codicology
   [COD_SHELFMARKS_PART_TYPEID]: {
     part: CODICOLOGY,
+  },
+  // ndp
+  [TEXT_PASSAGES_PART_TYPEID]: {
+    part: NDP,
   },
   // layer parts
   [TOKEN_TEXT_LAYER_PART_TYPEID]: {

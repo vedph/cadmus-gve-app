@@ -37,6 +37,7 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
+- 2026-04-26: added NDP text passages part for carrier's titles, mottos, etc.
 - 2026-04-25:
   - updated packages (after refactoring API models and renderer).
   - updated Angular.

@@ -165,6 +165,15 @@ export const routes: Routes = [
       ),
     canActivate: [jwtGuard],
   },
+  // ndp parts
+  {
+    path: 'items/:iid/ndp',
+    loadChildren: () =>
+      import('@myrmidon/cadmus-part-ndp-pg').then(
+        (module) => module.CADMUS_PART_NDP_PG_ROUTES,
+      ),
+    canActivate: [jwtGuard],
+  },
 
   // fallback
   { path: '**', component: HomeComponent },
