@@ -37,6 +37,10 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
+### 7.0.1
+
+- 2026-05-06: updated Angular and packages (GVE shell improvements).
+
 ### 7.0.0
 
 - 2026-04-26: added NDP text passages part for carrier's titles, mottos, etc.

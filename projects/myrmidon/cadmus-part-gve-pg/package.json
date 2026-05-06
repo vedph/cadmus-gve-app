@@ -15,9 +15,9 @@
     "name": "Daniele Fusi"
   },
   "peerDependencies": {
-    "@angular/common": "^21.2.10",
-    "@angular/core": "^21.2.10",
-    "@angular/material": "^21.2.8",
+    "@angular/common": "^21.2.11",
+    "@angular/core": "^21.2.11",
+    "@angular/material": "^21.2.9",
     "@myrmidon/cadmus-core": "^12.0.4",
     "@myrmidon/cadmus-state": "^15.0.0",
     "@myrmidon/cadmus-ui": "^16.1.1",
