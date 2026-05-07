@@ -216,8 +216,8 @@ importers:
         specifier: ^0.0.4
         version: 0.0.4(@angular/common@21.2.11(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/material@21.2.9(ba90dd255696e68929f7dfeca76a4dd9))
       '@myrmidon/gve-core':
-        specifier: ^7.0.1
-        version: 7.0.1(6493f9672e3bb7d03e546e94cfec484b)
+        specifier: ^7.0.2
+        version: 7.0.2(6493f9672e3bb7d03e546e94cfec484b)
       '@myrmidon/gve-snapshot-rendition':
         specifier: ^1.0.2
         version: 1.0.2
@@ -1902,8 +1902,8 @@ packages:
   '@myrmidon/cod-layout-view@2.0.2':
     resolution: {integrity: sha512-g0gEKsbHxOrycb+7mK5j4ZZ3l/LXaaW1g/utQVCUThDD/XA5lEEA3O8wmUusYKvLQe2NP5X2U5kcHf3d8izFaA==}
 
-  '@myrmidon/gve-core@7.0.1':
-    resolution: {integrity: sha512-3pq5601HgvhO/0BDdsUSDBVrgUSDxhg+QzGnl5jitiMcrKsES2Gn3LGPDWgfQJ4rVFm0/vB1JW5TKaU1KFPLvA==}
+  '@myrmidon/gve-core@7.0.2':
+    resolution: {integrity: sha512-wNUFhFXrCe1HF16yuOLVNN1vzwPh/rHdwjfLFb5l2nHhhJYVSoKlpkssNQFaLhjvyVGBFYPRE4yoLupYtg8GDA==}
     peerDependencies:
       '@angular/common': ^21.2.11
       '@angular/core': ^21.2.11
@@ -6303,7 +6303,7 @@ snapshots:
     dependencies:
       typescript: 5.9.3
 
-  '@myrmidon/gve-core@7.0.1(6493f9672e3bb7d03e546e94cfec484b)':
+  '@myrmidon/gve-core@7.0.2(6493f9672e3bb7d03e546e94cfec484b)':
     dependencies:
       '@angular/common': 21.2.11(@angular/core@21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2)
       '@angular/core': 21.2.11(@angular/compiler@21.2.11)(rxjs@7.8.2)(zone.js@0.16.1)

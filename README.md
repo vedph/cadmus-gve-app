@@ -37,6 +37,8 @@ This will provide the app with your own Zotero credentials.
 
 ## History
 
+- 2026-05-07: updated packages.
+
 ### 7.0.1
 
 - 2026-05-06: updated Angular and packages (GVE shell improvements).
