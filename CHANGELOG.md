@@ -1,5 +1,9 @@
 # History
 
+## 7.0.4
+
+- 2026-05-07: updated packages (fix to snapshot editor add operation).
+
 ## 7.0.3
 
 - 2026-05-07: updated packages (added batch source editor for operations).
