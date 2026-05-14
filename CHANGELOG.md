@@ -1,5 +1,7 @@
 # History
 
+- 2026-05-14: updated Angular and packages.
+
 ## 7.0.4
 
 - 2026-05-07: updated packages (fix to snapshot editor add operation).
