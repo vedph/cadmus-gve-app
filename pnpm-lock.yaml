@@ -308,6 +308,12 @@ importers:
         specifier: ^4.60.3
         version: 4.60.3
 
+  .angular/cache/angular-cli-tmp-packages-6uO9C4:
+    dependencies:
+      '@angular/cli':
+        specifier: 21.2.11
+        version: 21.2.11(@types/node@24.10.1)(chokidar@5.0.0)
+
   .angular/cache/angular-cli-tmp-packages-s7eraf:
     dependencies:
       '@angular/cli':
