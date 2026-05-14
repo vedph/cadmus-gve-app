@@ -1,5 +1,7 @@
 # History
 
+## 7.0.5
+
 - 2026-05-14: updated Angular and packages.
 
 ## 7.0.4
