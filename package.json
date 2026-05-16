@@ -1,6 +1,6 @@
 {
   "name": "cadmus-gve-app",
-  "version": "7.0.5",
+  "version": "7.0.6",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -83,8 +83,8 @@
     "@myrmidon/cadmus-ui": "^16.1.1",
     "@myrmidon/cadmus-ui-note-set": "^10.0.3",
     "@myrmidon/cadmus-ui-object-view": "^0.0.4",
-    "@myrmidon/gve-core": "^7.0.5",
-    "@myrmidon/gve-snapshot-rendition": "^2.0.1",
+    "@myrmidon/gve-core": "^7.0.6",
+    "@myrmidon/gve-snapshot-rendition": "^2.0.2",
     "@myrmidon/ngx-mat-tools": "^1.0.2",
     "@myrmidon/ngx-tools": "^2.0.3",
     "@myrmidon/ngx-viz": "^1.0.1",
@@ -116,7 +116,7 @@
     "typescript": "~5.9.3"
   },
   "optionalDependencies": {
-    "@rollup/rollup-win32-arm64-msvc": "^4.60.3"
+    "@rollup/rollup-win32-arm64-msvc": "^4.60.4"
   },
   "pnpm": {
     "overrides": {
