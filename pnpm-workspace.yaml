@@ -1,6 +1,10 @@
 allowBuilds:
-  '@parcel/watcher': set this to true or false
-  core-js: set this to true or false
-  esbuild: set this to true or false
-  lmdb: set this to true or false
-  msgpackr-extract: set this to true or false
+  '@parcel/watcher': true
+  core-js: true
+  esbuild: true
+  lmdb: true
+  msgpackr-extract: true
+minimumReleaseAgeExclude:
+  - '@myrmidon/cadmus-part-general-ui@16.1.7'
+  - '@myrmidon/gve-snapshot-rendition@2.0.3'
+  - '@myrmidon/paged-data-browsers@5.2.3'
