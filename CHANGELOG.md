@@ -1,5 +1,9 @@
 # History
 
+## 7.0.9
+
+- 2026-05-28: updated packages (added value prefix to feature editor).
+
 ## 7.0.8
 
 - 2026-05-26: updated packages.

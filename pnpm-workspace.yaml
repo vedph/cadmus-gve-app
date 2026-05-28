@@ -28,3 +28,4 @@ minimumReleaseAgeExclude:
   - '@angular/router@21.2.14'
   - '@myrmidon/gve-core@7.0.7'
   - '@myrmidon/gve-snapshot-rendition@2.0.4'
+  - '@myrmidon/gve-core@7.0.8'
