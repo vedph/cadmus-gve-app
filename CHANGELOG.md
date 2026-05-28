@@ -1,6 +1,6 @@
 # History
 
-## 7.0.10
+## 7.0.11
 
 - 2026-05-28: added hints editor to admin menu.
 

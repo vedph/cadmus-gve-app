@@ -111,6 +111,16 @@ export class HintEditorPageComponent implements AfterViewInit {
           },
           { injector: this._injector },
         );
+
+        // auto-update variables when they change
+        effect(
+          () => {
+            const designer = this.designerRef().nativeElement;
+            console.log('Setting variables on designer:', this.variables());
+            designer.hintVariables = this.variables();
+          },
+          { injector: this._injector },
+        );
       },
       { injector: this._injector },
     );
@@ -174,9 +184,9 @@ export class HintEditorPageComponent implements AfterViewInit {
       .pipe(retry(3))
       .subscribe({
         next: (variables: StringPair[] | null) => {
-          if (variables) {
+          if (Array.isArray(variables)) {
             console.log('Loaded designer variables:', variables);
-            this.designerRef().nativeElement.hintVariables = variables;
+            this.variables.set(variables);
           }
         },
         error: (error) => {
