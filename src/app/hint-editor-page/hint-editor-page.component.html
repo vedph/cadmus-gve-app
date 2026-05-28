@@ -9,7 +9,7 @@
   </mat-card-title>
   <!-- toolbar -->
   <mat-card-content>
-    <div class="button-row">
+    <div class="toolbar">
       <button
         type="button"
         mat-flat-button
@@ -53,6 +53,7 @@
         #designer
         [style.width.%]="100"
         [style.height.px]="1000"
+        [hintVariables]="variables()"
       >
       </gve-hint-designer>
     </div>

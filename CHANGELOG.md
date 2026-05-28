@@ -1,5 +1,9 @@
 # History
 
+## 7.0.10
+
+- 2026-05-28: added hints editor to admin menu.
+
 ## 7.0.9
 
 - 2026-05-28: updated packages (added value prefix to feature editor).

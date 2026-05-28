@@ -69,7 +69,8 @@ const DEFAULT_HINT_DATA: HintDesignerData = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HintEditorPageComponent implements AfterViewInit {
-  readonly designerRef = viewChild.required<ElementRef<GveHintDesigner>>('designer');
+  readonly designerRef =
+    viewChild.required<ElementRef<GveHintDesigner>>('designer');
 
   public readonly busy = signal(false);
   public readonly data = signal<HintDesignerData>(DEFAULT_HINT_DATA);
@@ -77,6 +78,10 @@ export class HintEditorPageComponent implements AfterViewInit {
     ...DEFAULT_HINT_DESIGNER_SETTINGS,
     debug: true,
   });
+  public readonly variables = signal<StringPair[]>([
+    { name: 'r_fore-color', value: 'red' },
+    { name: 'note', value: 'Test Note' },
+  ]);
 
   constructor(
     private _dialogService: DialogService,
