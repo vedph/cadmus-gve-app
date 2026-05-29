@@ -1,5 +1,7 @@
 # History
 
+- 2026-05-29: added `color` to preset variables of hints designer for hints like `filled-box`.
+
 ## 7.0.11
 
 - 2026-05-28: added hints editor to admin menu.

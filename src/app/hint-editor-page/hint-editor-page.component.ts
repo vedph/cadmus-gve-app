@@ -81,6 +81,7 @@ export class HintEditorPageComponent implements AfterViewInit {
   public readonly variables = signal<StringPair[]>([
     { name: 'r_fore-color', value: 'red' },
     { name: 'note', value: 'Test Note' },
+    { name: 'color', value: 'red' },
   ]);
 
   constructor(
