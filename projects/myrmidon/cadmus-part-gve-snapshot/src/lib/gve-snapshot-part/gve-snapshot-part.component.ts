@@ -30,6 +30,8 @@ import { ModelEditorComponentBase } from '@myrmidon/cadmus-ui';
 import {
   FeatureDefinitions,
   FeatureMap,
+  FeaturePropMap,
+  FeatureSetPolicy,
   LabeledId,
   Snapshot,
   SnapshotEditorComponent,
@@ -99,12 +101,16 @@ export class GveSnapshotPartComponent
   );
 
   /**
-   * The operation feature definitions built from thesauri.
+   * The operation feature definitions built from thesauri and settings.
    */
   public readonly featDefs = computed<FeatureDefinitions | undefined>(() => {
     const names = this.featNameEntries();
     const values = this.featValueEntries();
-    return this.mapEntriesToFeatDefs(names, values);
+    const defs = this.mapEntriesToFeatDefs(names, values);
+    if (defs) {
+      defs.props = this.featProps();
+    }
+    return defs;
   });
 
   public readonly sourceIds = computed<LabeledId[] | undefined>(() => {
@@ -125,6 +131,11 @@ export class GveSnapshotPartComponent
    * The list of multi-valued feature IDs from environment.
    */
   public readonly multiValuedFeatureIds = signal<string[]>([]);
+
+  /**
+   * The feature properties map from backend settings (gveFeatureProperties).
+   */
+  public readonly featProps = signal<FeaturePropMap | undefined>(undefined);
 
   /**
    * The rendition settings for snapshots.
@@ -172,9 +183,51 @@ export class GveSnapshotPartComponent
       });
   }
 
+  private initFeatProps(): void {
+    this._edSettingService
+      .getSetting<
+        Record<
+          string,
+          {
+            setPolicy: string;
+            isNegated?: boolean;
+            isGlobal?: boolean;
+            isShortLived?: boolean;
+          }
+        >
+      >('gveFeatureProperties')
+      .pipe(retry(3))
+      .subscribe({
+        next: (data) => {
+          if (!data || Object.keys(data).length === 0) {
+            return;
+          }
+          const policyMap: Record<string, FeatureSetPolicy> = {
+            multiple: FeatureSetPolicy.multiple,
+            single: FeatureSetPolicy.single,
+            'single-first': FeatureSetPolicy.singleFirst,
+          };
+          const props: FeaturePropMap = {};
+          for (const [key, val] of Object.entries(data)) {
+            props[key] = {
+              setPolicy: policyMap[val.setPolicy] ?? FeatureSetPolicy.multiple,
+              isNegated: val.isNegated,
+              isGlobal: val.isGlobal,
+              isShortLived: val.isShortLived,
+            };
+          }
+          this.featProps.set(props);
+        },
+        error: (error) => {
+          console.error('Failed to load gveFeatureProperties: ' + error);
+        },
+      });
+  }
+
   public override ngOnInit(): void {
     super.ngOnInit();
     this.initRenderer();
+    this.initFeatProps();
   }
 
   protected buildForm(formBuilder: FormBuilder): FormGroup | UntypedFormGroup {

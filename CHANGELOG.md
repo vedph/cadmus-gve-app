@@ -1,6 +1,24 @@
 # History
 
-- 2026-05-29: added `color` to preset variables of hints designer for hints like `filled-box`.
+## 7.0.12
+
+- 2026-05-29:
+  - added `color` to preset variables of hints designer for hints like `filled-box`.
+  - 🆕 added consumer logic for new setting `gveFeatureProperties` which can be used to preset properties for each selected feature. For instance, you might have settings like these in backend profile `settings` object:
+
+```json
+"gveFeatureProperties": {
+  "log": {
+    "setPolicy": "single",
+    "isGlobal": true
+  },
+  "version": {
+    "setPolicy": "single",
+    "isGlobal": true,
+    "isShortLived": true
+  }
+}
+```
 
 ## 7.0.11
 
