@@ -35,3 +35,4 @@ minimumReleaseAgeExclude:
   - '@angular/cli@21.2.13'
   - '@schematics/angular@21.2.13'
   - '@myrmidon/gve-core@7.0.9'
+  - '@myrmidon/gve-core@7.0.10'

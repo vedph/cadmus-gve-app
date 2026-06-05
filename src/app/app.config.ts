@@ -8,6 +8,7 @@ import {
   provideHttpClient,
   withInterceptors,
   withJsonpSupport,
+  withXhr
 } from '@angular/common/http';
 
 // material
@@ -49,7 +50,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZonelessChangeDetection(),
     provideRouter(routes, withViewTransitions()),
-    provideHttpClient(
+    provideHttpClient(withXhr(), 
       withJsonpSupport(),
       withInterceptors([authJwtInterceptor]),
     ),

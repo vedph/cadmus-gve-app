@@ -1,5 +1,11 @@
 # History
 
+- 2026-06-05: ⚠️ upgraded to Angular 22.
+
+## 7.0.13
+
+- 2026-06-05: updated packages.
+
 ## 7.0.12
 
 - 2026-05-29:

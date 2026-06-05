@@ -1,6 +1,6 @@
 {
   "name": "cadmus-gve-app",
-  "version": "7.0.11",
+  "version": "7.0.13",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -13,18 +13,18 @@
     "build-lib": "pnpm run build-snp && pnpm run build-hnd && pnpm run build-pg"
   },
   "private": true,
-  "packageManager": "pnpm@11.4.0",
+  "packageManager": "pnpm@11.5.2",
   "dependencies": {
-    "@angular/animations": "^21.2.14",
-    "@angular/cdk": "^21.2.12",
-    "@angular/common": "^21.2.14",
-    "@angular/compiler": "^21.2.14",
-    "@angular/core": "^21.2.14",
-    "@angular/forms": "^21.2.14",
-    "@angular/material": "^21.2.12",
-    "@angular/platform-browser": "^21.2.14",
-    "@angular/platform-browser-dynamic": "^21.2.14",
-    "@angular/router": "^21.2.14",
+    "@angular/animations": "^22.0.0",
+    "@angular/cdk": "^22.0.0",
+    "@angular/common": "^22.0.0",
+    "@angular/compiler": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/forms": "^22.0.0",
+    "@angular/material": "^22.0.0",
+    "@angular/platform-browser": "^22.0.0",
+    "@angular/platform-browser-dynamic": "^22.0.0",
+    "@angular/router": "^22.0.0",
     "@auth0/angular-jwt": "^5.2.0",
     "@cisstech/nge": "^18.3.0",
     "@myrmidon/auth-jwt-admin": "^8.0.4",
@@ -83,7 +83,7 @@
     "@myrmidon/cadmus-ui": "^16.1.1",
     "@myrmidon/cadmus-ui-note-set": "^10.0.3",
     "@myrmidon/cadmus-ui-object-view": "^0.0.4",
-    "@myrmidon/gve-core": "^7.0.9",
+    "@myrmidon/gve-core": "^7.0.10",
     "@myrmidon/gve-snapshot-rendition": "^2.0.4",
     "@myrmidon/ngx-mat-tools": "^1.0.2",
     "@myrmidon/ngx-tools": "^2.0.3",
@@ -91,7 +91,7 @@
     "@myrmidon/paged-data-browsers": "^5.2.3",
     "echarts": "^6.1.0",
     "gsap": "^3.15.0",
-    "marked": "^18.0.4",
+    "marked": "^18.0.5",
     "monaco-editor": "^0.54.0",
     "nanoid": "^5.1.11",
     "ngx-echarts": "^21.0.0",
@@ -101,22 +101,24 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "^21.2.12",
-    "@angular/cli": "^21.2.12",
-    "@angular/compiler-cli": "^21.2.14",
-    "@angular/localize": "^21.2.14",
+    "@angular/build": "^22.0.0",
+    "@angular/cli": "^22.0.0",
+    "@angular/compiler-cli": "^22.0.0",
+    "@angular/localize": "^22.0.0",
     "@types/jasmine": "~6.0.0",
+    "istanbul-lib-instrument": "^6.0.3",
     "jasmine-core": "~6.2.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.2.0",
-    "ng-packagr": "^21.2.3",
-    "typescript": "~5.9.3"
+    "ng-packagr": "^22.0.0",
+    "typescript": "~6.0.3",
+    "vitest": "^4.1.8"
   },
   "optionalDependencies": {
-    "@rollup/rollup-win32-arm64-msvc": "^4.60.4"
+    "@rollup/rollup-win32-arm64-msvc": "^4.61.1"
   },
   "pnpm": {
     "overrides": {
