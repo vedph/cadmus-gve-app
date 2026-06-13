@@ -8,15 +8,17 @@ import {
   provideHttpClient,
   withInterceptors,
   withJsonpSupport,
-  withXhr
+  withXhr,
 } from '@angular/common/http';
 
 // material
 import { provideNativeDateAdapter } from '@angular/material/core';
 
 // vendor
-import { NgeMonacoModule } from '@cisstech/nge/monaco';
-import { NgeMarkdownModule } from '@cisstech/nge/markdown';
+import {
+  DefaultMonacoLoader,
+  NGX_MONACO_LOADER_PROVIDER,
+} from '@jean-merelis/ngx-monaco-editor';
 import { NgxEchartsModule } from 'ngx-echarts';
 
 // myrmidon
@@ -25,6 +27,7 @@ import { authJwtInterceptor } from '@myrmidon/auth-jwt-login';
 import {
   CADMUS_TEXT_ED_BINDINGS_TOKEN,
   CADMUS_TEXT_ED_SERVICE_OPTIONS_TOKEN,
+  CadmusTextEdService,
 } from '@myrmidon/cadmus-text-ed';
 import {
   MdBoldCtePlugin,
@@ -50,13 +53,16 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideZonelessChangeDetection(),
     provideRouter(routes, withViewTransitions()),
-    provideHttpClient(withXhr(), 
+    provideHttpClient(
+      withXhr(),
       withJsonpSupport(),
       withInterceptors([authJwtInterceptor]),
     ),
     provideNativeDateAdapter(),
-    importProvidersFrom(NgeMonacoModule.forRoot({})),
-    importProvidersFrom(NgeMarkdownModule),
+    {
+      provide: NGX_MONACO_LOADER_PROVIDER,
+      useFactory: () => new DefaultMonacoLoader({ paths: { vs: '/vs' } }),
+    },
     importProvidersFrom(
       NgxEchartsModule.forRoot({
         echarts: () => import('echarts'),
@@ -98,6 +104,7 @@ export const appConfig: ApplicationConfig = {
       deps: [EnvService],
     },
     // text editing plugins
+    CadmusTextEdService,
     MdBoldCtePlugin,
     MdItalicCtePlugin,
     TxtEmojiCtePlugin,

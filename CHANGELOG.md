@@ -1,5 +1,11 @@
 # History
 
+## 7.1.1
+
+- 2026-03-13:
+  - ⚠️ migrated to new [Monaco wrapper](https://vedph.github.io/cadmus-doc/history/20260613-monaco.html).
+  - fixed missing counts part type definition.
+
 ## 7.1.0
 
 - 2026-06-05: ⚠️ upgraded to Angular 22.

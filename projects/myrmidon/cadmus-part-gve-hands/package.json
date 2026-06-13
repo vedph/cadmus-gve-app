@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/cadmus-part-gve-hands",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Cadmus - GVE hands part UI components.",
   "keywords": [
     "Cadmus",
@@ -15,12 +15,12 @@
     "name": "Daniele Fusi"
   },
   "peerDependencies": {
-    "@angular/common": "^22.0.0",
-    "@angular/core": "^22.0.0",
-    "@angular/material": "^22.0.0",
-    "@myrmidon/auth-jwt-login": "^8.0.6",
-    "@myrmidon/cadmus-core": "^12.0.4",
-    "@myrmidon/cadmus-ui": "^16.1.1"
+    "@angular/common": "^22.0.1",
+    "@angular/core": "^22.0.1",
+    "@angular/material": "^22.0.1",
+    "@myrmidon/auth-jwt-login": "^9.0.0",
+    "@myrmidon/cadmus-core": "^13.0.0",
+    "@myrmidon/cadmus-ui": "^17.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
