@@ -57,3 +57,8 @@ minimumReleaseAgeExclude:
   - '@myrmidon/cadmus-part-ndp-notable-word-forms@1.0.0'
   - '@myrmidon/cadmus-part-ndp-pg@1.0.0'
   - '@myrmidon/cadmus-part-ndp-text-passages@1.0.0'
+  - '@angular-devkit/architect@0.2200.4'
+  - '@angular-devkit/core@22.0.4'
+  - '@angular-devkit/schematics@22.0.4'
+  - '@angular/cli@22.0.4'
+  - '@schematics/angular@22.0.4'

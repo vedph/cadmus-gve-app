@@ -1,5 +1,9 @@
 # History
 
+## 7.1.2
+
+- 2026-06-25: updated Angular and fixed Docker images.
+
 ## 7.1.1
 
 - 2026-03-13:
