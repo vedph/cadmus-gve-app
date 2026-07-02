@@ -1,5 +1,9 @@
 # History
 
+## 7.1.4
+
+- 2026-07-02: updated packages.
+
 ## 7.1.3
 
 - 2026-06-26: updated packages.
