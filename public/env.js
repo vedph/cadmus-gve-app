@@ -4,11 +4,13 @@
 
   // environment-dependent settings
   window.__env.apiUrl = "http://localhost:5092/api/";
-  window.__env.version = "7.1.4";
+  window.__env.version = "7.1.5";
   // enable thesaurus import in thesaurus list for admins
   window.__env.thesImportEnabled = true;
   // renderer settings
   window.__env.multiValuedFeatureIds = "r_hints";
+
+  window.__env.gvePeeperWidth = 15;
 
   // Zotero
   window.__env.zoteroApiKey = "TODO:YOUR_ZOTERO_KEY";
