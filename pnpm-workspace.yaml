@@ -6,7 +6,7 @@ allowBuilds:
   msgpackr-extract: true
 minimumReleaseAgeExclude:
   - '@myrmidon/cadmus-part-general-ui@16.1.7 || 18.0.1'
-  - '@myrmidon/gve-snapshot-rendition@2.0.3 || 2.0.4 || 2.0.5 || 2.0.6'
+  - '@myrmidon/gve-snapshot-rendition@2.0.3 || 2.0.4 || 2.0.5 || 2.0.6 || 2.0.10'
   - '@myrmidon/paged-data-browsers@5.2.3'
   - '@angular-devkit/architect@0.2102.12 || 0.2102.13 || 0.2200.4'
   - '@angular-devkit/core@21.2.12 || 21.2.13 || 22.0.4'
@@ -26,7 +26,7 @@ minimumReleaseAgeExclude:
   - '@angular/platform-browser-dynamic@21.2.14'
   - '@angular/platform-browser@21.2.14'
   - '@angular/router@21.2.14'
-  - '@myrmidon/gve-core@7.0.7 || 7.0.8 || 7.0.9 || 7.0.10 || 7.0.11 || 7.0.12 || 7.0.13 || 7.0.14 || 7.0.15'
+  - '@myrmidon/gve-core@7.0.7 || 7.0.8 || 7.0.9 || 7.0.10 || 7.0.11 || 7.0.12 || 7.0.13 || 7.0.14 || 7.0.15 || 7.0.16'
   - '@myrmidon/cadmus-codicology-ui@14.0.0'
   - '@myrmidon/cadmus-part-codicology-pg@15.0.0'
   - '@myrmidon/cadmus-part-codicology-shelfmarks@15.0.0'
