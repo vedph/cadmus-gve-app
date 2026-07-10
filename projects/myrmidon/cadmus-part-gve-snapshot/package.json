@@ -18,10 +18,10 @@
     "@angular/common": "^22.0.1",
     "@angular/core": "^22.0.1",
     "@angular/material": "^22.0.1",
-    "@myrmidon/auth-jwt-login": "^9.0.0",
+    "@myrmidon/auth-jwt-login": "^10.0.0",
     "@myrmidon/cadmus-core": "^13.0.0",
-    "@myrmidon/cadmus-ui": "^17.0.0",
-    "@myrmidon/gve-core": "^7.0.11",
+    "@myrmidon/cadmus-ui": "^17.0.1",
+    "@myrmidon/gve-core": "^7.0.16",
     "@myrmidon/gve-snapshot-view": "^1.2.1"
   },
   "dependencies": {

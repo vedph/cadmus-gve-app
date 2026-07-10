@@ -11,7 +11,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. `pnpm run build-lib`;
 2. update version in `env.js` and `ng build --configuration=production`, or ⚠️ `ng build --configuration production --base-href /gve-app/` for the IISG server which requires to run with subdirectories rather than with subdomains.
-3. (once per development machine): ensure you have a buildx builder instance running that supports multi-arch:
+3. (once per development machine): ensure you have a `buildx` builder instance running that supports multi-arch:
 
 ```sh
 docker buildx create --use --name multi-arch-builder || docker buildx use multi-arch-builder
@@ -21,7 +21,7 @@ docker buildx inspect --bootstrap
 4. Build for both platforms and push directly to Docker Hub:
 
 ```sh
-docker buildx build --platform linux/amd64,linux/arm64 -t vedph2020/cadmus-gve-app:7.1.5 -t vedph2020/cadmus-gve-app:latest --push .
+docker buildx build --platform linux/amd64,linux/arm64 -t vedph2020/cadmus-gve-app:7.1.6 -t vedph2020/cadmus-gve-app:latest --push .
 ```
 
 ⚠️ For the IISG server (which uses subdirectories instead of subdomains) build with a different image name:

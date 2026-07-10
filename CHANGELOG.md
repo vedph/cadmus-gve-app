@@ -1,5 +1,11 @@
 # History
 
+## 7.1.6
+
+- 2026-07-10:
+  - updated packages.
+  - removed `@cisstech/nge` (no longer used).
+
 ## 7.1.5
 
 - 2026-07-03: updated packages.
