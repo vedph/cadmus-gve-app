@@ -27,7 +27,7 @@ docker buildx build --platform linux/amd64,linux/arm64 -t vedph2020/cadmus-gve-a
 ⚠️ For the IISG server (which uses subdirectories instead of subdomains) build with a different image name:
 
 ```sh
-docker buildx build --platform linux/amd64,linux/arm64 -t vedph2020/cadmus-gve-app:7.1.5-iisg --push .
+docker buildx build --platform linux/amd64,linux/arm64 -t vedph2020/cadmus-gve-app:7.1.6-iisg --push .
 ```
 
 👉 To use Zotero:
