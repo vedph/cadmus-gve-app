@@ -1,5 +1,8 @@
 # History
 
+## 7.1.8
+
+- 2026-07-29: 🆕 updated packages for search box in feature picker.
 - 2026-07-28: 🆕 reactive menu.
 
 ## 7.1.6
