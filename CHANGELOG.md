@@ -1,5 +1,9 @@
 # History
 
+## 7.1.9
+
+- 2026-08-02: fixed branding color.
+
 ## 7.1.8
 
 - 2026-07-29: 🆕 updated packages for search box in feature picker.

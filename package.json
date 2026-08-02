@@ -1,6 +1,6 @@
 {
   "name": "cadmus-gve-app",
-  "version": "7.1.8",
+  "version": "7.1.9",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -118,7 +118,7 @@
     "vitest": "^4.1.10"
   },
   "optionalDependencies": {
-    "@rollup/rollup-win32-arm64-msvc": "^4.62.3"
+    "@rollup/rollup-win32-arm64-msvc": "^4.62.4"
   },
   "pnpm": {
     "overrides": {
