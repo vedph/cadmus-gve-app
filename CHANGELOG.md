@@ -1,5 +1,7 @@
 # History
 
+- 2026-08-13: updated packages.
+
 ## 7.1.9
 
 - 2026-08-02: fixed branding color.
