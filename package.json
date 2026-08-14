@@ -1,6 +1,6 @@
 {
   "name": "cadmus-gve-app",
-  "version": "7.1.9",
+  "version": "7.1.10",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
