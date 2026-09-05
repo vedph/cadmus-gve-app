@@ -37,7 +37,7 @@
     "@myrmidon/cadmus-graph-pg": "^16.0.1",
     "@myrmidon/cadmus-graph-pg-ex": "^17.0.1",
     "@myrmidon/cadmus-graph-ui": "^16.0.1",
-    "@myrmidon/cadmus-item-editor": "^17.0.2",
+    "@myrmidon/cadmus-item-editor": "^18.0.0",
     "@myrmidon/cadmus-item-list": "^17.0.2",
     "@myrmidon/cadmus-item-search": "^17.0.1",
     "@myrmidon/cadmus-mat-physical-size": "^10.0.2",
@@ -80,13 +80,13 @@
     "@myrmidon/cadmus-thesaurus-editor": "^17.0.1",
     "@myrmidon/cadmus-thesaurus-list": "^17.0.1",
     "@myrmidon/cadmus-thesaurus-ui": "^16.0.1",
-    "@myrmidon/cadmus-ui": "^17.0.2",
+    "@myrmidon/cadmus-ui": "^18.0.0",
     "@myrmidon/cadmus-ui-note-set": "^12.0.2",
     "@myrmidon/cadmus-ui-object-view": "^1.0.2",
     "@myrmidon/gve-core": "^7.0.19",
     "@myrmidon/gve-snapshot-rendition": "^2.0.11",
     "@myrmidon/ngx-mat-tools": "^3.0.1",
-    "@myrmidon/ngx-tools": "^3.0.1",
+    "@myrmidon/ngx-tools": "^3.0.2",
     "@myrmidon/ngx-viz": "^1.0.1",
     "@myrmidon/paged-data-browsers": "^6.0.0",
     "echarts": "^6.1.0",
@@ -115,7 +115,7 @@
     "karma-jasmine-html-reporter": "~2.3.0",
     "ng-packagr": "^22.1.1",
     "typescript": "~6.0.3",
-    "vitest": "^4.1.11"
+    "vitest": "^5.0.0"
   },
   "optionalDependencies": {
     "@rollup/rollup-win32-arm64-msvc": "^4.63.1"

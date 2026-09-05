@@ -47,7 +47,7 @@ minimumReleaseAgeExclude:
   - '@myrmidon/cadmus-part-ndp-pg@1.0.0'
   - '@myrmidon/cadmus-part-ndp-text-passages@1.0.0'
   - '@myrmidon/cadmus-item-list@17.0.1'
-  - '@myrmidon/cadmus-ui@17.0.1'
+  - '@myrmidon/cadmus-ui@17.0.1 || 18.0.0'
   - ng-packagr@22.1.0
   - '@myrmidon/cadmus-mat-physical-size@10.0.2'
   - '@myrmidon/cadmus-mat-physical-state@10.0.2'
@@ -72,3 +72,5 @@ minimumReleaseAgeExclude:
   - '@myrmidon/cadmus-text-ed@11.0.2'
   - '@myrmidon/cadmus-ui-note-set@12.0.2'
   - '@myrmidon/cadmus-ui-object-view@1.0.2'
+  - '@myrmidon/cadmus-item-editor@18.0.0'
+  - '@myrmidon/ngx-tools@3.0.2'
