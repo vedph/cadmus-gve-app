@@ -13,7 +13,7 @@
     "build-lib": "pnpm run build-snp && pnpm run build-hnd && pnpm run build-pg"
   },
   "private": true,
-  "packageManager": "pnpm@12.4.1",
+  "packageManager": "pnpm@12.5.1",
   "dependencies": {
     "@angular/animations": "^22.0.1",
     "@angular/cdk": "^22.0.1",
@@ -115,10 +115,10 @@
     "karma-jasmine-html-reporter": "~2.3.0",
     "ng-packagr": "^22.1.1",
     "typescript": "~6.0.3",
-    "vitest": "^5.0.0"
+    "vitest": "^5.0.1"
   },
   "optionalDependencies": {
-    "@rollup/rollup-win32-arm64-msvc": "^4.63.2"
+    "@rollup/rollup-win32-arm64-msvc": "^4.63.4"
   },
   "pnpm": {
     "overrides": {
