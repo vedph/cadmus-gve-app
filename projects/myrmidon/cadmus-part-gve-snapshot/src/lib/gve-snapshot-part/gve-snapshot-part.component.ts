@@ -5,6 +5,7 @@ import {
   inject,
   OnInit,
   signal,
+  untracked,
 } from '@angular/core';
 import {
   FormControl,
@@ -106,11 +107,12 @@ export class GveSnapshotPartComponent
   public readonly featDefs = computed<FeatureDefinitions | undefined>(() => {
     const names = this.featNameEntries();
     const values = this.featValueEntries();
+    const props = this.featProps();
     const defs = this.mapEntriesToFeatDefs(names, values);
-    if (defs) {
-      defs.props = this.featProps();
+    if (!props) {
+      return defs;
     }
-    return defs;
+    return { ...(defs || {}), props };
   });
 
   public readonly sourceIds = computed<LabeledId[] | undefined>(() => {
@@ -143,6 +145,11 @@ export class GveSnapshotPartComponent
   public readonly renditionSettings =
     signal<GveRenditionSettings>(DEFAULT_SETTINGS);
 
+  // the role ID of the last requested role-specific rendition settings
+  private _renditionRoleId?: string;
+  // true when the role-specific rendition settings have been loaded
+  private _hasRoleRendition = false;
+
   constructor(authService: AuthJwtService, formBuilder: FormBuilder) {
     super(authService, formBuilder);
     this._envService = inject(EnvService);
@@ -152,11 +159,20 @@ export class GveSnapshotPartComponent
     this.snapshot = formBuilder.control(null, Validators.required);
   }
 
-  private initRenderer(roleId?: string): void {
+  private initMultiValuedFeatureIds(): void {
     // get multivalued feature IDs from environment settings
     this.multiValuedFeatureIds.set(
-      (this._envService.get('multiValuedFeatureIds') || 'r_hints').split(' '),
+      (this._envService.get('multiValuedFeatureIds') || 'r_hints')
+        .split(/\s+/)
+        .filter((id) => id),
     );
+  }
+
+  private initRenderer(roleId?: string): void {
+    if (roleId) {
+      this._renditionRoleId = roleId;
+      this._hasRoleRendition = false;
+    }
 
     // get rendition settings from backend settings - as for all backend
     // settings, the key is typeid[_roleid] so we ensure to init the renderer
@@ -168,12 +184,25 @@ export class GveSnapshotPartComponent
       .pipe(retry(3))
       .subscribe({
         next: (data) => {
-          if (data) {
-            // override opSummaryFn
-            data.opSummaryFn = renderOperationSummary;
-            console.log('Loaded rendition settings for key:', key, data);
-            this.renditionSettings.set(data);
+          // the backend returns an empty object for a missing setting
+          if (!data || Object.keys(data).length === 0) {
+            return;
           }
+          if (roleId) {
+            // ignore stale settings for a previously requested role
+            if (roleId !== this._renditionRoleId) {
+              return;
+            }
+            this._hasRoleRendition = true;
+          } else if (this._hasRoleRendition) {
+            // role-specific settings take precedence over the default ones,
+            // whatever the order in which the responses arrive
+            return;
+          }
+          // override opSummaryFn
+          data.opSummaryFn = renderOperationSummary;
+          console.log('Loaded rendition settings for key:', key, data);
+          this.renditionSettings.set(data);
         },
         error: (error) => {
           console.error(
@@ -226,6 +255,7 @@ export class GveSnapshotPartComponent
 
   public override ngOnInit(): void {
     super.ngOnInit();
+    this.initMultiValuedFeatureIds();
     this.initRenderer();
     this.initFeatProps();
   }
@@ -271,20 +301,25 @@ export class GveSnapshotPartComponent
    * composite entries where id=name-id:value-id and value=label. For instance,
    * id="clr:r" and value="red". So these entries represent closed sets of values
    * for specific feature names (=the keys in the features map).
-   * @returns The mapped feature definitions.
+   * @returns The mapped feature definitions, or undefined when both
+   * names and values are undefined. Either of them can be undefined,
+   * e.g. names with no closed sets of values.
    */
   private mapEntriesToFeatDefs(
     names: ThesaurusEntry[] | undefined,
     values: ThesaurusEntry[] | undefined,
   ): FeatureDefinitions | undefined {
-    if (!names || !values) {
+    if (!names && !values) {
       return undefined;
     }
 
     // names like id=value become labeled IDs where id=id and value=label
-    const featNames = names.map(
+    const featNames = names?.map(
       (e) => ({ id: e.id, label: e.value }) as LabeledId,
     );
+    if (!values) {
+      return { names: featNames };
+    }
 
     // values like id:value=label become part of a map where key=id and
     // for each entry in that key id=part of id past first : and label=value
@@ -312,11 +347,6 @@ export class GveSnapshotPartComponent
       return;
     }
 
-    // update settings if role differs from default
-    if (part.roleId) {
-      this.initRenderer(part.roleId);
-    }
-
     this.snapshot.setValue(part.value || null);
     this.form.markAsPristine();
   }
@@ -325,6 +355,15 @@ export class GveSnapshotPartComponent
     // thesauri
     if (data?.thesauri) {
       this.updateThesauri(data.thesauri);
+    }
+
+    // update settings if role differs from default: the role comes from
+    // the part, or from the identity for a new part. Data are set again
+    // on each save, so load settings only when the role changes.
+    const roleId =
+      data?.value?.roleId || untracked(() => this.identity()?.roleId);
+    if (roleId && roleId !== this._renditionRoleId) {
+      this.initRenderer(roleId);
     }
 
     // form

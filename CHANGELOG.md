@@ -3,6 +3,16 @@
 - 2026-10-09:
   - ⚠️ removed obsolete GVE hands part.
   - updated packages.
+  - replaced the libraries build script with `scripts/build-libs.mjs` (builds in dependency order, guarded by `scripts/check-local-libs.js`).
+  - migrated library tests from Karma/Jasmine to Vitest with Angular Testing Library, and added tests for all the libraries.
+  - 🐛 `@myrmidon/cadmus-part-gve-snapshot`, snapshot part editor:
+    - rendition settings: the backend returns an empty object (not null) for a missing setting, which replaced the rendition settings with an empty object (e.g. for any role without its own settings). Empty settings are now ignored.
+    - rendition settings: the default settings no longer override the role-specific ones when their response arrives later, and stale responses for a previous role are ignored.
+    - rendition settings: role-specific settings are no longer reloaded on each save, and for a new part they are loaded using the role from the part identity.
+    - feature definitions: names (or values) were dropped when the other thesaurus was missing, and the backend feature properties (`gveFeatureProperties`) were dropped when either thesaurus was missing. Each is now passed when available.
+    - multi-valued feature IDs from the environment no longer yield empty IDs from extra whitespace.
+    - the `disabled` input now makes the snapshot editor read-only.
+    - fixed peer dependencies: replaced unused `@myrmidon/gve-snapshot-view` with `@myrmidon/gve-snapshot-rendition`, added missing `@angular/forms`, `@myrmidon/cadmus-api`, `@myrmidon/ngx-tools`, `rxjs`, and aligned `@myrmidon/cadmus-ui` (18) and `@myrmidon/gve-core` with the versions in use.
 - 2026-09-29: updated packages.
 - 2026-09-25: updated Angular and packages.
 - 2026-09-14: updated packages.

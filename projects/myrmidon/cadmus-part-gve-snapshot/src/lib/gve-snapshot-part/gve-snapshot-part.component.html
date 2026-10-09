@@ -13,7 +13,7 @@
         [featureDefs]="featDefs()"
         [multiValuedFeatureIds]="multiValuedFeatureIds()"
         [renditionSettings]="renditionSettings()"
-        [noSave]="userLevel < 2"
+        [noSave]="userLevel < 2 || !!disabled()"
         [snapshot]="snapshot.value || undefined"
         [sourceIds]="sourceIds()"
         [sourceTypes]="sourceTypes()"
