@@ -20,7 +20,9 @@
             "outputPath": "dist/cadmus-gve-app",
             "index": "src/index.html",
             "browser": "src/main.ts",
-            "polyfills": ["@angular/localize/init"],
+            "polyfills": [
+              "@angular/localize/init"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -126,10 +128,11 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "projects/myrmidon/cadmus-part-gve-snapshot/tsconfig.spec.json",
-            "polyfills": []
+            "buildTarget": "cadmus-gve-app:build:testing",
+            "runner": "vitest"
           }
         }
       }
@@ -156,10 +159,11 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
             "tsConfig": "projects/myrmidon/cadmus-part-gve-pg/tsconfig.spec.json",
-            "polyfills": []
+            "buildTarget": "cadmus-gve-app:build:testing",
+            "runner": "vitest"
           }
         }
       }
