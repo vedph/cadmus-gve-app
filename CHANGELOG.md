@@ -13,6 +13,7 @@
     - multi-valued feature IDs from the environment no longer yield empty IDs from extra whitespace.
     - the `disabled` input now makes the snapshot editor read-only.
     - fixed peer dependencies: replaced unused `@myrmidon/gve-snapshot-view` with `@myrmidon/gve-snapshot-rendition`, added missing `@angular/forms`, `@myrmidon/cadmus-api`, `@myrmidon/ngx-tools`, `rxjs`, and aligned `@myrmidon/cadmus-ui` (18) and `@myrmidon/gve-core` with the versions in use.
+  - 🐛 `@myrmidon/cadmus-part-gve-pg`: fixed peer dependencies: added missing `@angular/router` and `@myrmidon/cadmus-api`, removed unused `@myrmidon/cadmus-ui`, and aligned `@myrmidon/cadmus-item-editor` (18) with the version in use.
 - 2026-09-29: updated packages.
 - 2026-09-25: updated Angular and packages.
 - 2026-09-14: updated packages.
