@@ -33,7 +33,7 @@ minimumReleaseAgeExclude:
   - '@myrmidon/cadmus-part-general-pg@18.0.0'
   - '@myrmidon/cadmus-part-philology-pg@18.0.0'
   - '@myrmidon/cadmus-part-philology-ui@19.0.1'
-  - '@rollup/rollup-win32-arm64-msvc@4.62.0'
+  - '@rollup/rollup-win32-arm64-msvc@4.62.0 || 4.64.3'
   - '@myrmidon/cadmus-part-codicology-bindings@15.0.0'
   - '@myrmidon/cadmus-part-codicology-contents@15.0.0'
   - '@myrmidon/cadmus-part-codicology-decorations@15.0.0'

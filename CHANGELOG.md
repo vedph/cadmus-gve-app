@@ -1,5 +1,8 @@
 # History
 
+- 2026-10-09:
+  - ⚠️ removed obsolete GVE hands part.
+  - updated packages.
 - 2026-09-29: updated packages.
 - 2026-09-25: updated Angular and packages.
 - 2026-09-14: updated packages.

@@ -29,7 +29,6 @@ import { COD_SHELFMARKS_PART_TYPEID } from '@myrmidon/cadmus-part-codicology-she
 
 // gve
 import { GVE_SNAPSHOT_PART_TYPEID } from '@myrmidon/cadmus-part-gve-snapshot';
-import { GVE_HANDS_PART_TYPEID } from '@myrmidon/cadmus-part-gve-hands';
 
 // ndp
 import { TEXT_PASSAGES_PART_TYPEID } from '@myrmidon/cadmus-part-ndp-text-passages';
@@ -105,9 +104,6 @@ export const PART_EDITOR_KEYS: PartEditorKeys = {
   },
   // gve parts
   [GVE_SNAPSHOT_PART_TYPEID]: {
-    part: GVE,
-  },
-  [GVE_HANDS_PART_TYPEID]: {
     part: GVE,
   },
   // codicology

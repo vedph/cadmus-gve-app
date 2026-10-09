@@ -3,9 +3,6 @@
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
     "paths": {
-      "@myrmidon/cadmus-part-gve-hands": [
-        "./dist/myrmidon/cadmus-part-gve-hands"
-      ],
       "@myrmidon/cadmus-part-gve-pg": [
         "./dist/myrmidon/cadmus-part-gve-pg"
       ],
