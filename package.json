@@ -9,7 +9,8 @@
     "test": "ng test",
     "build:snp": "ng build @myrmidon/cadmus-part-gve-snapshot",
     "build:pg": "ng build @myrmidon/cadmus-part-gve-pg",
-    "build:libs": "pnpm run build:snp && pnpm run build:pg"
+    "check-libs": "node scripts/check-local-libs.js",
+    "build:libs": "node scripts/build-libs.mjs"
   },
   "private": true,
   "packageManager": "pnpm@12.10.1",
