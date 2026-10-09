@@ -132,7 +132,10 @@
           "options": {
             "tsConfig": "projects/myrmidon/cadmus-part-gve-snapshot/tsconfig.spec.json",
             "buildTarget": "cadmus-gve-app:build:testing",
-            "runner": "vitest"
+            "runner": "vitest",
+            "coverageInclude": [
+              "projects/myrmidon/cadmus-part-gve-snapshot/src/**/*.ts"
+            ]
           }
         }
       }
@@ -163,7 +166,10 @@
           "options": {
             "tsConfig": "projects/myrmidon/cadmus-part-gve-pg/tsconfig.spec.json",
             "buildTarget": "cadmus-gve-app:build:testing",
-            "runner": "vitest"
+            "runner": "vitest",
+            "coverageInclude": [
+              "projects/myrmidon/cadmus-part-gve-pg/src/**/*.ts"
+            ]
           }
         }
       }

@@ -18,10 +18,11 @@
     "@angular/common": "^22.0.1",
     "@angular/core": "^22.0.1",
     "@angular/material": "^22.0.1",
+    "@angular/router": "^22.0.1",
+    "@myrmidon/cadmus-api": "^15.0.3",
     "@myrmidon/cadmus-core": "^13.0.0",
     "@myrmidon/cadmus-state": "^16.0.0",
-    "@myrmidon/cadmus-ui": "^17.0.1",
-    "@myrmidon/cadmus-item-editor": "^17.0.1",
+    "@myrmidon/cadmus-item-editor": "^18.0.1",
     "@myrmidon/cadmus-part-gve-snapshot": "^6.0.1"
   },
   "dependencies": {
