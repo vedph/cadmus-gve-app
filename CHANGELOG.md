@@ -1,6 +1,13 @@
 # History
 
 - 2026-10-09:
+  - ⚠️ migrated to Angular signal forms the snapshot part editor (`@myrmidon/cadmus-part-gve-snapshot`), as required by `@myrmidon/cadmus-ui` 20 and `@myrmidon/gve-core` 8. Breaking for code that reached into its internals: the former `snapshot` `FormControl` is now `form.snapshot`, and the thesaurus entries signals (`featNameEntries` etc.) are now computed from `data`. Also:
+    - the editor renders no `<form>` any more.
+    - the snapshot editor gets back the very snapshot it saved, so saving no longer makes it reset and run the snapshot a second time.
+    - neither the bound part nor the saved one carry the form's internal tags.
+    - the editor no longer emits a transient `dirtyChange(true)` right before saving a snapshot: the save is immediate, and the editor stays clean.
+    - peer dependencies aligned with the versions in use (`@myrmidon/cadmus-ui`, `cadmus-core`, `cadmus-api` 20, `@myrmidon/gve-core` 8), and removed `@myrmidon/auth-jwt-login`, which is no longer imported.
+  - `@myrmidon/cadmus-part-gve-pg`: peer dependencies aligned with the versions in use (`@myrmidon/cadmus-api`, `cadmus-core`, `cadmus-state`, `cadmus-item-editor` 20).
   - ⚠️ removed obsolete GVE hands part.
   - updated packages.
   - replaced the libraries build script with `scripts/build-libs.mjs` (builds in dependency order, guarded by `scripts/check-local-libs.js`).

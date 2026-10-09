@@ -3,10 +3,11 @@ import {
   Component,
   computed,
   input,
+  model,
   output,
 } from '@angular/core';
 import { JsonPipe, TitleCasePipe } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { render, screen } from '@testing-library/angular';
@@ -36,12 +37,16 @@ import { GveSnapshotPartComponent } from './gve-snapshot-part.component';
 import { GVE_SNAPSHOT_PART_TYPEID, GveSnapshotPart } from '../gve-snapshot-part';
 import { renderOperationSummary } from '../render-op-summary';
 
-const EDITED_SNAPSHOT: Snapshot = { text: 'edited', operations: [] };
+const EDITED_SNAPSHOT: Snapshot = {
+  text: 'edited',
+  operations: [{ id: 'op1', type: 0, at: 1, run: 1, value: 'E' }],
+};
 
 /**
  * Stand-in for gve-core's snapshot editor, which is a heavy component
  * outside the scope of these tests. It shows what it receives and lets
- * the user emit its outputs.
+ * the user emit its outputs. Like the real one, its snapshot is a model
+ * which it sets to a new copy when saving.
  */
 @Component({
   selector: 'gve-snapshot-editor',
@@ -63,10 +68,8 @@ const EDITED_SNAPSHOT: Snapshot = { text: 'edited', operations: [] };
       <pre aria-label="source IDs">{{ sourceIds() ?? 'none' | json }}</pre>
       <pre aria-label="source types">{{ sourceTypes() ?? 'none' | json }}</pre>
       <p aria-label="font size">{{ renditionSettings()?.fontSize }}</p>
-      <button type="button" (click)="snapshotChange.emit(edited)">
-        save snapshot
-      </button>
-      <button type="button" (click)="snapshotChange.emit(null)">
+      <button type="button" (click)="save()">save snapshot</button>
+      <button type="button" (click)="snapshot.set(undefined)">
         clear snapshot
       </button>
       <button type="button" (click)="snapshotCancel.emit()">cancel</button>
@@ -74,8 +77,9 @@ const EDITED_SNAPSHOT: Snapshot = { text: 'edited', operations: [] };
   `,
 })
 class MockSnapshotEditorComponent {
-  public readonly edited = EDITED_SNAPSHOT;
-  public readonly snapshot = input<Snapshot | undefined>();
+  /** The last snapshot saved by this editor. */
+  public saved?: Snapshot;
+  public readonly snapshot = model<Snapshot | undefined>();
   public readonly noSave = input<boolean | undefined>();
   public readonly featureDefs = input<FeatureDefinitions | undefined>();
   public readonly multiValuedFeatureIds = input<string[] | undefined>();
@@ -85,8 +89,12 @@ class MockSnapshotEditorComponent {
   public readonly isCustomSummary = computed(
     () => this.renditionSettings()?.opSummaryFn === renderOperationSummary,
   );
-  public readonly snapshotChange = output<Snapshot | null>();
   public readonly snapshotCancel = output();
+
+  public save(): void {
+    this.saved = structuredClone(EDITED_SNAPSHOT);
+    this.snapshot.set(this.saved);
+  }
 }
 
 const ITEM_ID = '11111111-1111-1111-1111-111111111111';
@@ -140,7 +148,6 @@ async function setup(options: SetupOptions = {}) {
 
   const result = await render(GveSnapshotPartComponent, {
     componentImports: [
-      ReactiveFormsModule,
       MatCardModule,
       MatIconModule,
       TitleCasePipe,
@@ -176,6 +183,13 @@ async function setup(options: SetupOptions = {}) {
   result.fixture.componentInstance.data.subscribe(dataChange);
   await result.fixture.whenStable();
   return { ...result, getSetting, dataChange, editorClose, dirtyChange };
+}
+
+function editorOf(
+  fixture: Awaited<ReturnType<typeof setup>>['fixture'],
+): MockSnapshotEditorComponent {
+  return fixture.debugElement.query(By.directive(MockSnapshotEditorComponent))
+    .componentInstance;
 }
 
 function json(label: string): unknown {
@@ -585,7 +599,7 @@ describe('GveSnapshotPartComponent', () => {
 
   describe('editing', () => {
     it('should emit the saved part with the edited snapshot', async () => {
-      const { dataChange } = await setup({
+      const { fixture, dataChange } = await setup({
         data: { value: createPart(), thesauri: {} },
       });
       await userEvent.click(screen.getByRole('button', { name: 'save snapshot' }));
@@ -597,6 +611,7 @@ describe('GveSnapshotPartComponent', () => {
       expect(saved.value!.typeId).toBe(GVE_SNAPSHOT_PART_TYPEID);
       expect(saved.value!.value).toEqual(EDITED_SNAPSHOT);
       expect(saved.thesauri).toEqual({});
+      await fixture.whenStable();
       // the editor shows the saved snapshot
       expect(json('snapshot')).toEqual(EDITED_SNAPSHOT);
     });
@@ -629,13 +644,25 @@ describe('GveSnapshotPartComponent', () => {
       expect(part.value).toEqual({ text: 'hello', operations: [] });
     });
 
-    it('should report dirty and then clean state around a save', async () => {
-      const { dirtyChange } = await setup({
+    it('should not tag the input part', async () => {
+      const part = createPart();
+      part.value = structuredClone(EDITED_SNAPSHOT);
+      const { fixture } = await setup({ data: { value: part, thesauri: {} } });
+      await fixture.whenStable();
+      expect(Object.getOwnPropertySymbols(part.value.operations[0])).toEqual(
+        [],
+      );
+    });
+
+    it('should be clean after a save', async () => {
+      // the save is immediate, so the dirty state is never reported
+      const { fixture, dirtyChange } = await setup({
         data: { value: createPart(), thesauri: {} },
       });
       await userEvent.click(screen.getByRole('button', { name: 'save snapshot' }));
-      expect(dirtyChange).toHaveBeenCalledWith(true);
-      expect(dirtyChange).toHaveBeenLastCalledWith(false);
+      await fixture.whenStable();
+      expect(fixture.componentInstance.isDirty()).toBe(false);
+      expect(dirtyChange).not.toHaveBeenCalledWith(true);
     });
 
     it('should not save a cleared snapshot but report it as dirty', async () => {
@@ -647,6 +674,66 @@ describe('GveSnapshotPartComponent', () => {
       );
       expect(dataChange).not.toHaveBeenCalled();
       expect(dirtyChange).toHaveBeenLastCalledWith(true);
+    });
+
+    it('should be pristine after binding data', async () => {
+      const { fixture, dirtyChange } = await setup({
+        data: { value: createPart(), thesauri: {} },
+      });
+      const part = createPart();
+      part.value = { text: 'changed', operations: [] };
+      fixture.componentRef.setInput('data', { value: part, thesauri: {} });
+      await fixture.whenStable();
+      expect(fixture.componentInstance.isDirty()).toBe(false);
+      expect(dirtyChange).not.toHaveBeenCalledWith(true);
+    });
+
+    it('should be invalid without a snapshot', async () => {
+      const { fixture } = await setup({ data: { value: null, thesauri: {} } });
+      expect(fixture.componentInstance.form().invalid()).toBe(true);
+    });
+
+    it('should save a snapshot carrying no form tags', async () => {
+      const { fixture, dataChange } = await setup({
+        data: { value: createPart(), thesauri: {} },
+      });
+      await userEvent.click(screen.getByRole('button', { name: 'save snapshot' }));
+
+      await fixture.whenStable();
+      const saved = dataChange.mock.calls[0][0] as EditedObject<GveSnapshotPart>;
+      const snapshot = saved.value!.value;
+      expect(Object.getOwnPropertySymbols(snapshot)).toEqual([]);
+      for (const op of snapshot.operations) {
+        expect(Object.getOwnPropertySymbols(op)).toEqual([]);
+      }
+    });
+
+    it('should give the snapshot editor back the snapshot it saved', async () => {
+      // a copy would make the real editor reset and run the snapshot again
+      const { fixture } = await setup({
+        data: { value: createPart(), thesauri: {} },
+      });
+      await userEvent.click(screen.getByRole('button', { name: 'save snapshot' }));
+      await fixture.whenStable();
+
+      const editor = editorOf(fixture);
+      expect(editor.saved).toBeDefined();
+      expect(editor.snapshot()).toBe(editor.saved);
+    });
+
+    it('should disable the form when disabled', async () => {
+      const { fixture } = await setup({
+        data: { value: createPart(), thesauri: {} },
+        disabled: true,
+      });
+      expect(fixture.componentInstance.form().disabled()).toBe(true);
+    });
+
+    it('should render no form element', async () => {
+      const { container } = await setup({
+        data: { value: createPart(), thesauri: {} },
+      });
+      expect(container.querySelector('form')).toBeNull();
     });
 
     it('should request closing the editor on cancel', async () => {

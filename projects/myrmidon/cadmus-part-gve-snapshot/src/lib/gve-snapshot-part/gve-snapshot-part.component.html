@@ -1,25 +1,23 @@
-<form [formGroup]="form" (submit)="save()">
-  <mat-card>
-    <mat-card-header>
-      <div mat-card-avatar>
-        <mat-icon>picture_in_picture</mat-icon>
-      </div>
-      <mat-card-title>{{
-        (modelName() | titlecase) || "Snapshot Part"
-      }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <gve-snapshot-editor
-        [featureDefs]="featDefs()"
-        [multiValuedFeatureIds]="multiValuedFeatureIds()"
-        [renditionSettings]="renditionSettings()"
-        [noSave]="userLevel < 2 || !!disabled()"
-        [snapshot]="snapshot.value || undefined"
-        [sourceIds]="sourceIds()"
-        [sourceTypes]="sourceTypes()"
-        (snapshotCancel)="close()"
-        (snapshotChange)="onSnapshotChange($event!)"
-      />
-    </mat-card-content>
-  </mat-card>
-</form>
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>picture_in_picture</mat-icon>
+    </div>
+    <mat-card-title>{{
+      (modelName() | titlecase) || "Snapshot Part"
+    }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <gve-snapshot-editor
+      [featureDefs]="featDefs()"
+      [multiValuedFeatureIds]="multiValuedFeatureIds()"
+      [renditionSettings]="renditionSettings()"
+      [noSave]="userLevel < 2 || !!disabled()"
+      [snapshot]="form.snapshot().value() ?? undefined"
+      [sourceIds]="sourceIds()"
+      [sourceTypes]="sourceTypes()"
+      (snapshotCancel)="close()"
+      (snapshotChange)="onSnapshotChange($event)"
+    />
+  </mat-card-content>
+</mat-card>

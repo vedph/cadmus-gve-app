@@ -3,30 +3,23 @@ import {
   Component,
   computed,
   inject,
+  linkedSignal,
   OnInit,
   signal,
   untracked,
 } from '@angular/core';
-import {
-  FormControl,
-  FormBuilder,
-  Validators,
-  FormGroup,
-  UntypedFormGroup,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { required } from '@angular/forms/signals';
 import { TitleCasePipe } from '@angular/common';
 
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
-import { AuthJwtService } from '@myrmidon/auth-jwt-login';
+import { EditedObject, ThesaurusEntry } from '@myrmidon/cadmus-core';
 import {
-  ThesauriSet,
-  EditedObject,
-  ThesaurusEntry,
-} from '@myrmidon/cadmus-core';
-import { ModelEditorComponentBase } from '@myrmidon/cadmus-ui';
+  copyFormValue,
+  ModelEditorComponentBase,
+  sameFormValue,
+} from '@myrmidon/cadmus-ui';
 
 import {
   FeatureDefinitions,
@@ -52,13 +45,27 @@ import {
 import { renderOperationSummary } from '../render-op-summary';
 
 /**
+ * The editable shape behind the snapshot part form.
+ */
+interface GveSnapshotPartControls {
+  snapshot: Snapshot | null;
+}
+
+/**
+ * Map the bound part to the editable draft. The snapshot is copied, because
+ * the form tags the objects in its arrays (e.g. the operations).
+ */
+function toDraft(part?: GveSnapshotPart | null): GveSnapshotPartControls {
+  return { snapshot: copyFormValue(part?.value) || null };
+}
+
+/**
  * GVE snapshot part editor component.
  * Thesauri: snapshot-feat-names, snapshot-feat-values.
  */
 @Component({
   selector: 'cadmus-gve-snapshot-part',
   imports: [
-    ReactiveFormsModule,
     MatCardModule,
     MatIconModule,
     SnapshotEditorComponent,
@@ -72,33 +79,51 @@ export class GveSnapshotPartComponent
   extends ModelEditorComponentBase<GveSnapshotPart>
   implements OnInit
 {
-  private readonly _envService: EnvService;
-  private readonly _edSettingService: EditorSettingsService;
-  public snapshot: FormControl<Snapshot | null>;
+  private readonly _envService = inject(EnvService);
+  private readonly _edSettingService = inject(EditorSettingsService);
+
+  // the draft is derived from the bound data, and rebuilt when it changes;
+  // but the echo of our own save keeps the draft, so that the snapshot
+  // editor gets back the very object it saved: a copy would make it reset
+  // and run the snapshot again
+  private readonly _draft = linkedSignal<
+    GveSnapshotPart | null | undefined,
+    GveSnapshotPartControls
+  >({
+    source: () => this.data()?.value,
+    computation: (part, previous) =>
+      previous && sameFormValue(part?.value, previous.value.snapshot)
+        ? previous.value
+        : toDraft(part),
+  });
+  // the form: the base class adds the disabled state
+  public readonly form = this.createForm(this._draft, (p) => {
+    required(p.snapshot);
+  });
 
   /**
    * Thesaurus snapshot-feat-names entries.
    */
-  public readonly featNameEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined,
+  public readonly featNameEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['snapshot-feat-names']?.entries,
   );
   /**
    * Thesaurus snapshot-feat-values entries.
    */
-  public readonly featValueEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined,
+  public readonly featValueEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['snapshot-feat-values']?.entries,
   );
   /**
    * Thesaurus snapshot-source-ids entries.
    */
-  public readonly sourceIdEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined,
+  public readonly sourceIdEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['snapshot-source-ids']?.entries,
   );
   /**
    * Thesaurus snapshot-source-types entries.
    */
-  public readonly sourceTypeEntries = signal<ThesaurusEntry[] | undefined>(
-    undefined,
+  public readonly sourceTypeEntries = computed<ThesaurusEntry[] | undefined>(
+    () => this.data()?.thesauri?.['snapshot-source-types']?.entries,
   );
 
   /**
@@ -150,13 +175,8 @@ export class GveSnapshotPartComponent
   // true when the role-specific rendition settings have been loaded
   private _hasRoleRendition = false;
 
-  constructor(authService: AuthJwtService, formBuilder: FormBuilder) {
-    super(authService, formBuilder);
-    this._envService = inject(EnvService);
-    this._edSettingService = inject(EditorSettingsService);
-
-    // form
-    this.snapshot = formBuilder.control(null, Validators.required);
+  constructor() {
+    super();
   }
 
   private initMultiValuedFeatureIds(): void {
@@ -260,39 +280,6 @@ export class GveSnapshotPartComponent
     this.initFeatProps();
   }
 
-  protected buildForm(formBuilder: FormBuilder): FormGroup | UntypedFormGroup {
-    return formBuilder.group({
-      snapshot: this.snapshot,
-    });
-  }
-
-  private updateThesauri(thesauri: ThesauriSet): void {
-    let key = 'snapshot-feat-names';
-    if (this.hasThesaurus(key)) {
-      this.featNameEntries.set(thesauri[key].entries);
-    } else {
-      this.featNameEntries.set(undefined);
-    }
-    key = 'snapshot-feat-values';
-    if (this.hasThesaurus(key)) {
-      this.featValueEntries.set(thesauri[key].entries);
-    } else {
-      this.featValueEntries.set(undefined);
-    }
-    key = 'snapshot-source-ids';
-    if (this.hasThesaurus(key)) {
-      this.sourceIdEntries.set(thesauri[key].entries);
-    } else {
-      this.sourceIdEntries.set(undefined);
-    }
-    key = 'snapshot-source-types';
-    if (this.hasThesaurus(key)) {
-      this.sourceTypeEntries.set(thesauri[key].entries);
-    } else {
-      this.sourceTypeEntries.set(undefined);
-    }
-  }
-
   /**
    * Maps thesaurus entries to feature definitions.
    * @param names The thesaurus entries for feature names. These are assumed to be
@@ -341,22 +328,7 @@ export class GveSnapshotPartComponent
     return { names: featNames, values: featValues };
   }
 
-  private updateForm(part?: GveSnapshotPart | null): void {
-    if (!part) {
-      this.form.reset();
-      return;
-    }
-
-    this.snapshot.setValue(part.value || null);
-    this.form.markAsPristine();
-  }
-
   protected override onDataSet(data?: EditedObject<GveSnapshotPart>): void {
-    // thesauri
-    if (data?.thesauri) {
-      this.updateThesauri(data.thesauri);
-    }
-
     // update settings if role differs from default: the role comes from
     // the part, or from the identity for a new part. Data are set again
     // on each save, so load settings only when the role changes.
@@ -365,23 +337,27 @@ export class GveSnapshotPartComponent
     if (roleId && roleId !== this._renditionRoleId) {
       this.initRenderer(roleId);
     }
-
-    // form
-    this.updateForm(data?.value);
   }
 
   protected getValue(): GveSnapshotPart {
-    let part = this.getEditedPart(GVE_SNAPSHOT_PART_TYPEID) as GveSnapshotPart;
-    part.value = this.snapshot.value!;
+    const part = this.getEditedPart(GVE_SNAPSHOT_PART_TYPEID) as GveSnapshotPart;
+    // save() calls this only when the form is valid, i.e. with a snapshot
+    part.value = copyFormValue(this._draft().snapshot)!;
     return part;
   }
 
-  public onSnapshotChange(snapshot: Snapshot | null): void {
-    this.snapshot.setValue(snapshot);
-    this.snapshot.markAsDirty();
-    this.snapshot.updateValueAndValidity();
-    if (this.snapshot.value) {
-      super.save();
+  /**
+   * Handle the snapshot saved by the snapshot editor. This is an explicit
+   * user action, so the snapshot is always set and the part saved, unless
+   * the snapshot is missing: then the part is just left dirty. The snapshot
+   * is not copied: it is the editor's own copy, which it bound back to.
+   */
+  public onSnapshotChange(snapshot: Snapshot | null | undefined): void {
+    const field = this.form.snapshot();
+    field.value.set(snapshot || null);
+    field.markAsDirty();
+    if (snapshot) {
+      this.save();
     }
   }
 }

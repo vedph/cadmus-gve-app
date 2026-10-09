@@ -1,6 +1,6 @@
 {
   "name": "@myrmidon/cadmus-part-gve-pg",
-  "version": "6.0.1",
+  "version": "7.0.0",
   "description": "Cadmus - GVE parts wrapper components.",
   "keywords": [
     "Cadmus",
@@ -15,15 +15,15 @@
     "name": "Daniele Fusi"
   },
   "peerDependencies": {
-    "@angular/common": "^22.0.1",
-    "@angular/core": "^22.0.1",
-    "@angular/material": "^22.0.1",
-    "@angular/router": "^22.0.1",
-    "@myrmidon/cadmus-api": "^15.0.3",
-    "@myrmidon/cadmus-core": "^13.0.0",
-    "@myrmidon/cadmus-state": "^16.0.0",
-    "@myrmidon/cadmus-item-editor": "^18.0.1",
-    "@myrmidon/cadmus-part-gve-snapshot": "^6.0.1"
+    "@angular/common": "^22.2.0",
+    "@angular/core": "^22.2.0",
+    "@angular/material": "^22.2.0",
+    "@angular/router": "^22.2.0",
+    "@myrmidon/cadmus-api": "^20.0.0",
+    "@myrmidon/cadmus-core": "^20.0.0",
+    "@myrmidon/cadmus-state": "^20.0.0",
+    "@myrmidon/cadmus-item-editor": "^20.0.0",
+    "@myrmidon/cadmus-part-gve-snapshot": "^7.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
