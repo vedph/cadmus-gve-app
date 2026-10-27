@@ -1,5 +1,10 @@
 # History
 
+## 7.1.11
+
+- 2026-10-27:
+  - updated Angular and packages.
+  - fixes to reset password route and page.
 - 2026-10-09:
   - ⚠️ migrated to Angular signal forms the snapshot part editor (`@myrmidon/cadmus-part-gve-snapshot`), as required by `@myrmidon/cadmus-ui` 20 and `@myrmidon/gve-core` 8. Breaking for code that reached into its internals: the former `snapshot` `FormControl` is now `form.snapshot`, and the thesaurus entries signals (`featNameEntries` etc.) are now computed from `data`. Also:
     - the editor renders no `<form>` any more.
