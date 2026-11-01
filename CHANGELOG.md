@@ -1,5 +1,7 @@
 # History
 
+- 2026-11-01: updated Angular and packages.
+
 ## 7.1.11
 
 - 2026-10-27:
