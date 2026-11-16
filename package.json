@@ -1,6 +1,6 @@
 {
   "name": "cadmus-gve-app",
-  "version": "7.1.12",
+  "version": "7.1.13",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -16,22 +16,22 @@
     "test:libs": "pnpm run test:snp && pnpm run test:pg"
   },
   "private": true,
-  "packageManager": "pnpm@12.18.0",
+  "packageManager": "pnpm@12.21.0",
   "dependencies": {
-    "@angular/animations": "^22.2.5",
-    "@angular/cdk": "^22.2.6",
-    "@angular/common": "^22.2.5",
-    "@angular/compiler": "^22.2.5",
-    "@angular/core": "^22.2.5",
-    "@angular/forms": "^22.2.5",
-    "@angular/material": "^22.2.6",
-    "@angular/platform-browser": "^22.2.5",
-    "@angular/platform-browser-dynamic": "^22.2.5",
-    "@angular/router": "^22.2.5",
+    "@angular/animations": "^22.2.6",
+    "@angular/cdk": "^22.2.7",
+    "@angular/common": "^22.2.6",
+    "@angular/compiler": "^22.2.6",
+    "@angular/core": "^22.2.6",
+    "@angular/forms": "^22.2.6",
+    "@angular/material": "^22.2.7",
+    "@angular/platform-browser": "^22.2.6",
+    "@angular/platform-browser-dynamic": "^22.2.6",
+    "@angular/router": "^22.2.6",
     "@auth0/angular-jwt": "^5.2.0",
     "@jean-merelis/ngx-monaco-editor": "^21.0.0",
-    "@myrmidon/auth-jwt-admin": "^10.0.1",
-    "@myrmidon/auth-jwt-login": "^10.0.1",
+    "@myrmidon/auth-jwt-admin": "^10.1.0",
+    "@myrmidon/auth-jwt-login": "^10.1.0",
     "@myrmidon/cadmus-api": "^20.0.0",
     "@myrmidon/cadmus-codicology-ui": "^16.0.0",
     "@myrmidon/cadmus-core": "^20.0.0",
@@ -104,13 +104,13 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/build": "^22.2.6",
-    "@angular/cli": "^22.2.6",
-    "@angular/compiler-cli": "^22.2.5",
-    "@angular/localize": "^22.2.5",
+    "@angular/build": "^22.2.7",
+    "@angular/cli": "^22.2.7",
+    "@angular/compiler-cli": "^22.2.6",
+    "@angular/localize": "^22.2.6",
     "@testing-library/angular": "^19.6.0",
     "@testing-library/dom": "^10.4.2",
-    "@testing-library/user-event": "^14.6.9",
+    "@testing-library/user-event": "^14.6.10",
     "@vitest/coverage-v8": "^5.1.0",
     "jsdom": "^31.0.0",
     "ng-packagr": "^22.2.2",
@@ -119,11 +119,6 @@
     "zone.js": "0.16.3"
   },
   "optionalDependencies": {
-    "@rollup/rollup-win32-arm64-msvc": "^4.68.2"
-  },
-  "pnpm": {
-    "overrides": {
-      "rollup": "npm:@rollup/wasm-node"
-    }
+    "@rollup/rollup-win32-arm64-msvc": "^4.68.3"
   }
 }

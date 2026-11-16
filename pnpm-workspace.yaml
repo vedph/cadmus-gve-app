@@ -79,3 +79,7 @@ minimumReleaseAgeExclude:
   - vitest@5.0.2
   - '@testing-library/user-event@14.6.9'
   - marked@18.2.0
+  - '@myrmidon/auth-jwt-admin@10.1.0'
+  - '@myrmidon/auth-jwt-login@10.1.0'
+overrides:
+  '@rollup/rollup-win32-arm64-msvc': '4.68.3'
