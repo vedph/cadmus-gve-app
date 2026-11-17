@@ -1,5 +1,9 @@
 # History
 
+## 7.1.14
+
+- 2026-11-17: updated packages (fixes and improvements to `@myrmidon/gve-core`).
+
 ## 7.1.13
 
 - 2026-11-15: updated Angular and packages.
