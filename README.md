@@ -21,13 +21,13 @@ docker buildx inspect --bootstrap
 4. Build for both platforms and push directly to Docker Hub:
 
 ```sh
-docker buildx build --platform linux/amd64,linux/arm64 -t vedph2020/cadmus-gve-app:7.1.14 -t vedph2020/cadmus-gve-app:latest --push .
+docker buildx build --platform linux/amd64,linux/arm64 -t vedph2020/cadmus-gve-app:7.2.0 -t vedph2020/cadmus-gve-app:latest --push .
 ```
 
 ⚠️ For the IISG server (which uses subdirectories instead of subdomains) build with a different image name:
 
 ```sh
-docker buildx build --platform linux/amd64,linux/arm64 -t vedph2020/cadmus-gve-app:7.1.14-iisg --push .
+docker buildx build --platform linux/amd64,linux/arm64 -t vedph2020/cadmus-gve-app:7.2.0-iisg --push .
 ```
 
 👉 To use Zotero:

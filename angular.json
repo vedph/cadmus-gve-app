@@ -109,20 +109,21 @@
     "@myrmidon/cadmus-part-gve-snapshot": {
       "projectType": "library",
       "root": "projects/myrmidon/cadmus-part-gve-snapshot",
-      "sourceRoot": "projects/myrmidon/cadmus-part-gve-snapshot/src",
+      "sourceRoot": "projects/myrmidon/cadmus-part-gve-snapshot",
       "prefix": "cadmus",
       "architect": {
         "build": {
-          "builder": "@angular/build:ng-packagr",
+          "builder": "@angular/build:library",
           "options": {
-            "project": "projects/myrmidon/cadmus-part-gve-snapshot/ng-package.json"
+            "tsConfig": "projects/myrmidon/cadmus-part-gve-snapshot/tsconfig.lib.json",
+            "outputPath": "dist/myrmidon/cadmus-part-gve-snapshot"
           },
           "configurations": {
             "production": {
               "tsConfig": "projects/myrmidon/cadmus-part-gve-snapshot/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/myrmidon/cadmus-part-gve-snapshot/tsconfig.lib.json"
+              "compilationMode": "full"
             }
           },
           "defaultConfiguration": "production"
@@ -143,20 +144,21 @@
     "@myrmidon/cadmus-part-gve-pg": {
       "projectType": "library",
       "root": "projects/myrmidon/cadmus-part-gve-pg",
-      "sourceRoot": "projects/myrmidon/cadmus-part-gve-pg/src",
+      "sourceRoot": "projects/myrmidon/cadmus-part-gve-pg",
       "prefix": "cadmus",
       "architect": {
         "build": {
-          "builder": "@angular/build:ng-packagr",
+          "builder": "@angular/build:library",
           "options": {
-            "project": "projects/myrmidon/cadmus-part-gve-pg/ng-package.json"
+            "tsConfig": "projects/myrmidon/cadmus-part-gve-pg/tsconfig.lib.json",
+            "outputPath": "dist/myrmidon/cadmus-part-gve-pg"
           },
           "configurations": {
             "production": {
               "tsConfig": "projects/myrmidon/cadmus-part-gve-pg/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/myrmidon/cadmus-part-gve-pg/tsconfig.lib.json"
+              "compilationMode": "full"
             }
           },
           "defaultConfiguration": "production"
